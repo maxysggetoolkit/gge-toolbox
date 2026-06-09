@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipment Overview — Empire Toolbox</title>
+  <meta name="description" content="Every Goodgame Empire equipment piece with its set, slot, might and full effect list." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Empire <b>Toolbox</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🛡️ Equipment Overview</h1>
+      <p>Every equipment piece with its set, slot, might and full effect list.
+         Search a set name, or sort by might. <b>General</b> = attack gear,
+         <b>Baron</b> = defence gear.</p>
+    </div>
+
+    <section class="panel">
+      <div id="ov"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Data &amp; effect text extracted from the community game-data cache. Images from the Goodgame asset CDN.</p></div>
+  </footer>
+
+  <script src="../../assets/js/corrections.js"></script>
+  <script src="../../assets/js/overview.js"></script>
+  <script>
+    fetch("./data/equipment.json")
+      .then((r) => r.json())
+      .then((d) => {
+        const fix = window.ggeFixName || ((s) => s);
+        const data = d.items.map((it) => ({ ...it, name: fix(it.name) }));
+        const num = (v) => (v || 0).toLocaleString();
+        const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) =>
+          ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        EmpireOverview({
+          mount: document.getElementById("ov"),
+          data,
+          layout: "cards",
+          searchKeys: ["name", "set", "slot", "wearer"],
+          defaultSort: { key: "might", dir: -1 },
+          placeholder: "Search " + data.length + " items (name, set, slot)…",
+          sortOptions: [
+            { key: "might", label: "Might", num: true },
+            { key: "set", label: "Set" },
+            { key: "slot", label: "Slot" },
+            { key: "name", label: "Name" },
+          ],
+          card: {
+            title: (r) => r.name,
+            img: (r) => r.img || null,
+            corner: (r) => r.slot,
+            badge: (r) => r.wearer,
+            placeholder: "🛡️",
+            stats: [
+              { label: "Set", key: "set", fmt: (v) => esc(v || "—") },
+              { label: "Might", key: "might", num: true, fmt: num },
+            ],
+            extra: (r) =>
+              r.effects && r.effects.length
+                ? '<div class="effects">' + r.effects.map((e) => '<span class="eff">' + esc(e) + "</span>").join("") + "</div>"
+                : "",
+          },
+        });
+      })
+      .catch((e) => {
+        document.getElementById("ov").innerHTML = '<p class="muted">Could not load equipment data.</p>';
+        console.error(e);
+      });
+  </script>
+</body>
+</html>

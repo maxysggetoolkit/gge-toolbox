@@ -168,15 +168,18 @@ function cardOverview(opts) {
       const thumb = url
         ? '<img loading="lazy" src="' + esc(url) + '" alt="" onerror="this.parentNode.innerHTML=\'<span class=&quot;ph&quot;>' + (card.placeholder || "🎴") + '</span>\'">'
         : '<span class="ph">' + (card.placeholder || "🎴") + "</span>";
-      const stats = card.stats.map((s) => {
+      const stats = (card.stats || []).map((s) => {
         const v = s.fmt ? s.fmt(row[s.key], row) : esc(row[s.key]);
         return '<div class="stat"><span class="k">' + esc(s.label) + '</span><span class="v">' + v + "</span></div>";
       }).join("");
+      const extra = card.extra ? card.extra(row) : "";
+      const badge = card.badge ? card.badge(row) : null;
       return (
         '<div class="ov-card"><div class="thumb">' +
         (corner ? '<span class="corner">' + esc(corner) + "</span>" : "") +
         thumb + '</div><div class="body"><div class="title">' + esc(card.title(row)) +
-        '</div><div class="stats">' + stats + "</div></div></div>"
+        (badge ? '<span class="cbadge">' + esc(badge) + "</span>" : "") +
+        '</div><div class="stats">' + stats + "</div>" + extra + "</div></div>"
       );
     }).join("");
   }

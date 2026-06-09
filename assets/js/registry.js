@@ -111,13 +111,13 @@ window.TOOLS = [
     tags: ["generals", "commanders", "skills", "abilities"],
   },
   {
-    slug: "overview-equipment-sets",
+    slug: "overview-equipment",
     cat: "overviews",
-    name: "Equipment Sets",
-    desc: "Set bonuses, required pieces and effects.",
+    name: "Equipment",
+    desc: "Every gear piece with its set, slot, might and full effect list.",
     icon: "🛡️",
-    status: "soon",
-    tags: ["equipment", "sets", "gear", "bonuses"],
+    status: "live",
+    tags: ["equipment", "sets", "gear", "bonuses", "effects", "slot", "general", "baron"],
   },
   {
     slug: "overview-troops-tools",
