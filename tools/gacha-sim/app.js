@@ -81,6 +81,7 @@ function cleanData(evts) {
     ev.levels.forEach((l) => {
       const seen = new Map();
       l.entries.forEach((e) => {
+        if (window.ggeFixName) e.name = window.ggeFixName(e.name);
         if (e.type === "Misc" && /^(Common|Rare|Epic|Legendary|Reward)$/.test(e.name)) e.name = "Mystery reward";
         const base = e.name;
         const n = (seen.get(base) || 0) + 1;
