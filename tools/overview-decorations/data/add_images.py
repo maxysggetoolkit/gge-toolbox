@@ -7,21 +7,27 @@ ASSET_ROOT = "https://empire-html5.goodgamestudios.com/default/assets/"
 dll_path, data_path = sys.argv[1], sys.argv[2]
 dll = open(dll_path, encoding="utf-8", errors="ignore").read()
 
-# Index every Deco_Building render path by lowercased asset base name.
-idx = {}
-for p in re.findall(r"itemassets/Building/Deco/[A-Za-z0-9_]+/Deco_Building_[A-Za-z0-9_]+--\d+", dll):
-    base = re.search(r"Deco_Building_([A-Za-z0-9_]+)--", p).group(1).lower()
-    idx.setdefault(base, p)
+# Index every building render path by the asset token after "Deco_Building_".
+# Keyed broadly so recoloured/variant decos (ExaltedGreen…, …WithEffect) resolve.
+loose = {}
+for p in re.findall(r"itemassets/Building/[A-Za-z0-9_/]+--\d+", dll):
+    base = re.sub(r"--\d+$", "", p.split("/")[-1])          # Deco_Building_<token>
+    m = re.match(r"Deco_Building_(.+)", base)
+    if m:
+        loose.setdefault(m.group(1).lower(), p)
 
 
 def resolve(t):
     if not t:
         return None
     tl = t.lower()
-    if tl in idx:
-        return idx[tl]
-    for k, v in idx.items():            # fuzzy: substring either way
-        if tl in k or k in tl:
+    if tl in loose:                          # exact
+        return loose[tl]
+    for k, v in loose.items():               # deco token fully inside an asset token
+        if len(tl) >= 5 and tl in k:
+            return v
+    for k, v in loose.items():               # asset token inside deco token
+        if len(k) >= 5 and k in tl:
             return v
     return None
 
@@ -33,6 +39,6 @@ for it in data["items"]:
     if path:
         it["img"] = ASSET_ROOT + path + ".webp"
         hit += 1
-    it.pop("type", None)                # not needed client-side
+    it.pop("type", None)
 json.dump(data, open(data_path, "w"), separators=(",", ":"))
 print(f"  images: {hit}/{len(data['items'])} decorations")
