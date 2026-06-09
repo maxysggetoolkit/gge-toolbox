@@ -1,6 +1,8 @@
 {
   "updated": "2026-06-10",
   "changelog": [
+    { "date": "Jun 2026", "title": "Guides", "body": "New Guides section — start with Getting Started, Combat Basics, Attack Commander Setup and Rift Raid Basics. Searchable like any tool." },
+    { "date": "Jun 2026", "title": "Events plan with real art", "body": "The homepage events row now uses in-game event art, and the whole feed (news, changelog, events) updates from one data file." },
     { "date": "Jun 2026", "title": "Rift Raid Bosses", "body": "All 3 bosses, 20 levels each, with per-stage wall garrisons and boss effects. Rift Commander Maker now shows real piece art and exact gem names." },
     { "date": "Jun 2026", "title": "Equipment Overview", "body": "617 gear pieces with full effect lists and real art, including Hero-slot commander portraits. Gacha Sim drops link straight here." },
     { "date": "Jun 2026", "title": "Decorations Overview", "body": "532 decorations with images. Default sort is Decoration Points." },
