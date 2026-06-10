@@ -64,6 +64,17 @@ window.TOOLS = [
     tags: ["guide", "bth", "beyond the horizon", "event", "temp server", "influence", "capital", "city state", "materials", "build items"],
   },
   {
+    slug: "guide-rbc-farming",
+    img: "assets/img/event-icons/grandtournament.webp",
+    cat: "guides",
+    name: "RBC Farming",
+    desc: "Levelling robber barons: max levels per kingdom, the 3-hour cooldown, the real daily attack cap, and a simple routine.",
+    icon: "🏰",
+    status: "live",
+    url: "tools/guides/rbc-farming.html",
+    tags: ["guide", "rbc", "robber baron", "npc", "farming", "resources", "rubies", "grand tournament", "kingdom"],
+  },
+  {
     slug: "guide-outer-realms",
     img: "assets/img/event-icons/outerrealms.webp",
     cat: "guides",
