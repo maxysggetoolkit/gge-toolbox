@@ -160,6 +160,15 @@ a:hover { text-decoration: underline; }
 .news-all { display: inline-block; margin-top: 14px; font-size: .8rem; color: var(--text-dim); }
 .news-all:hover { color: var(--gold); text-decoration: none; }
 
+/* ---- Discord-sourced feed (prime times + announcements) ---- */
+.df-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.df-item { display: flex; gap: 12px; align-items: baseline; font-size: .85rem; }
+.df-date { flex: 0 0 5rem; font-size: .75rem; color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.df-body { color: var(--text-dim); line-height: 1.45; }
+.df-title { color: var(--text); font-weight: 500; }
+a.df-title:hover { color: var(--gold); text-decoration: none; }
+.df-empty { color: var(--text-faint); font-size: .85rem; font-style: italic; }
+
 /* ---- Events grid --------------------------------------------------------- */
 .events-grid {
     display: grid;

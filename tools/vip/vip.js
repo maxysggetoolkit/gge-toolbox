@@ -7,12 +7,13 @@
 
    To change the access code: run in any terminal —
      printf 'YOURCODE' | shasum -a 256
-   and paste the hash into CODE_HASH below. Current placeholder code: CHEMIE-VIP
+   and paste the hash into CODE_HASH below. Codes are compared upper-cased.
+   Current code: REDACTED-VIP-CODE
 */
 (function () {
   "use strict";
 
-  const CODE_HASH = "8ba4b5099a918cdbe54cef9734d4b88110218bfc7e595011e8611711df3bf8bc";
+  const CODE_HASH = "8d9ce1d2ba219e333cb5d5c0afa47847a16168793c27d52ed55723241d8ce0bc";
   const STORE_KEY = "vip_unlocked_v1";
 
   const body = document.body;

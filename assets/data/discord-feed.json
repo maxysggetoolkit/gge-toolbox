@@ -1,0 +1,6 @@
+{
+  "updated": "2026-06-10",
+  "note": "Populated by the Discord reader bot — see .github/DISCORD-FEED.md. Each item: { date, title, body, url? }. Keep newest first; trim old prime times.",
+  "announcements": [],
+  "primeTimes": []
+}
