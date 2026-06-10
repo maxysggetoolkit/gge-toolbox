@@ -150,12 +150,13 @@ window.TOOLS = [
   },
   {
     slug: "hol-simulator",
+    img: "assets/img/tool-art/layout.webp",
     cat: "simulators",
-    name: "Hall of Legends",
-    desc: "Plan HoL upgrade paths and their combat bonuses.",
+    name: "Hall of Legends Planner",
+    desc: "Allocate legendary skill points across the Offense & Defense trees and see your total bonuses.",
     icon: "🏛️",
-    status: "soon",
-    tags: ["hall", "legends", "hol", "upgrades"],
+    status: "live",
+    tags: ["hall", "legends", "hol", "skills", "legendary", "planner", "build"],
   },
   {
     slug: "layout-editor",
