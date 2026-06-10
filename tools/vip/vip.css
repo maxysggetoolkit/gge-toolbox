@@ -1,0 +1,61 @@
+/* Chemie's VIP Corner */
+
+/* ---- Gate ---- */
+.vip-gate {
+  max-width: 420px; margin: 40px auto; text-align: center;
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 32px 28px;
+}
+.vip-gate-lock { font-size: 2.4rem; margin-bottom: 8px; }
+.vip-gate h2 { margin: 0 0 6px; font-size: 1.25rem; }
+.vip-gate p { color: var(--text-dim); font-size: .9rem; margin: 0 0 20px; }
+.vip-code-row { display: flex; gap: 8px; }
+.vip-code-row input {
+  flex: 1; padding: 11px 14px; font: inherit; font-size: 1rem; letter-spacing: .12em;
+  background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text); text-align: center;
+}
+.vip-code-row input:focus { outline: none; border-color: var(--gold); }
+.vip-code-row button {
+  padding: 11px 22px; background: var(--gold); color: #1a1000; border: none;
+  border-radius: var(--radius-sm); font: inherit; font-weight: 700; cursor: pointer;
+}
+.vip-code-row button:hover { filter: brightness(1.1); }
+.vip-gate-err { color: var(--bad); font-size: .82rem; margin-top: 12px; min-height: 1em; }
+
+/* ---- Unlocked content ---- */
+.vip-locked .vip-content { display: none; }
+.vip-unlocked .vip-gate { display: none; }
+
+.vip-banner {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  background: linear-gradient(90deg, rgba(227,179,65,.1), rgba(163,113,247,.06));
+  border: 1px solid var(--gold-dim); border-radius: var(--radius);
+  padding: 14px 18px; margin-bottom: 22px;
+}
+.vip-banner .crest { font-size: 1.6rem; }
+.vip-banner b { color: var(--gold); }
+.vip-banner .vip-lock-again {
+  margin-left: auto; font-size: .8rem; color: var(--text-dim);
+  background: none; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 6px 12px; cursor: pointer;
+}
+.vip-banner .vip-lock-again:hover { border-color: var(--bad); color: var(--bad); }
+
+.vip-section-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.vip-tool {
+  background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 18px 16px;
+}
+.vip-tool-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.vip-tool-ico { font-size: 1.5rem; }
+.vip-tool h3 { margin: 0; font-size: 1rem; }
+.vip-tool p { color: var(--text-dim); font-size: .85rem; margin: 0 0 12px; line-height: 1.5; }
+.vip-tool ul { margin: 0 0 12px; padding-left: 18px; color: var(--text-dim); font-size: .82rem; }
+.vip-tool li { margin-bottom: 3px; }
+.vip-tool-status {
+  display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
+}
+.vip-tool-status.wip { background: rgba(227,179,65,.14); color: var(--gold); border: 1px solid var(--gold-dim); }
+.vip-tool-status.live { background: rgba(63,185,80,.14); color: var(--good); border: 1px solid var(--good); }

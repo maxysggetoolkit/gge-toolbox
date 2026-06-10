@@ -229,4 +229,16 @@ window.TOOLS = [
     status: "soon",
     tags: ["rankings", "leaderboard", "might", "glory", "alliance"],
   },
+
+  // ---- Chemie's VIP Corner (access-gated) --------------------------------
+  {
+    slug: "vip",
+    cat: "vip",
+    name: "Chemie's VIP Corner",
+    desc: "Members-only: fortress tracker, search & analyse, score tools and live rankings. Access code required.",
+    icon: "🔒",
+    status: "live",
+    url: "tools/vip/",
+    tags: ["vip", "chemie", "members", "fortress", "tracker", "search", "analyse", "score", "rankings", "dungeons"],
+  },
 ];

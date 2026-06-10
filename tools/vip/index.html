@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemie's VIP Corner — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Members-only GGE tools: fortress tracker, search & analyse, score tools and live rankings." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <link rel="stylesheet" href="./vip.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🔒 Chemie's VIP Corner</h1>
+      <p>A members-only set of advanced tools. Enter the access code to unlock.</p>
+    </div>
+
+    <!-- Gate -->
+    <div class="vip-gate">
+      <div class="vip-gate-lock">🔐</div>
+      <h2>Members only</h2>
+      <p>Enter your access code to open the VIP Corner. It stays unlocked on this
+         device until you lock it again.</p>
+      <form class="vip-code-row" id="vip-form">
+        <input type="password" id="vip-code" placeholder="Access code" autocomplete="off"
+               autocapitalize="characters" spellcheck="false" />
+        <button type="submit">Unlock</button>
+      </form>
+      <div class="vip-gate-err" id="vip-err"></div>
+    </div>
+
+    <!-- Unlocked content -->
+    <div class="vip-content">
+      <div class="vip-banner">
+        <span class="crest">👑</span>
+        <span>Welcome to <b>Chemie's VIP Corner</b>. These tools are members-only — please don't share the link or code.</span>
+        <button class="vip-lock-again" id="vip-lock">Lock again</button>
+      </div>
+
+      <div class="vip-section-grid">
+
+        <div class="vip-tool">
+          <div class="vip-tool-head"><span class="vip-tool-ico">📊</span><h3>Player &amp; Alliance Rankings</h3></div>
+          <p>Live might / glory / event rankings and player &amp; alliance lookup, in the
+             style of the danadum empire-rankings board.</p>
+          <span class="vip-tool-status wip">Wiring up</span>
+        </div>
+
+        <div class="vip-tool">
+          <div class="vip-tool-head"><span class="vip-tool-ico">🏰</span><h3>Fortress Tracker</h3></div>
+          <p>Track fortresses and their state over time.</p>
+          <span class="vip-tool-status wip">Wiring up</span>
+        </div>
+
+        <div class="vip-tool">
+          <div class="vip-tool-head"><span class="vip-tool-ico">🔎</span><h3>Search &amp; Analyse</h3></div>
+          <p>The four search-and-analyse tools from the dungeons toolkit.</p>
+          <span class="vip-tool-status wip">Wiring up</span>
+        </div>
+
+        <div class="vip-tool">
+          <div class="vip-tool-head"><span class="vip-tool-ico">🎯</span><h3>Score Tools</h3></div>
+          <p>The score &amp; functionality tools from the dungeons toolkit.</p>
+          <span class="vip-tool-status wip">Wiring up</span>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Members-only area. Tools credited to their original authors — see the main credits.</p></div>
+  </footer>
+
+  <script src="./vip.js"></script>
+</body>
+</html>

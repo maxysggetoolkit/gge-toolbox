@@ -8,6 +8,7 @@
     { id: "simulators", label: "Simulators" },
     { id: "rankings", label: "Rankings" },
     { id: "overviews", label: "Overviews" },
+    { id: "vip", label: "VIP 🔒" },
   ];
   const CAT_LABEL = {
     guides: "Guides",
@@ -15,6 +16,7 @@
     simulators: "Simulators",
     rankings: "Rankings & Stats",
     overviews: "Overviews",
+    vip: "Chemie's VIP Corner 🔒",
   };
 
   let activeCat = "all";
@@ -73,7 +75,7 @@
       return;
     }
     // Group by category, preserving registry order
-    const order = ["guides", "calculators", "simulators", "rankings", "overviews"];
+    const order = ["guides", "calculators", "simulators", "rankings", "overviews", "vip"];
     order.forEach((cat) => {
       const items = visible.filter((t) => t.cat === cat);
       if (!items.length) return;
