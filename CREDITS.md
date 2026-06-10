@@ -10,6 +10,8 @@ This is an unofficial, non-commercial fan project.
   icons are their curated set from `forum/img_base/event_icons`.
   <https://generalscamp.github.io/forum/>
   Game data cache: <https://github.com/GeneralsCamp/ggempire-data-cache>
+- **GGE community wikis** — mechanics reference
+  <https://goodgameempire.fandom.com/wiki/GoodGame_Empire_Wiki> · <https://goodgameempirewiki.wordpress.com/>
 - **danadum** — player/alliance rankings, data-mining and APIs
   <https://danadum.github.io/empire-rankings/> · <https://github.com/danadum>
 - **GGE Tracker** — advanced stats & dungeon tracking

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Sheets — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Hosted community reference sheets: CI cost calculator and the WoA 2024 odds workbook." />
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=12" />
+  <style>
+    .sheet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .sheet-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+    .sheet-card h2 { margin: 0 0 6px; font-size: 1rem; font-family: var(--font-display); }
+    .sheet-card p { margin: 0 0 12px; font-size: .85rem; color: var(--text-dim); }
+    .sheet-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .sheet-links a {
+      padding: 7px 14px; border-radius: var(--radius-sm); font-size: .82rem; font-weight: 600;
+      background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text); text-decoration: none;
+    }
+    .sheet-links a:hover { border-color: var(--gold-dim); color: var(--gold); }
+    .sheet-note { font-size: .76rem; color: var(--text-faint); margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>📑 Community Sheets</h1>
+      <p>Hosted community reference workbooks. These are <b>static snapshots</b> of
+         spreadsheets — great for the tables and odds; the input cells don't
+         recalculate. Native versions will replace them over time.</p>
+    </div>
+
+    <div class="sheet-grid">
+      <div class="sheet-card">
+        <h2>🔨 Construction Items — costs</h2>
+        <p>Construction-item cost calculator and full cost log (resources per level,
+           upgrade paths).</p>
+        <div class="sheet-links">
+          <a href="./ci-calc/calculator.html">Calculator sheet</a>
+          <a href="./ci-calc/cost-log.html">Cost log</a>
+        </div>
+      </div>
+
+      <div class="sheet-card">
+        <h2>🎡 Wheel of Affluence 2024 + Boxes</h2>
+        <p>Odds workbook for the Wheel of Unimaginable Affluence and its boxes —
+           full chance tables per wheel configuration.</p>
+        <div class="sheet-links">
+          <a href="./woa/chances.html">Chances</a>
+          <a href="./woa/calculator.html">Calculator sheet</a>
+          <a href="./woa/instructions.html">Instructions</a>
+        </div>
+        <div class="sheet-note">Originally Russian-language; tables are readable as-is.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Sheets by their community authors — hosted here for reference. See <a href="../../CREDITS.md">credits</a>.</p></div>
+  </footer>
+</body>
+</html>
