@@ -17,6 +17,21 @@
     .gen-ab-txt { min-width: 0; }
     .gen-ab-name { font-size: .8rem; font-weight: 600; color: var(--text); }
     .gen-ab-desc { font-size: .72rem; color: var(--text-dim); line-height: 1.35; }
+
+    /* Maxy's Recommendation callout */
+    .maxy-rec {
+      margin: 10px 0 4px; padding: 10px 12px;
+      background: linear-gradient(180deg, rgba(227,179,65,.1), rgba(227,179,65,.04));
+      border: 1px solid rgba(227,179,65,.3); border-radius: var(--radius-sm);
+    }
+    .maxy-rec-head {
+      font-size: .68rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 7px;
+    }
+    .rec-line { font-size: .78rem; margin-bottom: 6px; line-height: 1.45; }
+    .rec-label { font-weight: 700; color: var(--gold); margin-right: 5px; }
+    .rec-text { color: var(--text-dim); }
+    .rec-note { font-size: .76rem; color: var(--text-dim); line-height: 1.45; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -60,11 +75,27 @@
         ).join("") + "</div>";
     }
 
-    fetch("./data/generals.json")
-      .then((r) => r.json())
-      .then((d) => {
+    function recBlock(rec) {
+      if (!rec) return "";
+      let inner = "";
+      if (rec.lines && rec.lines.length) {
+        inner += '<div class="rec-lines">' + rec.lines.map((l) =>
+          '<div class="rec-line"><span class="rec-label">' + esc(l.label) + ":</span><span class=\"rec-text\">" + esc(l.text) + "</span></div>"
+        ).join("") + "</div>";
+      }
+      if (rec.note) inner += '<div class="rec-note">' + esc(rec.note) + "</div>";
+      return '<div class="maxy-rec"><div class="maxy-rec-head">⭐ Maxy\'s Recommendation</div>' + inner + "</div>";
+    }
+
+    Promise.all([
+      fetch("./data/generals.json").then((r) => r.json()),
+      fetch("../../assets/data/maxy-recs.json").then((r) => r.json()).catch(() => ({})),
+    ])
+      .then(([d, recs]) => {
+        const genRecs = (recs && recs.generals) || {};
         const data = d.generals.map((g) => ({
           ...g,
+          _rec: genRecs[g.name] || null,
           _search: g.name + " " + g.rarity + " " +
             g.attack.concat(g.defense).map((a) => a.name).join(" "),
         }));
@@ -90,6 +121,7 @@
               { label: "Max stars", key: "maxStars", num: true, fmt: (v) => "★" + v },
             ],
             extra: (r) =>
+              recBlock(r._rec) +
               '<div class="gen-abilities">' +
               abilityBlock("⚔️ Attack abilities", r.attack) +
               abilityBlock("🛡️ Defence abilities", r.defense) +

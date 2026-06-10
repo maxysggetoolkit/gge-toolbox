@@ -1,0 +1,11 @@
+{
+  "_note": "Maxy's personal recommendations, shown as a gold callout on matching items. Keyed by tool category, then by the item's display name. Each rec has optional `lines` (label + text rows) and/or `note` (free text). Add entries as you go.",
+  "generals": {
+    "Toril": {
+      "lines": [
+        { "label": "Attacking", "text": "B-tier PvP · S-tier for NPCs — use for Rift." },
+        { "label": "Defending", "text": "A-tier if you're holding one wall or about to lose a wall. Solid enough for offline defence." }
+      ]
+    }
+  }
+}

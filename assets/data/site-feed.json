@@ -1,5 +1,12 @@
 {
   "updated": "2026-06-10",
+  "maxyNotes": [
+    {
+      "date": "Jun 2026",
+      "title": "Welcome to the notes feed",
+      "body": "This is where I drop my own takes — gear calls, event tips, what's worth your rubies. Newest sits up top. More as we go."
+    }
+  ],
   "changelog": [
     {
       "date": "Jun 2026",

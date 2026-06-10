@@ -20,6 +20,20 @@
       </li>`).join("");
   }
 
+  function renderMaxyNotes(list) {
+    const el = document.getElementById("maxy-notes");
+    if (!el) return;
+    if (!list || !list.length) {
+      el.innerHTML = '<li class="note-empty">No notes yet.</li>';
+      return;
+    }
+    el.innerHTML = list.map((n) =>
+      `<li class="note-item">
+        <div class="note-head"><span class="note-title">${esc(n.title)}</span><span class="note-date">${esc(n.date)}</span></div>
+        <div class="note-body">${esc(n.body)}</div>
+      </li>`).join("");
+  }
+
   function renderNews(list, allUrl) {
     const el = document.getElementById("news-list");
     if (!el || !list) return;
@@ -53,6 +67,7 @@
   fetch("assets/data/site-feed.json?v=" + Date.now())
     .then((r) => r.json())
     .then((d) => {
+      renderMaxyNotes(d.maxyNotes);
       renderChangelog(d.changelog);
       renderNews(d.news, d.newsUrl);
       renderEvents(d.events);

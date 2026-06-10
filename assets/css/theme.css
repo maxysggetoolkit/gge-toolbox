@@ -145,6 +145,32 @@ a:hover { text-decoration: underline; }
     margin-bottom: 14px;
 }
 
+/* Collapsible, compact feed boxes (Maxy's Notes + What's New) */
+.feed-collapse { padding: 0; }
+.feed-collapse > summary {
+    list-style: none; cursor: pointer; user-select: none;
+    padding: 14px 18px; margin: 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+.feed-collapse > summary::-webkit-details-marker { display: none; }
+.feed-collapse .feed-hint { font-size: .64rem; font-weight: 600; color: var(--text-faint); letter-spacing: .04em; }
+.feed-collapse[open] > summary { border-bottom: 1px solid var(--border-soft); }
+.feed-collapse > ul {
+    max-height: 230px; overflow-y: auto;
+    margin: 0; padding: 14px 18px;
+}
+.feed-collapse > ul::-webkit-scrollbar { width: 8px; }
+.feed-collapse > ul::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* Maxy's Notes entries */
+.notes-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.note-item { border-left: 2px solid var(--gold-dim); padding-left: 11px; }
+.note-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+.note-title { font-weight: 700; font-size: .9rem; color: var(--text); }
+.note-date { font-size: .72rem; color: var(--text-faint); flex-shrink: 0; }
+.note-body { font-size: .85rem; color: var(--text-dim); line-height: 1.5; }
+.note-empty { list-style: none; color: var(--text-faint); font-style: italic; font-size: .85rem; }
+
 .changelog { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .changelog li { display: flex; gap: 10px; font-size: .85rem; }
 .cl-date {
