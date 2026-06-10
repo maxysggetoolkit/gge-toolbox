@@ -138,6 +138,10 @@ def main():
         seen.add(key)
         tools_out.append(t)
 
+    # Unit art is a texture atlas (portrait + small weapon/icon frames). Fetch
+    # each .json sidecar and crop to the LARGEST frame — the character portrait.
+    attach_frames(troops_out + tools_out)
+
     out = {
         "generated": __import__("datetime").date.today().isoformat(),
         "troops": troops_out,
@@ -146,8 +150,39 @@ def main():
     with open(OUT, "w") as f:
         json.dump(out, f, separators=(",", ":"))
     imgs = sum(1 for x in troops_out + tools_out if x["img"])
+    framed = sum(1 for x in troops_out + tools_out if x.get("frame"))
     print(f"Wrote troops-tools.json — {len(troops_out)} troops, {len(tools_out)} tools, "
-          f"{imgs}/{len(troops_out)+len(tools_out)} images.", file=sys.stderr)
+          f"{imgs}/{len(troops_out)+len(tools_out)} images, {framed} atlas-cropped.", file=sys.stderr)
+
+
+def fetch_largest_frame(url_webp):
+    """Return (frame [x,y,w,h], sheet [W,H]) of the biggest frame, or None."""
+    try:
+        with urllib.request.urlopen(url_webp[:-5] + ".json", timeout=15) as r:
+            a = json.loads(r.read().decode("utf-8"))
+        frames = a.get("frames", [])
+        if len(frames) <= 1:
+            return None
+        best = max(frames, key=lambda f: f[2] * f[3])
+        size = a.get("size", {})
+        return ([best[0], best[1], best[2], best[3]], [size.get("w", 0), size.get("h", 0)])
+    except Exception:
+        return None
+
+
+def attach_frames(items):
+    import concurrent.futures
+    urls = sorted({it["img"] for it in items if it.get("img")})
+    print(f"  Fetching {len(urls)} unit atlases…", file=sys.stderr)
+    frames = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=16) as ex:
+        for url, res in zip(urls, ex.map(fetch_largest_frame, urls)):
+            if res:
+                frames[url] = res
+    for it in items:
+        res = frames.get(it.get("img"))
+        if res:
+            it["frame"], it["sheet"] = res
 
 
 if __name__ == "__main__":

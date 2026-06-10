@@ -3,8 +3,26 @@
   "generals": {
     "Toril": {
       "lines": [
-        { "label": "Attacking", "text": "B-tier PvP · S-tier for NPCs — use for Rift." },
+        { "label": "Attacking", "text": "A-tier PvP. S-tier for NPCs — great for Rift." },
         { "label": "Defending", "text": "A-tier if you're holding one wall or about to lose a wall. Solid enough for offline defence." }
+      ]
+    },
+    "Sasaki": {
+      "lines": [
+        { "label": "Attacking", "text": "B/C tier — much better choices out there, especially for PvP. Interesting kit for wall wipes though, where it can push A/S." },
+        { "label": "Defending", "text": "S-tier. One of, if not the best, double-flanking defence commander — huge extra courtyard capacity and wall limit. Also great for Khan defence with Way of Perfection + Endless Practice." }
+      ]
+    },
+    "Kaelrith": {
+      "lines": [
+        { "label": "Attacking", "text": "S-tier. Incredibly strong — the best PvP general, just very expensive to max out." },
+        { "label": "Defending", "text": "B-tier. Not much experience seeing it on defence; there are simply better options." }
+      ]
+    },
+    "Ashira": {
+      "lines": [
+        { "label": "Attacking", "text": "A/S tier. A GS general that's very easy to get — very solid in PvP, performs better than Toril overall." },
+        { "label": "Defending", "text": "C-tier. Don't bother — better options in Horatio / Sasaki." }
       ]
     }
   }
