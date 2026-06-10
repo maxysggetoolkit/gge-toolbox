@@ -11,7 +11,7 @@ repo or via a direct link without the code, and the code is never stored anywher
    stays on your machine only. (Keep a backup; it's the only readable copy.)
 2. Re-encrypt:
    ```sh
-   python3 tools/vip/encrypt.py "REDACTED-VIP-CODE"
+   python3 tools/vip/encrypt.py "YOUR-ACCESS-CODE"
    ```
    (or `export VIP_PASS=…` and run with no argument)
 3. Commit the regenerated `tools/vip/*.html`. Leave `_src/` uncommitted.
