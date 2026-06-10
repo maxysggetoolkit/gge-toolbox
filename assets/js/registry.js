@@ -168,10 +168,10 @@ window.TOOLS = [
     slug: "overview-generals",
     cat: "overviews",
     name: "Generals",
-    desc: "Commanders, their rarities, skills and combat bonuses.",
+    desc: "Every obtainable general with rarity, level caps and full attack/defence ability kits.",
     icon: "🎖️",
-    status: "soon",
-    tags: ["generals", "commanders", "skills", "abilities"],
+    status: "live",
+    tags: ["generals", "commanders", "skills", "abilities", "rarity", "kaelrith", "toril"],
   },
   {
     slug: "overview-equipment",

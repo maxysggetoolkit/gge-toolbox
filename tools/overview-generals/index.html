@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generals Overview — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Every Goodgame Empire general with rarity, level caps and full attack & defence ability lists." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <style>
+    .gen-abilities { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+    .gen-ab-block h4 {
+      margin: 0 0 6px; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--text-faint); font-weight: 700;
+    }
+    .gen-ab { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .gen-ab img { width: 26px; height: 26px; border-radius: 5px; flex-shrink: 0; }
+    .gen-ab-txt { min-width: 0; }
+    .gen-ab-name { font-size: .8rem; font-weight: 600; color: var(--text); }
+    .gen-ab-desc { font-size: .72rem; color: var(--text-dim); line-height: 1.35; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🎖️ Generals</h1>
+      <p>Every obtainable general with rarity, level caps and their full
+         <b>attack</b> and <b>defence</b> ability kits. Ability values scale with
+         ability level, so descriptions show what each does rather than a single number.</p>
+    </div>
+
+    <section class="panel">
+      <div id="ov"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Data &amp; ability text extracted from the community game-data cache. Art from the Goodgame asset CDN.</p></div>
+  </footer>
+
+  <script src="../../assets/js/overview.js"></script>
+  <script>
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    function abilityBlock(label, list) {
+      if (!list || !list.length) return "";
+      return '<div class="gen-ab-block"><h4>' + label + "</h4>" +
+        list.map((a) =>
+          '<div class="gen-ab">' +
+          (a.icon ? '<img src="' + esc(a.icon) + '" alt="" loading="lazy" onerror="this.remove()">' : "") +
+          '<div class="gen-ab-txt"><div class="gen-ab-name">' + esc(a.name) + "</div>" +
+          '<div class="gen-ab-desc">' + esc(a.desc) + "</div></div></div>"
+        ).join("") + "</div>";
+    }
+
+    fetch("./data/generals.json")
+      .then((r) => r.json())
+      .then((d) => {
+        const data = d.generals.map((g) => ({
+          ...g,
+          _search: g.name + " " + g.rarity + " " +
+            g.attack.concat(g.defense).map((a) => a.name).join(" "),
+        }));
+        EmpireOverview({
+          mount: document.getElementById("ov"),
+          data,
+          layout: "cards",
+          searchKeys: ["_search"],
+          defaultSort: { key: "rarityID", dir: -1 },
+          placeholder: "Search " + data.length + " generals (name, rarity, ability)…",
+          sortOptions: [
+            { key: "rarityID", label: "Rarity",    num: true },
+            { key: "maxLevel", label: "Max level", num: true },
+            { key: "name",     label: "Name" },
+          ],
+          card: {
+            title: (r) => r.name,
+            img: (r) => r.img || null,
+            corner: (r) => r.rarity,
+            placeholder: "🎖️",
+            stats: [
+              { label: "Max level", key: "maxLevel", num: true, fmt: (v) => v },
+              { label: "Max stars", key: "maxStars", num: true, fmt: (v) => "★" + v },
+            ],
+            extra: (r) =>
+              '<div class="gen-abilities">' +
+              abilityBlock("⚔️ Attack abilities", r.attack) +
+              abilityBlock("🛡️ Defence abilities", r.defense) +
+              "</div>",
+          },
+        });
+      })
+      .catch((e) => {
+        document.getElementById("ov").innerHTML = '<p class="muted">Could not load generals data.</p>';
+        console.error(e);
+      });
+  </script>
+</body>
+</html>
