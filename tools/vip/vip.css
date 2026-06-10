@@ -29,7 +29,7 @@
 
 .vip-banner {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  background: linear-gradient(90deg, rgba(227,179,65,.1), rgba(163,113,247,.06));
+  background: linear-gradient(90deg, rgba(217, 178, 90,.1), rgba(163,113,247,.06));
   border: 1px solid var(--gold-dim); border-radius: var(--radius);
   padding: 14px 18px; margin-bottom: 22px;
 }
@@ -57,7 +57,7 @@
   display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .06em;
   text-transform: uppercase; padding: 3px 9px; border-radius: 99px;
 }
-.vip-tool-status.wip { background: rgba(227,179,65,.14); color: var(--gold); border: 1px solid var(--gold-dim); }
+.vip-tool-status.wip { background: rgba(217, 178, 90,.14); color: var(--gold); border: 1px solid var(--gold-dim); }
 .vip-tool-status.live { background: rgba(63,185,80,.14); color: var(--good); border: 1px solid var(--good); }
 
 /* ---- VIP tool pages (shared) ---- */
@@ -92,7 +92,7 @@ table.vip-table { width: 100%; border-collapse: collapse; font-size: .84rem; }
 .vip-table td { padding: 7px 9px; border-bottom: 1px solid var(--border); color: var(--text-dim); white-space: nowrap; }
 .vip-table td.nm { color: var(--text); font-weight: 600; }
 .vip-table td.r { text-align: right; font-variant-numeric: tabular-nums; }
-.vip-table tr:hover td { background: rgba(227,179,65,.03); }
+.vip-table tr:hover td { background: rgba(217, 178, 90,.03); }
 
 .vip-pager { display: flex; gap: 8px; align-items: center; justify-content: center; margin-top: 14px; font-size: .84rem; color: var(--text-dim); }
 .vip-status { font-size: .82rem; color: var(--text-faint); margin: 10px 0; min-height: 1.1em; }

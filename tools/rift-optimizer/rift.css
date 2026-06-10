@@ -225,7 +225,7 @@
   background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text-dim); cursor: pointer;
 }
 .preset-btn:hover { border-color: var(--gold-dim); color: var(--text); }
-.preset-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(227,179,65,.08); }
+.preset-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(217, 178, 90,.08); }
 .opt-cmdrs { display: inline-flex; align-items: center; gap: 7px; font-size: .8rem; color: var(--text-dim); }
 .opt-cmdrs select {
   padding: 7px 10px; font: inherit; background: var(--bg-elev-2);

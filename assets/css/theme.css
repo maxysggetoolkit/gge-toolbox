@@ -2,19 +2,22 @@
    Maxy's Empire Toolkit — shared theme
    Used by the hub and every tool page so the whole site feels like one app.
    =========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* "Ebon Sovereignty" palette (from the Stitch design system):
+   void #0e0f13 · keep #1a1b20 · crown gold #d9b25a · parchment #f5f1e6 */
 :root {
-    --bg:          #0e1116;
-    --bg-elev:     #161b22;
-    --bg-elev-2:   #1d242d;
-    --border:      #2a313c;
-    --border-soft: #222933;
-    --text:        #e6edf3;
-    --text-dim:    #9aa7b4;
-    --text-faint:  #6b7785;
-    --gold:        #e3b341;
-    --gold-dim:    #b8902f;
+    --bg:          #0e0f13;
+    --bg-elev:     #1a1b20;
+    --bg-elev-2:   #24252b;
+    --border:      rgba(217, 178, 90, .18);
+    --border-soft: rgba(217, 178, 90, .10);
+    --text:        #f5f1e6;
+    --text-dim:    #d1c5b2;
+    --text-faint:  #9a8f7e;
+    --gold:        #d9b25a;
+    --gold-bright: #f7cd72;
+    --gold-dim:    #a8873f;
     --accent:      #4f9dde;
     --good:        #3fb950;
     --bad:         #f85149;
@@ -22,8 +25,8 @@
     --radius-sm:   8px;
     --shadow:      0 6px 24px rgba(0, 0, 0, .35);
     --maxw:        1080px;
-    --font:        system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --font-display: "Cinzel", "Palatino", "Times New Roman", serif;
+    --font:        "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-display: "EB Garamond", "Cinzel", "Palatino", "Times New Roman", serif;
 }
 
 * { box-sizing: border-box; }
@@ -32,7 +35,7 @@ html, body {
     margin: 0;
     padding: 0;
     background:
-        radial-gradient(1100px 500px at 15% -5%, rgba(227, 179, 65, .05), transparent 60%),
+        radial-gradient(1100px 500px at 15% -5%, rgba(217, 178, 90, .05), transparent 60%),
         radial-gradient(900px 600px at 90% 0%, rgba(79, 157, 222, .045), transparent 55%),
         var(--bg);
     color: var(--text);
@@ -65,7 +68,7 @@ a:hover { text-decoration: underline; }
     content: "";
     display: block;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(227, 179, 65, .45), transparent);
+    background: linear-gradient(90deg, transparent, rgba(217, 178, 90, .45), transparent);
 }
 .brand {
     display: flex;
@@ -98,7 +101,7 @@ a:hover { text-decoration: underline; }
     background:
         linear-gradient(180deg, rgba(10, 12, 18, .55) 0%, rgba(10, 12, 18, .72) 60%, rgba(14, 17, 22, .94) 100%),
         url("../img/hero-banner.webp") center 30% / cover no-repeat;
-    box-shadow: var(--shadow), inset 0 0 0 1px rgba(227, 179, 65, .08);
+    box-shadow: var(--shadow), inset 0 0 0 1px rgba(217, 178, 90, .08);
 }
 .hero::after {
     content: "";
@@ -313,7 +316,7 @@ a.df-title:hover { color: var(--gold); text-decoration: none; }
     content: "";
     flex: 1;
     height: 1px;
-    background: linear-gradient(90deg, rgba(227, 179, 65, .35), transparent);
+    background: linear-gradient(90deg, rgba(217, 178, 90, .35), transparent);
 }
 .grid {
     display: grid;
@@ -343,7 +346,7 @@ a.df-title:hover { color: var(--gold); text-decoration: none; }
     border-color: var(--gold-dim);
     transform: translateY(-3px);
     text-decoration: none;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, .45), 0 0 0 1px rgba(227, 179, 65, .12);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .45), 0 0 0 1px rgba(217, 178, 90, .12);
 }
 .card:hover::before { opacity: .8; }
 .card.disabled { opacity: .55; pointer-events: none; }
@@ -543,7 +546,6 @@ table.ov .muted { color: var(--text-faint); }
    Sidebar archive nav + engraved EB-Garamond headings + gold-hairline cards.
    Tool pages are untouched until they're ported individually.
    =========================================================================== */
-body.dash { --font-display: "EB Garamond", "Palatino", "Times New Roman", serif; }
 body.dash .topbar .wrap { max-width: 1320px; }
 
 .app-shell {
@@ -603,7 +605,7 @@ body.dash .topbar .wrap { max-width: 1320px; }
 .side-link.active {
     color: var(--gold);
     border-left-color: var(--gold);
-    background: linear-gradient(90deg, rgba(227, 179, 65, .10), transparent);
+    background: linear-gradient(90deg, rgba(217, 178, 90, .10), transparent);
 }
 
 @media (max-width: 900px) {
@@ -640,14 +642,14 @@ body.dash .topbar .wrap { max-width: 1320px; }
     cursor: pointer;
     transition: .15s;
 }
-.dash .hero-cta:hover { filter: brightness(1.1); box-shadow: 0 0 14px rgba(227, 179, 65, .35); }
+.dash .hero-cta:hover { filter: brightness(1.1); box-shadow: 0 0 14px rgba(217, 178, 90, .35); }
 
 /* gold-hairline + candle-lit glow on the home feed cards */
-.dash .home-card { border-color: rgba(227, 179, 65, .15); transition: .15s; }
+.dash .home-card { border-color: rgba(217, 178, 90, .15); transition: .15s; }
 .dash .home-news-row .home-card { cursor: default; }
 .dash .home-news-row .home-card:hover {
-    border-color: rgba(227, 179, 65, .55);
-    box-shadow: 0 0 14px rgba(227, 179, 65, .12);
+    border-color: rgba(217, 178, 90, .55);
+    box-shadow: 0 0 14px rgba(217, 178, 90, .12);
 }
 .dash .home-card-head {
     display: flex; align-items: center; gap: 7px;

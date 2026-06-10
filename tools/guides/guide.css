@@ -35,7 +35,7 @@
 /* Callout / tip box */
 .tip {
   margin: 18px 0; padding: 12px 16px; border-radius: var(--radius-sm);
-  background: rgba(227,179,65,.07); border-left: 3px solid var(--gold);
+  background: rgba(217, 178, 90,.07); border-left: 3px solid var(--gold);
   font-size: .9rem; color: var(--text-dim);
 }
 .tip b { color: var(--gold); }

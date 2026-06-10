@@ -10,7 +10,7 @@
   transition: .15s;
 }
 .boss-tab:hover { border-color: var(--gold-dim); color: var(--text); }
-.boss-tab.active { border-color: var(--gold); color: var(--text); background: rgba(227,179,65,.08); }
+.boss-tab.active { border-color: var(--gold); color: var(--text); background: rgba(217, 178, 90,.08); }
 .boss-tab-name { font-weight: 700; font-size: .92rem; }
 .boss-tab-sub { font-size: .72rem; color: var(--text-faint); }
 .boss-tab.active .boss-tab-sub { color: var(--gold-dim); }
@@ -31,7 +31,7 @@
 .rarity-pill.common    { background: rgba(154,167,180,.18); color: #cdd6df; }
 .rarity-pill.rare      { background: rgba(79,157,222,.18);  color: #79c0ff; }
 .rarity-pill.epic      { background: rgba(163,113,247,.18); color: #c39bff; }
-.rarity-pill.legendary { background: rgba(227,179,65,.18);  color: var(--gold); }
+.rarity-pill.legendary { background: rgba(217, 178, 90,.18);  color: var(--gold); }
 .boss-desc { color: var(--text-dim); font-size: .88rem; line-height: 1.5; margin: 0; }
 
 /* ---- Level selector ---- */
@@ -108,13 +108,13 @@
 .highlights { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .highlight-chip {
   font-size: .72rem; padding: 3px 9px; border-radius: 99px;
-  background: rgba(227,179,65,.12); border: 1px solid rgba(227,179,65,.3); color: var(--gold);
+  background: rgba(217, 178, 90,.12); border: 1px solid rgba(217, 178, 90,.3); color: var(--gold);
 }
 
 /* ---- Sim placeholder banner ---- */
 .sim-cta {
   margin-bottom: 22px; padding: 14px 18px;
-  background: linear-gradient(90deg, rgba(227,179,65,.07), rgba(163,113,247,.05));
+  background: linear-gradient(90deg, rgba(217, 178, 90,.07), rgba(163,113,247,.05));
   border: 1px dashed var(--gold-dim); border-radius: var(--radius);
   display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
 }

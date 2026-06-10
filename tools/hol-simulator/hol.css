@@ -51,4 +51,4 @@
 .hol-step-btn:disabled { opacity: .35; cursor: default; }
 .hol-lvl { width: 44px; text-align: center; font-size: .82rem; font-variant-numeric: tabular-nums; color: var(--text); }
 .hol-skill.active .hol-skill-name { color: var(--gold); }
-.hol-skill.active { background: rgba(227,179,65,.05); border-radius: 6px; margin: 0 -6px; padding-left: 6px; padding-right: 6px; }
+.hol-skill.active { background: rgba(217, 178, 90,.05); border-radius: 6px; margin: 0 -6px; padding-left: 6px; padding-right: 6px; }
