@@ -1,0 +1,3775 @@
+{
+  "generated": "2026-06-10T22:59:21Z",
+  "items": [
+    {
+      "name": "Anniversary Barrel Workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Anniversary Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Anniversary Estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1250,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Anniversary Hall of Legends",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Anniversary Storehouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Autumn barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 300,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallCount"
+        }
+      ]
+    },
+    {
+      "name": "Autumn keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 300,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Autumn workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Bakery of fortune",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Base food production build item",
+      "level": 45,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 439,
+          "tmpl": "+{0} food production bonus",
+          "pct": false,
+          "label": "Foodproduction"
+        }
+      ]
+    },
+    {
+      "name": "Base stone production build item",
+      "level": 15,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 64,
+          "tmpl": "+{0} stone production bonus",
+          "pct": false,
+          "label": "Stoneproduction"
+        }
+      ]
+    },
+    {
+      "name": "Base wood production build item",
+      "level": 15,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 64,
+          "tmpl": "+{0} wood production bonus",
+          "pct": false,
+          "label": "Woodproduction"
+        }
+      ]
+    },
+    {
+      "name": "Beef production build item",
+      "level": 15,
+      "rarity": 3,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 500,
+          "tmpl": "+{0} beef production bonus",
+          "pct": false,
+          "label": "BeefProductionIncrease"
+        }
+      ]
+    },
+    {
+      "name": "Beef production build item",
+      "level": 15,
+      "rarity": 3,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 2500,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to beef production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Beer Tower",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Berimond barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 200,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Berimond barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 250,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Blazing Dragon Scale Food District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Blazing Dragon Scale Inner District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Blazing Dragon Scale Mead District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Blazing Dragon Scale Military District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Blazing Dragon Scale Trade District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Broken Egg Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% unit limit on the front",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Broken Egg Greenhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% unit limit on the front",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Broken Egg Hall of Legends",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Broken Egg Storehouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Broken Egg tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 70,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Burning Dragon Scale Food District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Burning Dragon Scale Inner District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Burning Dragon Scale Mead District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Burning Dragon Scale Military District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Burning Dragon Scale Trade District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 3,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Carnival Barrel Workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Carnival Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Increase flank unit limit when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Carnival Hall of Legends",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        },
+        {
+          "v": 25,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Carnival Honey Garden",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Carnival mill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 65,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Christmas Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Christmas Greenhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Christmas Relic Woodcutter",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Clifftop farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Clifftop farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 15000,
+          "tmpl": "+{0} to troop capacity in courtyard defense",
+          "pct": false,
+          "label": "Bonus to courtyard defense troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Clockwork flour mill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Daffodil siege workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Defense tool cost build item",
+      "level": 4,
+      "rarity": 2,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "-{0}% defense tool resource costs",
+          "pct": false,
+          "label": "defensiveToolsCostsReduction"
+        }
+      ]
+    },
+    {
+      "name": "Defense tool production speed build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 22,
+          "tmpl": "+{0}% defense tool production speed",
+          "pct": false,
+          "label": "defensiveToolsSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Dragon rider hospital",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Dragon rider hospital",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Dragonscale Granary",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to beef production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Dragonscale Toolsmith",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to beef production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Ember-lit Dragon Scale Food District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Ember-lit Dragon Scale Inner District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Ember-lit Dragon Scale Mead District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Ember-lit Dragon Scale Military District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Ember-lit Dragon Scale Trade District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 8,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Emerald Stables",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 150,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallCount"
+        }
+      ]
+    },
+    {
+      "name": "Emerald Stables",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Encampment of brutality",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Espionage speed build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 60,
+          "tmpl": "+{0}% espionage speed",
+          "pct": false,
+          "label": "espionageTravelBoost"
+        }
+      ]
+    },
+    {
+      "name": "Estate of cowardly spirits",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        },
+        {
+          "v": 15,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Festive Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Festive Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% resources looted from NPC targets",
+          "pct": true,
+          "label": "lootBonusPVE"
+        }
+      ]
+    },
+    {
+      "name": "Festive defensive workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 36,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Festive defensive workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Food production build item",
+      "level": 12,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 240,
+          "tmpl": "+{0} food production per hour",
+          "pct": false,
+          "label": "unboostedFoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Food production build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 4000,
+          "tmpl": "+{0} food production per hour",
+          "pct": false,
+          "label": "unboostedFoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Food storage build item",
+      "level": 40,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 625000,
+          "tmpl": "+{0} food storage capacity",
+          "pct": false,
+          "label": "foodStorage"
+        }
+      ]
+    },
+    {
+      "name": "Food storage build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 90000,
+          "tmpl": "+{0} food storage capacity",
+          "pct": false,
+          "label": "foodStorage"
+        }
+      ]
+    },
+    {
+      "name": "Giants' forest sawmill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 400,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Giants' forest woodcutter",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 11250,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Granite rock quarry",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 32500,
+          "tmpl": "+{0} food production per hour",
+          "pct": false,
+          "label": "unboostedFoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Granite rock stonemason",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 400,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallCount"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 7500,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        },
+        {
+          "v": 25000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% food production increase",
+          "pct": true,
+          "label": "Bonus to food production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": true,
+          "label": "Bonus to recruitment speed"
+        },
+        {
+          "v": 50,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        },
+        {
+          "v": 4000,
+          "tmpl": "+{0} public order inside your main castle",
+          "pct": false,
+          "label": "PublicOrderBonusMain"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 7500,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        },
+        {
+          "v": 25000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 5,
+          "tmpl": "+{0}% food production increase",
+          "pct": true,
+          "label": "Bonus to food production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "Bonus to melee units attack strength"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% range unit strength when attacking",
+          "pct": true,
+          "label": "Bonus to ranged units attack strength"
+        },
+        {
+          "v": 60,
+          "tmpl": "+{0}% combat strength when attacking enemy courtyards",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Hunting Lodge",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "offensiveMeleeBonusTCI"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        },
+        {
+          "v": 60,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        },
+        {
+          "v": 1,
+          "tmpl": "+{0} additional wave(s)",
+          "pct": false,
+          "label": "additionalWaves"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Stables",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        },
+        {
+          "v": 1,
+          "tmpl": "+{0} additional wave(s)",
+          "pct": false,
+          "label": "additionalWaves"
+        }
+      ]
+    },
+    {
+      "name": "Halloween Storage",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        },
+        {
+          "v": 1,
+          "tmpl": "+{0} additional wave(s)",
+          "pct": false,
+          "label": "additionalWaves"
+        }
+      ]
+    },
+    {
+      "name": "Hollow tree market",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "-{0}% recruitment costs",
+          "pct": false,
+          "label": "recruitCostReduction"
+        }
+      ]
+    },
+    {
+      "name": "Honey production build item",
+      "level": 25,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 418,
+          "tmpl": "+{0} honey production bonus",
+          "pct": false,
+          "label": "HoneyProductionIncrease"
+        }
+      ]
+    },
+    {
+      "name": "Honey production build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 7000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Honey storage build item",
+      "level": 20,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 175000,
+          "tmpl": "+{0} honey storage capacity",
+          "pct": false,
+          "label": "honeyStorage"
+        }
+      ]
+    },
+    {
+      "name": "Honey storage build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 90000,
+          "tmpl": "+{0} honey storage capacity",
+          "pct": false,
+          "label": "honeyStorage"
+        }
+      ]
+    },
+    {
+      "name": "Hospital space build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 155,
+          "tmpl": "+{0} hospital space",
+          "pct": false,
+          "label": "hospitalCapacity"
+        }
+      ]
+    },
+    {
+      "name": "Imperial Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Imperial Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Infernal Dragon Scale Food District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Infernal Dragon Scale Inner District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Infernal Dragon Scale Mead District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Infernal Dragon Scale Military District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Infernal Dragon Scale Trade District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Jungle defense workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 36,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Jungle encampment",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Jungle estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Jungle hall of legends",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 300,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Keep of the foreign invaders",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 250,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Keep of the foreign invaders",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 12,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Kiwi king barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 300,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Lotus Drillground",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Luxury Bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 45,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Luxury Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% unit limit on the front",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Luxury Estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 70,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Luxury Greenhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Majestic anniversary keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Market barrows build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0} market barrows",
+          "pct": false,
+          "label": "marketCarriages"
+        }
+      ]
+    },
+    {
+      "name": "Masquarade Barel Workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% melee units attack strength in the Rift Raid Event",
+          "pct": true,
+          "label": "equipmentAREOffensiveMeleeBonus"
+        },
+        {
+          "v": 30,
+          "tmpl": "+{0}% ranged units attack strength in the Rift Raid Event",
+          "pct": true,
+          "label": "equipmentAREOffensiveRangedBonus"
+        },
+        {
+          "v": 100,
+          "tmpl": "+{0}% army travel speed in the Rift Raid Event",
+          "pct": true,
+          "label": "equipmentARESpeedBonus"
+        }
+      ]
+    },
+    {
+      "name": "Masquerade Dwelling",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% food production increase",
+          "pct": true,
+          "label": "Bonus to food production in castle"
+        },
+        {
+          "v": 7500,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        },
+        {
+          "v": 25000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Masquerade Granary",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% melee units attack strength",
+          "pct": true,
+          "label": "Bonus to melee units attack strength"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% ranged units attack strength",
+          "pct": true,
+          "label": "Bonus to ranged units attack strength"
+        },
+        {
+          "v": 60,
+          "tmpl": "+{0}% combat strength when attacking enemy courtyards",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Masquerade Hall of Legends",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% unit limit on the front in the Rift Raid Event",
+          "pct": true,
+          "label": "equipmentAREAttackUnitAmountFront"
+        },
+        {
+          "v": 50,
+          "tmpl": "+{0}% flank unit limit in the Rift Raid Event",
+          "pct": true,
+          "label": "equipmentAREAttackUnitAmountFlank"
+        },
+        {
+          "v": 2,
+          "tmpl": "+{0} additional wave(s) in the Rift Raid Event",
+          "pct": false,
+          "label": "equipmentAREAdditionalWaves"
+        }
+      ]
+    },
+    {
+      "name": "Masquerade Honey Gardens",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": true,
+          "label": "Bonus to recruitment speed"
+        },
+        {
+          "v": 50,
+          "tmpl": "+{0}% tool production speed",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        },
+        {
+          "v": 4000,
+          "tmpl": "+{0} public order inside your main castle",
+          "pct": false,
+          "label": "publicOrderBonusMain"
+        }
+      ]
+    },
+    {
+      "name": "Masquerade Keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        },
+        {
+          "v": 35,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        },
+        {
+          "v": 1,
+          "tmpl": "+{0} additional wave(s)",
+          "pct": false,
+          "label": "additionalWaves"
+        }
+      ]
+    },
+    {
+      "name": "Master builder build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 32,
+          "tmpl": "+{0}% XP earned by constructing buildings",
+          "pct": false,
+          "label": "XPBoostBuildBuildings"
+        }
+      ]
+    },
+    {
+      "name": "Mead production build item",
+      "level": 25,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 1350,
+          "tmpl": "+{0} mead production bonus",
+          "pct": false,
+          "label": "MeadProductionIncrease"
+        }
+      ]
+    },
+    {
+      "name": "Mead storage build item",
+      "level": 20,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 175000,
+          "tmpl": "+{0} mead storage capacity",
+          "pct": false,
+          "label": "meadStorage"
+        }
+      ]
+    },
+    {
+      "name": "Mead storage build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 90000,
+          "tmpl": "+{0} mead storage capacity",
+          "pct": false,
+          "label": "meadStorage"
+        }
+      ]
+    },
+    {
+      "name": "Melon lord barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Mistwood barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 500,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": true,
+          "label": "Bonus to recruitment speed"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        }
+      ]
+    },
+    {
+      "name": "Moonlit Dragon Scale Food District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Moonlit Dragon Scale Inner District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Moonlit Dragon Scale Mead District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Moonlit Dragon Scale Military District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Moonlit Dragon Scale Trade District",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the flanks when defending",
+          "pct": true,
+          "label": "DefenseBoostFlank"
+        },
+        {
+          "v": 4,
+          "tmpl": "+{0}% combat strength on the front when defending",
+          "pct": true,
+          "label": "DefenseBoostFront"
+        }
+      ]
+    },
+    {
+      "name": "Mountain goat tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 20,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Mountain goat tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 250,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallCount"
+        }
+      ]
+    },
+    {
+      "name": "Nomads Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% combat strength when attacking Bloodcrow castles",
+          "pct": true,
+          "label": "attackBoostUnitBloodcrows"
+        }
+      ]
+    },
+    {
+      "name": "Nomads tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% combat strength when attacking Foreign castles",
+          "pct": true,
+          "label": "attackBoostUnitAliens"
+        }
+      ]
+    },
+    {
+      "name": "Oktoberfest Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 15,
+          "tmpl": "-{0}% research resource costs",
+          "pct": false,
+          "label": "ReduceResearchResourceCosts"
+        }
+      ]
+    },
+    {
+      "name": "Oktoberfest Hunter",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 45,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Oktoberfest Market",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Oktoberfest Market",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Old tree estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1000,
+          "tmpl": "+{0} to troop capacity for final assault",
+          "pct": false,
+          "label": "attackUnitAmountReinforcementBonus"
+        }
+      ]
+    },
+    {
+      "name": "Old tree farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25000,
+          "tmpl": "+{0} to troop capacity in courtyard defense",
+          "pct": false,
+          "label": "Bonus to courtyard defense troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Old tree keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 12000,
+          "tmpl": "+{0} to troop capacity in courtyard defense",
+          "pct": false,
+          "label": "Bonus to courtyard defense troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Old tree research tower",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 100,
+          "tmpl": "+{0}% treatment speed",
+          "pct": false,
+          "label": "healSpeed"
+        }
+      ]
+    },
+    {
+      "name": "Old tree storehouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 60,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Palace of the Grand Anniversary Party",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1000,
+          "tmpl": "+{0}% resources looted from NPC targets",
+          "pct": true,
+          "label": "lootBonusPVE"
+        },
+        {
+          "v": 10000,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        },
+        {
+          "v": 100000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to beef production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Pirates Mill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 45,
+          "tmpl": "+{0}% combat strength for melee units when defending",
+          "pct": true,
+          "label": "meleeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' brewery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        },
+        {
+          "v": 15,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' defense workshop",
+      "level": 5,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Increase flank unit limit when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' drillground",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 65,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 170000,
+          "tmpl": "+{0} mead storage capacity",
+          "pct": false,
+          "label": "meadStorage"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% unit limit on the front",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' honey garden",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' market",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 45,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "offensiveMeleeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' mill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 7500,
+          "tmpl": "+{0} food production per hour",
+          "pct": false,
+          "label": "unboostedFoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' sawmill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' siege workshop",
+      "level": 5,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        },
+        {
+          "v": 15,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' stable",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' stable",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 35,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' storehouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Pirates' woodcutter",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Premium beef storage build item",
+      "level": 15,
+      "rarity": 3,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 125000,
+          "tmpl": "+{0} beef storage capacity",
+          "pct": false,
+          "label": "beefCapacityBonus"
+        }
+      ]
+    },
+    {
+      "name": "Premium beef storage build item",
+      "level": 1,
+      "rarity": 1,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 69,
+          "tmpl": "+{0} beef storage capacity",
+          "pct": false,
+          "label": "beefCapacityBonus"
+        }
+      ]
+    },
+    {
+      "name": "Premium relic beef storage build item",
+      "level": 15,
+      "rarity": 3,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 375000,
+          "tmpl": "+{0} beef storage capacity",
+          "pct": false,
+          "label": "beefCapacityBonus"
+        }
+      ]
+    },
+    {
+      "name": "Recruitment cost build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "-{0}% recruitment costs",
+          "pct": false,
+          "label": "recruitCostReduction"
+        }
+      ]
+    },
+    {
+      "name": "Recruitment speed build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 110,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Relic courtyard attack strength build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 60,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Relic mead production build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 15000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Relic melee unit attack strength build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "offensiveMeleeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Relic ranged unit attack strength build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Relic refinery production build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% bonus output for refinery resources",
+          "pct": true,
+          "label": "CraftingQueueProductionBoost"
+        }
+      ]
+    },
+    {
+      "name": "Relic toolsmith production build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 30,
+          "tmpl": "+{0}% bonus output for toolsmith components",
+          "pct": true,
+          "label": "CraftingQueueProductionBoost"
+        }
+      ]
+    },
+    {
+      "name": "Relic unit limit flanks attack build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 60,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Relic unit limit front attack build item",
+      "level": 30,
+      "rarity": 4,
+      "kind": "Relic",
+      "effects": [
+        {
+          "v": 60,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Research tower build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 18,
+          "tmpl": "-{0}% research resource costs",
+          "pct": false,
+          "label": "ReduceResearchResourceCosts"
+        }
+      ]
+    },
+    {
+      "name": "Rosewood barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 15,
+          "tmpl": "+{0}% mead production bonus",
+          "pct": true,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 50,
+          "tmpl": "+{0}% food production increase",
+          "pct": true,
+          "label": "Bonus to food production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Rosewood keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Rosewood keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 800,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Samurai Guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% combat strength when attacking Berimond Invasion targets",
+          "pct": true,
+          "label": "attackBoostUnitBerimond"
+        }
+      ]
+    },
+    {
+      "name": "Samurai tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% combat strength when attacking nomad camps",
+          "pct": true,
+          "label": "attackBoostUnitNomad"
+        }
+      ]
+    },
+    {
+      "name": "Siege tool cost build item",
+      "level": 4,
+      "rarity": 2,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "-{0}% siege tool resource costs",
+          "pct": false,
+          "label": "offensiveToolsCostsReduction"
+        }
+      ]
+    },
+    {
+      "name": "Siege tool production speed build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 22,
+          "tmpl": "+{0}% siege tool production speed",
+          "pct": false,
+          "label": "offensiveToolsSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Spider storage",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 5000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Spooky Hunting Lodge",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 20,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Spooky Hunting Lodge",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Spooky guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Spooky guardhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 500,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": true,
+          "label": "Bonus to recruitment speed"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        }
+      ]
+    },
+    {
+      "name": "Spring Stronghold",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Appearance",
+      "effects": [
+        {
+          "v": 300,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Spring Stronghold",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 20,
+          "tmpl": "+{0}% combat strength when defending the courtyard",
+          "pct": true,
+          "label": "Bonus to courtyard defense combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Spring Stronghold",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength for melee units when defending",
+          "pct": true,
+          "label": "meleeBonus"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% combat strength for ranged units when defending",
+          "pct": true,
+          "label": "rangeBonus"
+        },
+        {
+          "v": 150,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Stone production build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 52,
+          "tmpl": "+{0} stone production per hour",
+          "pct": false,
+          "label": "unboostedStoneProduction"
+        }
+      ]
+    },
+    {
+      "name": "Stone storage build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 30000,
+          "tmpl": "+{0} stone storage capacity",
+          "pct": false,
+          "label": "stoneStorage"
+        }
+      ]
+    },
+    {
+      "name": "Sword Brothers' barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 750,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Sword Brothers' keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 75,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "offensiveMeleeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "The Broken Egg tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 6,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "The Broken Egg tavern",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "The manor of dark manners",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 12,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Transylvanian bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Transylvanian farmhouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 61500,
+          "tmpl": "+{0} food storage capacity",
+          "pct": false,
+          "label": "foodStorage"
+        }
+      ]
+    },
+    {
+      "name": "Transylvanian stables",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Treatment speed build item",
+      "level": 15,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 110,
+          "tmpl": "+{0}% treatment speed",
+          "pct": false,
+          "label": "healSpeed"
+        }
+      ]
+    },
+    {
+      "name": "Tree village bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% melee unit strength when attacking",
+          "pct": true,
+          "label": "offensiveMeleeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Tree village barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% to troop capacity for final assault",
+          "pct": true,
+          "label": "attackUnitAmountReinforcementBoost"
+        }
+      ]
+    },
+    {
+      "name": "Tree village defense workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 48,
+          "tmpl": "+{0}% combat strength when defending the courtyard",
+          "pct": true,
+          "label": "Bonus to courtyard defense combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Tree village hospital",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1000,
+          "tmpl": "+{0} to troop capacity for final assault",
+          "pct": false,
+          "label": "attackUnitAmountReinforcementBonus"
+        }
+      ]
+    },
+    {
+      "name": "Tree village marketplace",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 90,
+          "tmpl": "+{0}% combat strength when defending the courtyard",
+          "pct": true,
+          "label": "Bonus to courtyard defense combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Tree village quarry",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": false,
+          "label": "recruitSpeedBoost"
+        }
+      ]
+    },
+    {
+      "name": "Tree village research tower",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Tree village stonemason",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 40,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Troop recruitment build item",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 80,
+          "tmpl": "+{0} troops per recruitment queue slot",
+          "pct": false,
+          "label": "stackSize"
+        }
+      ]
+    },
+    {
+      "name": "Units lost build item",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 5,
+          "tmpl": "+{0}% more surviving Soldiers after Defense",
+          "pct": true,
+          "label": "SurvivalBoost"
+        }
+      ]
+    },
+    {
+      "name": "Unworldly research tower",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 500,
+          "tmpl": "+{0}% recruitment speed",
+          "pct": true,
+          "label": "Bonus to recruitment speed"
+        },
+        {
+          "v": 10,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        }
+      ]
+    },
+    {
+      "name": "Wall capacity build item",
+      "level": 40,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 635,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallAbsoluteAmount"
+        }
+      ]
+    },
+    {
+      "name": "Wilderness Apiary",
+      "level": 1,
+      "rarity": 1,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 15000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Wilderness Brewery",
+      "level": 1,
+      "rarity": 1,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "-{0}% mead consumption per hour",
+          "pct": false,
+          "label": "Meadreduction"
+        }
+      ]
+    },
+    {
+      "name": "Wilderness Hunting Lodge",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Wilderness Hunting Lodge",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Winter Stronghold",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 200,
+          "tmpl": "+{0} unit limit on the wall",
+          "pct": false,
+          "label": "unitWallCount"
+        }
+      ]
+    },
+    {
+      "name": "Winter bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10000,
+          "tmpl": "+{0} food storage capacity",
+          "pct": false,
+          "label": "foodStorage"
+        }
+      ]
+    },
+    {
+      "name": "Winter barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 10,
+          "tmpl": "+{0}% front unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to front attack troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Winter barracks",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Winter estate",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 15,
+          "tmpl": "-{0}% research resource costs",
+          "pct": false,
+          "label": "ReduceResearchResourceCosts"
+        }
+      ]
+    },
+    {
+      "name": "Winter farm",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% ranged units attack strength",
+          "pct": true,
+          "label": "Bonus to ranged units attack strength"
+        }
+      ]
+    },
+    {
+      "name": "Winter flour mill",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Winter hospital",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 12000,
+          "tmpl": "+{0} to troop capacity in courtyard defense",
+          "pct": false,
+          "label": "Bonus to courtyard defense troop capacity"
+        }
+      ]
+    },
+    {
+      "name": "Winter keep",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 2500,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        }
+      ]
+    },
+    {
+      "name": "Winter market",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 25,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Winter quarry",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 45,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Winter research tower",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 32,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Winter siege workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 1000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Winter stonemason",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 10000,
+          "tmpl": "+{0} food production per hour",
+          "pct": false,
+          "label": "unboostedFoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Winter storehouse",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 85,
+          "tmpl": "+{0}% strength in courtyard when attacking",
+          "pct": true,
+          "label": "Bonus to courtyard attack combat strength"
+        }
+      ]
+    },
+    {
+      "name": "Wintertide Bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 24,
+          "tmpl": "+{0}% flank unit limit when attacking",
+          "pct": true,
+          "label": "Bonus to unit limit on the flanks when attacking"
+        }
+      ]
+    },
+    {
+      "name": "Wintertide Bakery",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 20,
+          "tmpl": "-{0}% research resource costs",
+          "pct": false,
+          "label": "ReduceResearchResourceCosts"
+        }
+      ]
+    },
+    {
+      "name": "Wintertide defense workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 80000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to mead production in castle"
+        },
+        {
+          "v": 8000,
+          "tmpl": null,
+          "pct": false,
+          "label": "Bonus to honey production per hour"
+        }
+      ]
+    },
+    {
+      "name": "Wintertide siege workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Event",
+      "effects": [
+        {
+          "v": 500,
+          "tmpl": "+{0} to troop capacity for final assault",
+          "pct": false,
+          "label": "attackUnitAmountReinforcementBonus"
+        }
+      ]
+    },
+    {
+      "name": "Wintertide siege workshop",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 70,
+          "tmpl": "+{0}% ranged unit strength when attacking",
+          "pct": true,
+          "label": "offensiveRangeBonusTCI"
+        }
+      ]
+    },
+    {
+      "name": "Witches' manor",
+      "level": 4,
+      "rarity": 4,
+      "kind": "Temporary",
+      "effects": [
+        {
+          "v": 50,
+          "tmpl": "+{0}% bonus output for Dragon Hoard resources",
+          "pct": true,
+          "label": "Bonus to dragon hoard components output"
+        },
+        {
+          "v": 20,
+          "tmpl": "+{0}% bonus production speed for all tools",
+          "pct": true,
+          "label": "Bonus to tool production speed"
+        }
+      ]
+    },
+    {
+      "name": "Wood production build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 53,
+          "tmpl": "+{0} wood production per hour",
+          "pct": false,
+          "label": "unboostedWoodProduction"
+        }
+      ]
+    },
+    {
+      "name": "Wood storage build item",
+      "level": 10,
+      "rarity": 4,
+      "kind": "Primary",
+      "effects": [
+        {
+          "v": 30000,
+          "tmpl": "+{0} wood storage capacity",
+          "pct": false,
+          "label": "woodStorage"
+        }
+      ]
+    }
+  ]
+}

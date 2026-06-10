@@ -46,7 +46,10 @@
         }));
         const num = (v) => (v || 0).toLocaleString();
         const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-        const fxLine = (e) => "+" + e.v.toLocaleString() + (e.pct ? "%" : "") + " " + esc(e.label);
+        const fxLine = (e) =>
+          e.tmpl && e.tmpl.includes("{0}")
+            ? esc(e.tmpl.replace("{0}", e.v.toLocaleString()))
+            : "+" + e.v.toLocaleString() + (e.pct ? "%" : "") + " " + esc(e.label);
         EmpireOverview({
           mount: document.getElementById("ov"),
           data,

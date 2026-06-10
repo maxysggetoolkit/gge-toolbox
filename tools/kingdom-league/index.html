@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kingdom League Calculator — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Work out your Goodgame Empire Kingdom League points, current title, and the minimum medals needed to rank up." />
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=15" />
+  <style>
+    .kl-medal label { display: flex; align-items: center; gap: 6px; }
+    .kl-medal .pts { color: var(--text-faint); font-size: .72rem; font-weight: 400; }
+    .kl-rank { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .kl-rank .big { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--gold); }
+    .kl-rank .sub { color: var(--text-dim); font-size: .9rem; }
+    .kl-track { margin-top: 4px; height: 8px; border-radius: 99px; background: var(--bg-elev-2); border: 1px solid var(--border); overflow: hidden; }
+    .kl-track .fill { height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); transition: width .2s; }
+    .kl-advice { color: var(--text); font-weight: 600; }
+    .kl-advice .dim { color: var(--text-faint); font-weight: 400; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🏅 Kingdom League Calculator</h1>
+      <p>Enter the medals you've banked this Kingdom League season to see your
+         total points, current title, and the cheapest set of medals to reach the
+         next rank. Inputs save automatically in your browser.</p>
+    </div>
+
+    <section class="panel">
+      <h2>Your medals</h2>
+      <div class="field-grid" id="medal-grid"><!-- rendered by app.js --></div>
+    </section>
+
+    <section class="panel">
+      <h2>Standing</h2>
+      <div class="results">
+        <div class="result">
+          <div class="label">Total points</div>
+          <div class="value" id="total-points">0</div>
+        </div>
+        <div class="result">
+          <div class="label">Current title</div>
+          <div class="value small" id="current-title">—</div>
+        </div>
+        <div class="result">
+          <div class="label">Next title</div>
+          <div class="value small" id="next-title">—</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div class="kl-rank">
+          <span class="sub" id="progress-label">Progress to next rank</span>
+        </div>
+        <div class="kl-track"><div class="fill" id="progress-fill" style="width:0%"></div></div>
+      </div>
+
+      <div style="margin-top:16px">
+        <div style="font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-dim);font-weight:700;margin-bottom:6px">
+          Minimum medals to rank up
+        </div>
+        <div class="kl-advice" id="advice">—</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Title ladder</h2>
+      <p style="color:var(--text-dim);margin:0 0 12px;font-size:.9rem">
+        Ranks step every <b>2,000</b> points across 21 titles. Medal values:
+        <span id="medal-legend"></span>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Reimplemented from the GeneralsCamp community Kingdom League calculator. Verify medal values after major updates.</p></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

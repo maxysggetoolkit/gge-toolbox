@@ -150,6 +150,16 @@ window.TOOLS = [
     tags: ["mead", "production", "relic"],
   },
   {
+    slug: "kingdom-league",
+    img: "assets/img/event-icons/kingdomleague.webp",
+    cat: "calculators",
+    name: "Kingdom League Calculator",
+    desc: "Turn your medals into points, your current title, and the cheapest medals to reach the next rank.",
+    icon: "🏅",
+    status: "live",
+    tags: ["kingdom league", "league", "medals", "title", "rank", "points", "brawler", "warlord"],
+  },
+  {
     slug: "rift-raid-points",
     img: "assets/img/event-icons/riftraid.webp",
     cat: "calculators",
