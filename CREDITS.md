@@ -6,7 +6,8 @@ This is an unofficial, non-commercial fan project.
 
 ## Tools & data this project learns from
 
-- **GeneralsCamp** — calculators, simulators and overviews
+- **GeneralsCamp** — calculators, simulators and overviews; the homepage event-plan
+  icons are their curated set from `forum/img_base/event_icons`.
   <https://generalscamp.github.io/forum/>
   Game data cache: <https://github.com/GeneralsCamp/ggempire-data-cache>
 - **danadum** — player/alliance rankings, data-mining and APIs

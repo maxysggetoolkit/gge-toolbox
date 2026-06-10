@@ -1,38 +1,161 @@
 {
   "updated": "2026-06-10",
   "changelog": [
-    { "date": "Jun 2026", "title": "Guides", "body": "New Guides section — start with Getting Started, Combat Basics, Attack Commander Setup and Rift Raid Basics. Searchable like any tool." },
-    { "date": "Jun 2026", "title": "Events plan with real art", "body": "The homepage events row now uses in-game event art, and the whole feed (news, changelog, events) updates from one data file." },
-    { "date": "Jun 2026", "title": "Rift Raid Bosses", "body": "All 3 bosses, 20 levels each, with per-stage wall garrisons and boss effects. Rift Commander Maker now shows real piece art and exact gem names." },
-    { "date": "Jun 2026", "title": "Equipment Overview", "body": "617 gear pieces with full effect lists and real art, including Hero-slot commander portraits. Gacha Sim drops link straight here." },
-    { "date": "Jun 2026", "title": "Decorations Overview", "body": "532 decorations with images. Default sort is Decoration Points." },
-    { "date": "Jun 2026", "title": "Gacha Spin Simulator", "body": "Real drop rates across 5 game versions, with pulls-to-get targeting." },
-    { "date": "Jun 2026", "title": "Attack Speed & Detection", "body": "Travel time, horse boosts and the exact detection window." }
+    {
+      "date": "Jun 2026",
+      "title": "Chemie's VIP Corner",
+      "body": "New access-gated members area for advanced tools (fortress tracker, search & analyse, score tools, live rankings). Enter the code to unlock."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Smarter Rift optimizer",
+      "body": "The Rift Commander Maker now builds the strongest loadout by weighted combat value — range/melee/courtyard attack first, then unit limit, then strength — and shows the combat totals. Rift-only sets (no PvP/castellan)."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Accurate event art",
+      "body": "Every event in the homepage plan now uses the in-game icon. Fixed missing Victorious hero images in the Equipment Overview."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Guides",
+      "body": "New Guides section — start with Getting Started, Combat Basics, Attack Commander Setup and Rift Raid Basics. Searchable like any tool."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Events plan with real art",
+      "body": "The homepage events row now uses in-game event art, and the whole feed (news, changelog, events) updates from one data file."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Rift Raid Bosses",
+      "body": "All 3 bosses, 20 levels each, with per-stage wall garrisons and boss effects. Rift Commander Maker now shows real piece art and exact gem names."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Equipment Overview",
+      "body": "617 gear pieces with full effect lists and real art, including Hero-slot commander portraits. Gacha Sim drops link straight here."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Decorations Overview",
+      "body": "532 decorations with images. Default sort is Decoration Points."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Gacha Spin Simulator",
+      "body": "Real drop rates across 5 game versions, with pulls-to-get targeting."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Attack Speed & Detection",
+      "body": "Travel time, horse boosts and the exact detection window."
+    }
   ],
   "news": [
-    { "date": "19 May 2026", "title": "The Ashen Tyrant", "url": "https://communityhub.goodgamestudios.com/2026/05/19/elementor-12525/" },
-    { "date": "19 May 2026", "title": "The Mycelial Sovereign", "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-mycelial-sovereign/" },
-    { "date": "19 May 2026", "title": "The Mistress of Decay", "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-mistress-of-decay/" },
-    { "date": "19 May 2026", "title": "The Berimond Kingdom Advisor Has Arrived", "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-berimond-kingdom-advisor-has-arrived/" },
-    { "date": "25 Mar 2026", "title": "The Hollowed Moon Eggs Have Returned", "url": "https://communityhub.goodgamestudios.com/2026/03/25/the-hollowed-moon-eggs-have-returned/" }
+    {
+      "date": "19 May 2026",
+      "title": "The Ashen Tyrant",
+      "url": "https://communityhub.goodgamestudios.com/2026/05/19/elementor-12525/"
+    },
+    {
+      "date": "19 May 2026",
+      "title": "The Mycelial Sovereign",
+      "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-mycelial-sovereign/"
+    },
+    {
+      "date": "19 May 2026",
+      "title": "The Mistress of Decay",
+      "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-mistress-of-decay/"
+    },
+    {
+      "date": "19 May 2026",
+      "title": "The Berimond Kingdom Advisor Has Arrived",
+      "url": "https://communityhub.goodgamestudios.com/2026/05/19/the-berimond-kingdom-advisor-has-arrived/"
+    },
+    {
+      "date": "25 Mar 2026",
+      "title": "The Hollowed Moon Eggs Have Returned",
+      "url": "https://communityhub.goodgamestudios.com/2026/03/25/the-hollowed-moon-eggs-have-returned/"
+    }
   ],
   "newsUrl": "https://communityhub.goodgamestudios.com/newshube4k/",
   "events": {
     "month": "June 2026",
-    "iconBase": "https://empire-html5.goodgamestudios.com/default/assets/itemassets/Dialogs/Events/AllianceMobilizationEvent/AllianceQuestTeaser/",
+    "iconBase": "assets/img/event-icons/",
     "items": [
-      { "name": "Nomad Invasion", "emoji": "🌊", "icon": "AllianceQuestTeaser_NomadInvasion/AllianceQuestTeaser_NomadInvasion--1768229156480.webp", "dates": "06–09 · 13–16 · 20–23 · 27–30 Jun" },
-      { "name": "Samurai Invasion", "emoji": "⚔️", "icon": "AllianceQuestTeaser_SamuraiInvasion/AllianceQuestTeaser_SamuraiInvasion--1768229156480.webp", "dates": "05–06 · 12–13 · 19–20 · 26–27 Jun" },
-      { "name": "Bloodcrow Invasion", "emoji": "🩸", "icon": "AllianceQuestTeaser_BloodcrowInvasion/AllianceQuestTeaser_BloodcrowInvasion--1768229156480.webp", "dates": "09–12 · 23–26 Jun" },
-      { "name": "War of the Realms", "emoji": "⚔️", "icon": "", "dates": "02–05 · 16–19 · 30 Jun–03 Jul" },
-      { "name": "Berimond Kingdom", "emoji": "🏰", "icon": "AllianceQuestTeaser_BerimondKingdom/AllianceQuestTeaser_BerimondKingdom--1768229156480.webp", "dates": "02–05 · 23–26 Jun" },
-      { "name": "Rift Raid (Necromancer)", "emoji": "🌀", "icon": "AllianceQuestTeaser_ARE/AllianceQuestTeaser_ARE--1779889987424.webp", "dates": "06–13 Jun" },
-      { "name": "Bladecoast", "emoji": "🗡️", "icon": "", "dates": "10–17 Jun" },
-      { "name": "Grand Tournament", "emoji": "🏆", "icon": "", "dates": "16–23 Jun" },
-      { "name": "Beyond the Horizon", "emoji": "🌅", "icon": "", "dates": "11–15 · 18–22 Jun" },
-      { "name": "Outer Realms", "emoji": "🌌", "icon": "", "dates": "01 · 04 · 08 · 15 · 22 · 25 Jun" },
-      { "name": "Imperial Patronage", "emoji": "👑", "icon": "", "dates": "16–23 Jun" },
-      { "name": "Grand Nobility Contest", "emoji": "🎖️", "icon": "", "dates": "16 Jun – 17 Jul" }
+      {
+        "name": "Nomad Invasion",
+        "emoji": "🌊",
+        "icon": "nomadinvasion.webp",
+        "dates": "06–09 · 13–16 · 20–23 · 27–30 Jun"
+      },
+      {
+        "name": "Samurai Invasion",
+        "emoji": "⚔️",
+        "icon": "samuraiinvasion.webp",
+        "dates": "05–06 · 12–13 · 19–20 · 26–27 Jun"
+      },
+      {
+        "name": "Bloodcrow Invasion",
+        "emoji": "🩸",
+        "icon": "bloodcrow.webp",
+        "dates": "09–12 · 23–26 Jun"
+      },
+      {
+        "name": "War of the Realms",
+        "emoji": "⚔️",
+        "icon": "waroftherealms.webp",
+        "dates": "02–05 · 16–19 · 30 Jun–03 Jul"
+      },
+      {
+        "name": "Berimond Kingdom",
+        "emoji": "🏰",
+        "icon": "berimond.webp",
+        "dates": "02–05 · 23–26 Jun"
+      },
+      {
+        "name": "Rift Raid (Necromancer)",
+        "emoji": "🌀",
+        "icon": "riftraid.webp",
+        "dates": "06–13 Jun"
+      },
+      {
+        "name": "Bladecoast",
+        "emoji": "🗡️",
+        "icon": "bladecoast.webp",
+        "dates": "10–17 Jun"
+      },
+      {
+        "name": "Grand Tournament",
+        "emoji": "🏆",
+        "icon": "grandtournament.webp",
+        "dates": "16–23 Jun"
+      },
+      {
+        "name": "Beyond the Horizon",
+        "emoji": "🌅",
+        "icon": "beyondthehorizon.webp",
+        "dates": "11–15 · 18–22 Jun"
+      },
+      {
+        "name": "Outer Realms",
+        "emoji": "🌌",
+        "icon": "outerrealms.webp",
+        "dates": "01 · 04 · 08 · 15 · 22 · 25 Jun"
+      },
+      {
+        "name": "Imperial Patronage",
+        "emoji": "👑",
+        "icon": "patronage.webp",
+        "dates": "16–23 Jun"
+      },
+      {
+        "name": "Grand Nobility Contest",
+        "emoji": "🎖️",
+        "icon": "ltpe.webp",
+        "dates": "16 Jun – 17 Jul"
+      }
     ]
   }
 }
