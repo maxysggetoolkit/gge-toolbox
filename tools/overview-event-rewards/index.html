@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Rewards Overview — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Point milestone reward tracks for every rotating Goodgame Empire event, per level bracket." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <style>
+    .ev-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .ev-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 14px; border-radius: var(--radius-sm); font: inherit; font-size: .84rem; font-weight: 600;
+      background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text-dim); cursor: pointer;
+      transition: .12s;
+    }
+    .ev-pill img { width: 20px; height: 20px; border-radius: 4px; }
+    .ev-pill:hover { border-color: var(--gold-dim); color: var(--text); }
+    .ev-pill.active { border-color: var(--gold); color: var(--text); background: rgba(227,179,65,.08); }
+
+    .bracket-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .bracket-tab {
+      padding: 7px 14px; border-radius: var(--radius-sm); font: inherit; font-size: .8rem; font-weight: 600;
+      background: var(--bg-elev-2); border: 1px solid var(--border); color: var(--text-dim); cursor: pointer;
+    }
+    .bracket-tab.active { background: var(--gold); border-color: var(--gold); color: #1a1000; }
+
+    table.track { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .track th {
+      text-align: left; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em;
+      color: var(--text-faint); padding: 6px 10px; border-bottom: 1px solid var(--border);
+    }
+    .track td { padding: 7px 10px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+    .track td.pts { font-variant-numeric: tabular-nums; color: var(--gold); font-weight: 700; white-space: nowrap; }
+    .track td.nm { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🏅 Event Rewards</h1>
+      <p>Point milestone tracks for the rotating events — what you get and exactly how
+         many points it takes, per <b>level bracket</b> (rewards scale with your level).</p>
+    </div>
+
+    <section class="panel" id="root">
+      <p class="muted">Loading event reward data…</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Reward tracks extracted from the community game-data cache.</p></div>
+  </footer>
+
+  <script>
+    const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    /* Local event icons (same curated set as the homepage plan) where names match. */
+    const ICONS = {
+      "Nomad Invasion": "nomadinvasion", "Samurai Invasion": "samuraiinvasion",
+      "Bloodcrow invasion": "bloodcrow", "War of the Realms": "waroftherealms",
+      "Battle for Berimond": "berimond", "Berimond Invasion": "berimond",
+      "Rift Raid": "riftraid", "Grand Tournament": "grandtournament",
+      "Alliance tournament": "grandtournament", "Grand Nobility Prize": "ltpe",
+    };
+    const iconFor = (name) =>
+      ICONS[name] ? "../../assets/img/event-icons/" + ICONS[name] + ".webp" : null;
+
+    let EVENTS = [], curEv = 0, curBr = 0;
+
+    function render() {
+      const root = document.getElementById("root");
+      root.innerHTML = "";
+
+      const pills = document.createElement("div");
+      pills.className = "ev-pills";
+      EVENTS.forEach((e, i) => {
+        const p = document.createElement("button");
+        p.className = "ev-pill" + (i === curEv ? " active" : "");
+        const ic = iconFor(e.name);
+        p.innerHTML = (ic ? '<img src="' + ic + '" alt="" onerror="this.remove()">' : "🏅 ") + esc(e.name);
+        p.addEventListener("click", () => { curEv = i; curBr = 0; render(); });
+        pills.appendChild(p);
+      });
+      root.appendChild(pills);
+
+      const ev = EVENTS[curEv];
+
+      if (ev.brackets.length > 1) {
+        const tabs = document.createElement("div");
+        tabs.className = "bracket-tabs";
+        ev.brackets.forEach((b, i) => {
+          const t = document.createElement("button");
+          t.className = "bracket-tab" + (i === curBr ? " active" : "");
+          t.textContent = "Level " + b.minLevel + (b.maxLevel >= 999 ? "+" : "–" + b.maxLevel);
+          t.addEventListener("click", () => { curBr = i; render(); });
+          tabs.appendChild(t);
+        });
+        root.appendChild(tabs);
+      }
+
+      const br = ev.brackets[curBr];
+      const tbl = document.createElement("table");
+      tbl.className = "track";
+      tbl.innerHTML = "<thead><tr><th>Points</th><th>Reward</th><th>Type</th><th>Amount</th></tr></thead>";
+      const tb = document.createElement("tbody");
+      br.milestones.forEach((m) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          '<td class="pts">' + m.points.toLocaleString() + "</td>" +
+          '<td class="nm">' + esc(m.name) + "</td>" +
+          "<td>" + esc(m.type) + "</td>" +
+          "<td>" + (m.amount != null ? Number(m.amount).toLocaleString() : "—") + "</td>";
+        tb.appendChild(tr);
+      });
+      tbl.appendChild(tb);
+      root.appendChild(tbl);
+    }
+
+    fetch("./data/event-rewards.json")
+      .then((r) => r.json())
+      .then((d) => { EVENTS = d.events; render(); })
+      .catch((e) => {
+        document.getElementById("root").innerHTML = '<p class="muted">Could not load event reward data.</p>';
+        console.error(e);
+      });
+  </script>
+</body>
+</html>

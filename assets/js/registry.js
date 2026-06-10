@@ -213,10 +213,10 @@ window.TOOLS = [
     slug: "overview-event-rewards",
     cat: "overviews",
     name: "Event Rewards",
-    desc: "Reward tracks for the rotating events.",
+    desc: "Point milestone tracks for 20 rotating events, per level bracket.",
     icon: "🏅",
-    status: "soon",
-    tags: ["event", "rewards", "milestones"],
+    status: "live",
+    tags: ["event", "rewards", "milestones", "points", "rift raid", "nomad", "samurai"],
   },
 
   // ---- Rankings & stats --------------------------------------------------
