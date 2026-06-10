@@ -33,6 +33,11 @@ def resolve_effect(eid, val, effects_map, lang):
         return tpl.replace("{0}", str(val))
     return f"{name} {val}"
 
+def _num(val):
+    """First numeric value out of a raw effect value like '785+600' or '200'."""
+    m = re.search(r"-?\d+(?:\.\d+)?", str(val))
+    return float(m.group(0)) if m else 0.0
+
 def parse_effects(effects_str, effects_map, lang):
     out = []
     for pair in str(effects_str or "").split(","):
@@ -40,7 +45,13 @@ def parse_effects(effects_str, effects_map, lang):
         if "&" not in pair:
             continue
         eid, val = pair.split("&", 1)
-        out.append({"raw": pair, "label": resolve_effect(eid.strip(), val.strip(), effects_map, lang)})
+        eid, val = eid.strip(), val.strip()
+        out.append({
+            "raw": pair,
+            "label": resolve_effect(eid, val, effects_map, lang),
+            "name": effects_map.get(eid, ""),
+            "value": _num(val),
+        })
     return out
 
 def build_img_index(dll_text):

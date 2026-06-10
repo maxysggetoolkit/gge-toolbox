@@ -148,6 +148,15 @@
 .score-line { font-size: .85rem; color: var(--text-dim); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
 .score-line strong { color: var(--gold); font-size: 1.1rem; }
 
+/* ---- Combat stat totals ---- */
+.stat-totals { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+.stat-totals h3 { font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-dim); margin: 0 0 12px; }
+.stat-totals-note { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-faint); font-size: .76rem; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.stat-cell { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; text-align: center; }
+.stat-cell-val { font-size: 1.25rem; font-weight: 800; color: var(--gold); font-variant-numeric: tabular-nums; }
+.stat-cell-label { font-size: .72rem; color: var(--text-dim); margin-top: 3px; }
+
 /* ---- Reference pane ---- */
 .ref-set { margin-bottom: 28px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .ref-set-head {

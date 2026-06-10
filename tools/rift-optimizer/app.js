@@ -35,6 +35,38 @@
     return fn ? fn(val) : label;
   }
 
+  /* ---- Effect weighting ----------------------------------------------------
+     The optimizer scores a loadout by the weighted sum of its combat effects
+     (plus the effects of any set bonuses it lights up), NOT just piece count.
+     Priority, per category:
+       1. Range / Melee / Courtyard attack    (primary damage)   — highest
+       2. Flank / Front unit limit            (more units in)    — high
+       3. Flank / Front combat strength       (per-unit damage)  — medium
+       4. Rift wall-break utility             (breach windows)   — medium
+       5. Speed / moat / misc                                    — low
+       6. Event tokens / economy                                — negligible
+  ---------------------------------------------------------------------------- */
+  const STAT_CATEGORIES = [
+    { id: "rangeAtk",  label: "Range attack",        weight: 10, test: (n) => /offensiverange|rangedbonus|rangebonus/.test(n) },
+    { id: "meleeAtk",  label: "Melee attack",        weight: 10, test: (n) => /offensivemelee|meleebonus/.test(n) },
+    { id: "courtyard", label: "Courtyard attack",    weight: 10, test: (n) => n.includes("yard") },
+    { id: "limit",     label: "Flank/front limit",   weight: 6,  test: (n) => n.includes("attackunitamount") },
+    { id: "frontFlankStr", label: "Flank/front str", weight: 3,  test: (n) => /offensivefront|frontstr|offensiveflank|flankstr/.test(n) },
+    { id: "breach",    label: "Wall-break utility",  weight: 4,  test: (n) => n.includes("wallregenerationdelay") },
+    { id: "minor",     label: "Speed / moat / misc", weight: 0.5, test: (n) => /speed|moat|infectionrate/.test(n) },
+  ];
+  const ECON_WEIGHT = 0.05; // event tokens, coins, charm, auto-spy, etc.
+
+  function effectCategory(name) {
+    const n = (name || "").toLowerCase();
+    for (const c of STAT_CATEGORIES) if (c.test(n)) return c;
+    return null;
+  }
+  function effectWeight(name) {
+    const c = effectCategory(name);
+    return c ? c.weight : ECON_WEIGHT;
+  }
+
   let allSets = [];
   let owned = new Set();
 
@@ -83,21 +115,47 @@
     return { bySlot, byGem };
   }
 
-  function scoreAssignment(assignment) {
-    /* assignment = { Armor: {setID} | null, Weapon: ..., gem0: ..., gem1: ..., gem2: ..., gem3: ... } */
-    const counts = {};
-    for (const v of Object.values(assignment)) {
-      if (v) counts[v.setID] = (counts[v.setID] || 0) + 1;
+  /* Sum weighted effect value into a totals object (by category) and return
+     the weighted contribution to the overall score. */
+  function addEffects(effects, totals) {
+    let s = 0;
+    for (const e of effects || []) {
+      const w = effectWeight(e.name);
+      const v = (e.value || 0) * w;
+      s += v;
+      const cat = effectCategory(e.name);
+      const key = cat ? cat.id : "econ";
+      totals[key] = (totals[key] || 0) + (e.value || 0);
     }
+    return s;
+  }
+
+  /* Weighted score of a loadout: every equipped effect plus the effects of any
+     set bonuses it unlocks, each scaled by its category weight. Returns both the
+     scalar score and per-category raw totals for display. */
+  function evaluateAssignment(assignment) {
+    const counts = {};
+    const totals = {};
     let score = 0;
+
+    for (const v of Object.values(assignment)) {
+      if (!v) continue;
+      counts[v.setID] = (counts[v.setID] || 0) + 1;
+      const fx = v.item ? v.item.effects : v.gem ? v.gem.effects : [];
+      score += addEffects(fx, totals);
+    }
     for (const [sid, cnt] of Object.entries(counts)) {
       const set = allSets.find((s) => s.setID === +sid);
       if (!set) continue;
       for (const bonus of set.bonuses) {
-        if (bonus.pieces <= cnt) score += bonus.pieces; // higher-threshold bonus worth more
+        if (bonus.pieces <= cnt) score += addEffects(bonus.effects, totals);
       }
     }
-    return score;
+    return { score, totals, counts };
+  }
+
+  function scoreAssignment(assignment) {
+    return evaluateAssignment(assignment).score;
   }
 
   function runOptimizer() {
@@ -176,7 +234,8 @@
       }
     }
 
-    return { assignment: best, score: bestScore };
+    const evalBest = best ? evaluateAssignment(best) : { totals: {} };
+    return { assignment: best, score: bestScore, totals: evalBest.totals };
   }
 
   /* ---- DOM helpers ---- */
@@ -417,9 +476,9 @@
       return;
     }
 
-    const { assignment, score } = runOptimizer();
+    const { assignment, score, totals } = runOptimizer();
 
-    if (!assignment || score < 0) {
+    if (!assignment || score <= 0) {
       out.innerHTML = `<p class="no-results-hint">Could not find a valid combination. Make sure you have at least a few pieces owned.</p>`;
       return;
     }
@@ -493,7 +552,28 @@
     }
 
     html += `</div>`;
-    html += `<p class="score-line">Optimizer score: <strong>${score}</strong> bonus-tier points.</p>`;
+
+    /* ---- Combat stat totals (what the optimizer maximised) ---- */
+    const totalRows = [
+      { id: "rangeAtk",      label: "Range attack",         unit: "%" },
+      { id: "meleeAtk",      label: "Melee attack",         unit: "%" },
+      { id: "courtyard",     label: "Courtyard attack",     unit: "%" },
+      { id: "limit",         label: "Flank/front limit",    unit: "%" },
+      { id: "frontFlankStr", label: "Flank/front strength", unit: "%" },
+      { id: "breach",        label: "Wall-break delay",     unit: "s" },
+    ];
+    const shown = totalRows.filter((r) => (totals[r.id] || 0) > 0);
+    if (shown.length) {
+      html += `<div class="stat-totals">
+        <h3>Combat totals <span class="stat-totals-note">(priority: attack &gt; unit limit &gt; strength)</span></h3>
+        <div class="stat-grid">` +
+        shown.map((r) =>
+          `<div class="stat-cell">
+            <div class="stat-cell-val">+${Math.round(totals[r.id])}${r.unit}</div>
+            <div class="stat-cell-label">${esc(r.label)}</div>
+          </div>`).join("") +
+        `</div></div>`;
+    }
 
     out.innerHTML = html;
   }
