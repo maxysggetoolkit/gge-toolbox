@@ -31,14 +31,15 @@
       <div class="vip-toolbar" id="toolbar">
         <select class="vip-server-pick" id="f-kid">
           <option value="">All fort types</option>
-          <option value="0">Barbarian fort (Great Empire)</option>
-          <option value="2">Desert fort (Burning Sands)</option>
+          <option value="1">Desert fort (Burning Sands)</option>
+          <option value="2">Ice fort (Everwinter)</option>
           <option value="3">Dragon fort (Fire Peaks)</option>
         </select>
         <select class="vip-server-pick" id="f-cd">
           <option value="">Any cooldown</option>
-          <option value="true">Attackable now</option>
-          <option value="false">On cooldown</option>
+          <option value="1">Attackable now</option>
+          <option value="2">Attackable within 5 min</option>
+          <option value="3">Attackable within 1 hour</option>
         </select>
         <input class="vip-input" id="f-near" placeholder="Near player (name)…" />
         <input class="vip-input" id="f-owner" placeholder="Last attacker…" style="min-width:130px" />
@@ -63,7 +64,8 @@
     const { api, esc, num, ago, dur, mountServerPicker } = window.VIP;
     mountServerPicker(document.getElementById("toolbar"));
 
-    const FORT_NAMES = { 0: "Barbarian fort", 1: "Ice fort", 2: "Desert fort", 3: "Dragon fort" };
+    // API kingdom ids: 1 = The Burning Sands, 2 = The Everwinter Glacier, 3 = The Fire Peaks
+    const FORT_NAMES = { 1: "Desert fort", 2: "Ice fort", 3: "Dragon fort" };
     const PERSONAL_CD_MS = 72 * 3600 * 1000;  // your own re-hit cooldown
     let page = 1, hasMore = true;
 
@@ -81,7 +83,9 @@
         const cd  = document.getElementById("f-cd").value;
         const near = document.getElementById("f-near").value.trim();
         const owner = document.getElementById("f-owner").value.trim();
-        if (kid !== "") params.filterByKid = kid;
+        // filterByKid wants a JSON array; with no filter the API defaults to [2]
+        // (Everwinter only), so "All fort types" must ask for all three explicitly.
+        params.filterByKid = kid !== "" ? "[" + kid + "]" : "[1,2,3]";
         if (cd !== "") params.filterByAttackCooldown = cd;
         if (near) params.nearPlayerName = near;
         if (owner) params.filterByPlayerName = owner;
