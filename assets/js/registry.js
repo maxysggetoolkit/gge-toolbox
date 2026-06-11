@@ -141,6 +141,17 @@ window.TOOLS = [
     tags: ["guide", "outer realms", "event", "temp server", "heritage hunter", "snappy swap", "masters of might", "food district", "tokens"],
   },
   {
+    slug: "guide-nomad-invasion",
+    img: "assets/img/event-icons/nomadinvasion.webp",
+    cat: "guides",
+    name: "Nomad Invasion",
+    desc: "The weekly PvE invasion: clearing camps, holding the waves, Khan medals and the milestone track up to the event hero.",
+    icon: "🌊",
+    status: "live",
+    url: "tools/guides/nomad-invasion.html",
+    tags: ["guide", "nomad", "invasion", "event", "pve", "khan medals", "camps", "milestones", "hero"],
+  },
+  {
     slug: "guide-recruitment",
     img: "assets/img/tool-art/troops.webp",
     cat: "guides",
