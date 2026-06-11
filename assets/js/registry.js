@@ -374,7 +374,7 @@ window.TOOLS = [
     img: "assets/img/tool-art/rankings.webp",
     cat: "rankings",
     name: "Player & Alliance Rankings",
-    desc: "Server might, glory, loot and honour boards for every player and alliance, sortable per server.",
+    desc: "The game's own live highscore lists — might, honour, legendary level and achievement points — for players and alliances, per server.",
     icon: "📊",
     status: "live",
     url: "tools/rankings/",
