@@ -4,32 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Food &amp; Mead Production — Maxy's Empire Toolkit</title>
-  <meta name="description" content="Add up the food, beef, honey and mead production your decorations and build items give — compare builds and see your total hourly output bonus." />
+  <meta name="description" content="Work out your food, beef, honey and mead production from your structures, build items, research and decorations — with the relic brewery slider and its food/honey draw." />
   <link rel="stylesheet" href="../../assets/css/theme.css?v=15" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <style>
-    .fm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 4px 0 18px; }
-    .fm-stat { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
-    .fm-stat.on { border-color: var(--gold-dim); }
-    .fm-stat .l { font-size: .72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
-    .fm-stat .v { font-size: 1.55rem; font-weight: 700; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
-    .fm-stat .sub { font-size: .73rem; color: var(--text-dim); margin-top: 3px; }
-    .fm-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
-    .fm-controls input, .fm-controls select { padding: 9px 12px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
-    .fm-controls input:focus, .fm-controls select:focus { outline: none; border-color: var(--gold); }
+    .fm-out { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    @media (max-width: 620px) { .fm-out { grid-template-columns: 1fr; } }
+    .fm-outcard { background: var(--bg-elev); border: 1px solid var(--gold-dim); border-radius: var(--radius); padding: 15px 17px; }
+    .fm-outcard h3 { margin: 0 0 10px; font-size: .95rem; color: var(--gold); font-family: var(--font-display); }
+    .fm-outrow { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border-soft); }
+    .fm-outrow:last-child { border-bottom: none; }
+    .fm-outrow .k { font-size: .82rem; color: var(--text-dim); }
+    .fm-outrow .v { font-size: 1.25rem; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+    .fm-outrow .v.sm { font-size: .95rem; color: var(--text-dim); font-weight: 600; }
+    .fm-draw { font-size: .76rem; color: var(--text-faint); margin-top: 8px; }
+    h2.fm-h { font-size: 1.05rem; color: var(--gold); margin: 0 0 4px; font-family: var(--font-display); }
+    .fm-sub { font-size: .78rem; color: var(--text-faint); margin: 0 0 12px; }
+    .fm-block { margin-bottom: 18px; }
+    .fm-block h4 { font-size: .76rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); margin: 0 0 8px; }
+    .fm-struct { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 10px; }
+    .fm-srow { display: flex; align-items: center; gap: 8px; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px 10px; }
+    .fm-srow .nm { flex: 1; font-size: .84rem; color: var(--text); }
+    .fm-srow input, .fm-srow select { padding: 5px 7px; font: inherit; font-size: .8rem; background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: 5px; color: var(--text); }
+    .fm-srow input { width: 48px; text-align: center; }
+    .fm-srow select { width: 78px; }
+    .fm-srow input:focus, .fm-srow select:focus { outline: none; border-color: var(--gold); }
+    .fm-mods { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; background: rgba(217,178,90,.05); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 13px; }
+    .fm-mods label { font-size: .82rem; color: var(--text-dim); display: flex; align-items: center; gap: 6px; }
+    .fm-mods input[type=number] { width: 60px; padding: 5px 7px; font: inherit; font-size: .82rem; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 5px; color: var(--text); text-align: right; }
+    .fm-search { width: 100%; max-width: 280px; padding: 8px 11px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); margin-bottom: 10px; }
+    .fm-search:focus { outline: none; border-color: var(--gold); }
+    table.fm { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    table.fm th { text-align: right; padding: 6px 8px; font-size: .64rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.fm th.l { text-align: left; }
+    table.fm td { padding: 5px 8px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
+    table.fm td.nm { text-align: left; color: var(--text); }
+    table.fm td.k { text-align: left; font-size: .74rem; color: var(--text-faint); }
+    table.fm tr.on td { background: rgba(217,178,90,.06); }
+    .fm-qty { display: inline-flex; align-items: center; gap: 5px; }
+    .fm-qty button { width: 22px; height: 22px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; line-height: 1; }
+    .fm-qty button:hover { border-color: var(--gold); color: var(--gold); }
+    .fm-qty input { width: 40px; text-align: center; padding: 3px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: 5px; color: var(--text); }
+    .fm-slider { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+    .fm-slider input[type=range] { flex: 1; accent-color: var(--gold); }
+    .fm-slider .pct { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); min-width: 46px; text-align: right; }
+    details.fm-det { margin-bottom: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    details.fm-det > summary { cursor: pointer; padding: 9px 13px; font-size: .82rem; color: var(--text); list-style: none; }
+    details.fm-det > summary::-webkit-details-marker { display: none; }
+    details.fm-det > summary::before { content: "▸ "; color: var(--gold-dim); }
+    details.fm-det[open] > summary::before { content: "▾ "; }
+    details.fm-det > div { padding: 0 13px 12px; }
     .fm-reset { padding: 6px 14px; font: inherit; font-size: .8rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--bg-elev); color: var(--text-dim); border: 1px solid var(--border); }
     .fm-reset:hover { color: var(--text); border-color: var(--gold-dim); }
-    table.fm { width: 100%; border-collapse: collapse; font-size: .86rem; }
-    table.fm th { text-align: right; padding: 7px 9px; font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); border-bottom: 1px solid var(--border); white-space: nowrap; }
-    table.fm th.l { text-align: left; }
-    table.fm td { padding: 6px 9px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
-    table.fm td.nm { text-align: left; color: var(--text); }
-    table.fm td.k { text-align: left; font-size: .76rem; color: var(--text-faint); }
-    table.fm tr.on td { background: rgba(217,178,90,.06); }
-    .fm-qty { display: inline-flex; align-items: center; gap: 6px; }
-    .fm-qty button { width: 24px; height: 24px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; font-size: 1rem; line-height: 1; }
-    .fm-qty button:hover { border-color: var(--gold); color: var(--gold); }
-    .fm-qty input { width: 42px; text-align: center; padding: 4px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
     .fm-note { font-size: .8rem; color: var(--text-faint); margin-top: 16px; line-height: 1.5; border-left: 3px solid var(--gold-dim); padding: 8px 14px; background: rgba(217,178,90,.05); border-radius: var(--radius-sm); }
   </style>
 </head>
@@ -44,49 +70,111 @@
     <div class="tool-head">
       <a class="back" href="../../">← All tools</a>
       <h1>🍖 Food &amp; Mead Production</h1>
-      <p>Tally the food, beef, honey and mead production your <b>decorations</b> and <b>build items</b>
-         add up to. Set how many of each you run and compare builds — handy when you're deciding which
-         Exalted Green decos or granary items earn their tiles.</p>
+      <p>Build up your hourly output from the ground up — production structures, build items, research
+         and decorations — kept <b>food</b> and <b>mead</b> separate so you always know what you're
+         looking at. Research is assumed maxed; change it if it isn't.</p>
     </div>
 
     <section class="panel">
-      <div class="fm-grid" id="summary"></div>
+      <div class="fm-out">
+        <div class="fm-outcard" id="out-food"></div>
+        <div class="fm-outcard" id="out-mead"></div>
+      </div>
       <button class="fm-reset" id="reset">Reset</button>
     </section>
 
+    <!-- ============ FOOD ============ -->
     <section class="panel">
-      <div class="fm-controls">
-        <input id="search" placeholder="Search…" style="min-width:200px" />
-        <select id="kind">
-          <option value="">All sources</option>
-          <option value="Decoration">Decorations</option>
-          <option value="Build item">Build items</option>
-        </select>
-        <select id="res">
-          <option value="">Any resource</option>
-          <option value="food">Food</option>
-          <option value="beef">Beef</option>
-          <option value="honey">Honey</option>
-          <option value="mead">Mead</option>
-        </select>
-        <label style="font-size:.82rem;color:var(--text-dim);display:flex;align-items:center;gap:6px">
-          <input type="checkbox" id="onlysel" style="min-width:auto" /> Only selected
-        </label>
+      <h2 class="fm-h">🍖 Food &amp; beef</h2>
+      <p class="fm-sub">Structures and items that produce food and beef.</p>
+
+      <div class="fm-block">
+        <h4>Structures</h4>
+        <div class="fm-struct" id="food-structs"></div>
       </div>
-      <div style="overflow-x:auto"><table class="fm" id="tbl"></table></div>
+
+      <div class="fm-block">
+        <h4>Boosts</h4>
+        <div class="fm-mods">
+          <label>Research <input type="number" id="food-research" min="0" step="1" /> %</label>
+          <label>Castellan / cast <input type="number" id="food-cast" min="0" step="1" value="0" /> %</label>
+          <span class="fm-sub" style="margin:0">applied to structure output</span>
+        </div>
+      </div>
+
+      <details class="fm-det" id="food-bi-det">
+        <summary>Build items (primary slot &amp; others)</summary>
+        <div>
+          <input class="fm-search" id="food-bi-search" placeholder="Search build items…" />
+          <div style="overflow-x:auto"><table class="fm" id="food-bi"></table></div>
+        </div>
+      </details>
+
+      <details class="fm-det" id="food-deco-det">
+        <summary>Decorations</summary>
+        <div>
+          <input class="fm-search" id="food-deco-search" placeholder="Search decorations…" />
+          <div style="overflow-x:auto"><table class="fm" id="food-deco"></table></div>
+        </div>
+      </details>
+    </section>
+
+    <!-- ============ MEAD ============ -->
+    <section class="panel">
+      <h2 class="fm-h">🍺 Mead &amp; honey</h2>
+      <p class="fm-sub">The relic brewery turns food + honey into mead. Set its level and how hard it runs.</p>
+
+      <div class="fm-block">
+        <h4>Relic brewery</h4>
+        <div class="fm-struct">
+          <div class="fm-srow"><span class="nm">Brewery level</span><select id="brew-level"></select></div>
+        </div>
+        <div class="fm-slider">
+          <span style="font-size:.82rem;color:var(--text-dim)">Output</span>
+          <input type="range" id="brew-slider" min="0" max="100" value="100" />
+          <span class="pct" id="brew-pct">100%</span>
+        </div>
+        <div class="fm-sub" id="brew-info" style="margin:0"></div>
+      </div>
+
+      <div class="fm-block">
+        <h4>Boosts</h4>
+        <div class="fm-mods">
+          <label>Research <input type="number" id="mead-research" min="0" step="1" /> %</label>
+          <label>Castellan / cast <input type="number" id="mead-cast" min="0" step="1" value="0" /> %</label>
+          <span class="fm-sub" style="margin:0">applied to brewery output</span>
+        </div>
+      </div>
+
+      <details class="fm-det" id="mead-bi-det">
+        <summary>Build items (mead &amp; honey)</summary>
+        <div>
+          <input class="fm-search" id="mead-bi-search" placeholder="Search build items…" />
+          <div style="overflow-x:auto"><table class="fm" id="mead-bi"></table></div>
+        </div>
+      </details>
+
+      <details class="fm-det" id="mead-deco-det">
+        <summary>Decorations</summary>
+        <div>
+          <input class="fm-search" id="mead-deco-search" placeholder="Search decorations…" />
+          <div style="overflow-x:auto"><table class="fm" id="mead-deco"></table></div>
+        </div>
+      </details>
     </section>
 
     <div class="fm-note">
-      <b>Reading the numbers:</b> these are <b>flat hourly bonuses</b> (food/beef/honey per hour; mead is
-      the total production bonus). There's no decoration cap on production the way there is on defence —
-      your real ceiling is <b>consumption</b>: troops eat food, sovereign troops drink mead. Pair this with
-      the <a href="../guides/food-production.html">Food</a> and <a href="../guides/mead-production.html">Mead</a>
-      optimisation guides. Values from the game data cache (research % boosts and base building output not included).
+      <b>The model:</b> structure output (farms, cattle, brewery) comes from the game data cache and is
+      multiplied by your <b>research + cast %</b>; build items and decorations are added on as flat
+      hourly bonuses. The brewery's <b>food &amp; honey draw</b> is shown so you can size your farms to
+      feed it. <b>Assumptions to confirm in-game:</b> the default research % and whether research/cast
+      boost only structures or everything — tweak the fields to match your castle. Base building tables
+      are from the data cache (June 2026).
     </div>
   </main>
 
   <footer class="footer">
-    <div class="wrap"><p>Data: game data cache. Mechanics belong to Goodgame Studios.</p></div>
+    <div class="wrap"><p>Pairs with the <a href="../guides/food-production.html">Food</a> and <a href="../guides/mead-production.html">Mead</a> optimisation guides. Data: game data cache. Mechanics belong to Goodgame Studios.</p></div>
   </footer>
 
   <script src="app.js"></script>

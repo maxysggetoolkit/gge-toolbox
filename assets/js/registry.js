@@ -230,17 +230,6 @@ window.TOOLS = [
     tags: ["food", "mead", "beef", "honey", "production", "decorations", "build items", "granary", "brewery"],
   },
   {
-    slug: "mead-production",
-    img: "assets/img/tool-art/mead.webp",
-    cat: "calculators",
-    name: "Mead Production",
-    desc: "Mead &amp; honey output from your decorations and build items — part of the Food &amp; Mead Production calculator.",
-    icon: "🍺",
-    status: "live",
-    url: "tools/food-mead/",
-    tags: ["mead", "honey", "production", "relic", "brewery", "sovereign"],
-  },
-  {
     slug: "kingdom-league",
     img: "assets/img/event-icons/kingdomleague.webp",
     cat: "calculators",
