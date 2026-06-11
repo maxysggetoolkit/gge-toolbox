@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wall &amp; Courtyard Defence Caps — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Work out your maximum courtyard defender capacity, wall capacity % and courtyard defence strength — from your Keep, Guardhouse, Stronghold, Reinforced Vault and defence decorations, against the game's caps." />
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=15" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <style>
+    .wl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 4px 0 22px; }
+    .wl-stat { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
+    .wl-stat .l { font-size: .72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .wl-stat .v { font-size: 1.5rem; font-weight: 700; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .wl-stat .sub { font-size: .74rem; color: var(--text-dim); margin-top: 3px; }
+    .wl-bar { height: 5px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden; margin-top: 8px; }
+    .wl-bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
+    .wl-bar.over > i { background: linear-gradient(90deg, #d9883a, var(--bad)); }
+    .wl-stat.capped { border-color: var(--gold-dim); }
+    .wl-over { color: var(--bad); } .wl-room { color: var(--good); }
+    .panel + .panel { margin-top: 16px; }
+    h2.wl-h { font-size: 1.05rem; color: var(--gold); margin: 0 0 12px; font-family: var(--font-display); }
+    .wl-builds { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .wl-build label { display: block; font-size: .8rem; color: var(--text-dim); margin-bottom: 5px; }
+    .wl-build select { width: 100%; padding: 8px 10px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+    .wl-build select:focus { outline: none; border-color: var(--gold); }
+    .wl-build .bd { font-size: .74rem; color: var(--text-faint); margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .wl-search { width: 100%; max-width: 320px; padding: 9px 12px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); margin-bottom: 12px; }
+    .wl-search:focus { outline: none; border-color: var(--gold); }
+    table.wl { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    table.wl th { text-align: right; padding: 7px 9px; font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.wl th.l { text-align: left; }
+    table.wl td { padding: 6px 9px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
+    table.wl td.nm { text-align: left; color: var(--text); }
+    table.wl tr.on td { background: rgba(217,178,90,.06); }
+    .wl-qty { display: inline-flex; align-items: center; gap: 6px; }
+    .wl-qty button { width: 24px; height: 24px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; font-size: 1rem; line-height: 1; }
+    .wl-qty button:hover { border-color: var(--gold); color: var(--gold); }
+    .wl-qty input { width: 42px; text-align: center; padding: 4px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+    .wl-note { font-size: .8rem; color: var(--text-faint); margin-top: 16px; line-height: 1.5; border-left: 3px solid var(--gold-dim); padding: 8px 14px; background: rgba(217,178,90,.05); border-radius: var(--radius-sm); }
+    .wl-reset { padding: 6px 14px; font: inherit; font-size: .8rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--bg-elev); color: var(--text-dim); border: 1px solid var(--border); }
+    .wl-reset:hover { color: var(--text); border-color: var(--gold-dim); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🧱 Wall &amp; Courtyard Defence Caps</h1>
+      <p>Add up your courtyard defender capacity, wall capacity % and courtyard defence strength
+         from your buildings and defence decorations — and see exactly how close each is to the
+         game's hard cap (so you stop wasting decos past it).</p>
+    </div>
+
+    <section class="panel">
+      <div class="wl-grid" id="summary"></div>
+      <button class="wl-reset" id="reset">Reset everything</button>
+    </section>
+
+    <section class="panel">
+      <h2 class="wl-h">Buildings — courtyard capacity</h2>
+      <div class="wl-builds" id="builds"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="wl-h">Defence decorations</h2>
+      <input class="wl-search" id="search" placeholder="Search decorations…" />
+      <div style="overflow-x:auto"><table class="wl" id="decotbl"></table></div>
+    </section>
+
+    <div class="wl-note">
+      <b>How the caps work:</b> building courtyard capacity stacks freely; the <b>decoration</b> bonuses
+      are what's capped — <b>+175,000</b> personal CY troop capacity, <b>+160%</b> wall capacity and
+      <b>+130%</b> courtyard defence strength across all your decos combined. Anything past a cap is
+      wasted. Building tables and caps are in-game verified (June 2026); deco values come from the game
+      data cache. Alliance support capacity shown is from buildings only.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Pairs with the <a href="../guides/courtyard-limits.html">Courtyard Limits</a> guide. Data: game data cache + in-game verification. Mechanics belong to Goodgame Studios.</p></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
