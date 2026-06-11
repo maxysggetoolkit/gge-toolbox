@@ -27,7 +27,7 @@ GitHub itself can't read Discord, so you need a small bridge. Two easy options:
 2. (Optional) Filter: only when the message contains "maintenance".
 3. Action: **Webhooks → Custom Request**
    - Method: `POST`
-   - URL: `https://api.github.com/repos/maxbode04/gge-toolbox/dispatches`
+   - URL: `https://api.github.com/repos/maxysggetoolkit/gge-toolbox/dispatches`
    - Headers:
      - `Accept: application/vnd.github+json`
      - `Authorization: Bearer <GITHUB_TOKEN>`
@@ -40,7 +40,7 @@ channel, that calls the same endpoint:
 
 ```js
 // on each announcement message:
-await fetch("https://api.github.com/repos/maxbode04/gge-toolbox/dispatches", {
+await fetch("https://api.github.com/repos/maxysggetoolkit/gge-toolbox/dispatches", {
   method: "POST",
   headers: {
     "Accept": "application/vnd.github+json",
@@ -53,7 +53,7 @@ await fetch("https://api.github.com/repos/maxbode04/gge-toolbox/dispatches", {
 
 ### The GitHub token
 Create a **fine-grained personal access token** (GitHub → Settings → Developer
-settings) scoped to **only** `maxbode04/gge-toolbox` with **Contents: read &
+settings) scoped to **only** `maxysggetoolkit/gge-toolbox` with **Contents: read &
 write**. That's the `<GITHUB_TOKEN>` above. Treat it like a password — store it
 in the Zapier/bot secret store, never in the repo.
 

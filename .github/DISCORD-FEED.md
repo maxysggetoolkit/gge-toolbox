@@ -35,7 +35,7 @@ ways to write the file:
 The bot reads a message, then PUTs the updated JSON to the repo:
 
 ```
-PUT https://api.github.com/repos/maxbode04/gge-toolbox/contents/assets/data/discord-feed.json
+PUT https://api.github.com/repos/maxysggetoolkit/gge-toolbox/contents/assets/data/discord-feed.json
 Authorization: Bearer <FINE_GRAINED_PAT with Contents: read & write>
 Body: { "message": "feed: update", "content": "<base64 of the new JSON>", "sha": "<current file sha>" }
 ```
