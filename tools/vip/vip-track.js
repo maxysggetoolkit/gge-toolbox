@@ -18,7 +18,7 @@
   // window.VIP_SHARED — anyone who unlocks the VIP corner syncs with zero
   // setup. A leader's own Config entries (localStorage) override them.
   const shared = window.VIP_SHARED || {};
-  const cfg = { jsonbinKey: "", riftBinId: "", accountsBinId: "", anthropic: "" };
+  const cfg = { jsonbinKey: "", riftBinId: "", accountsBinId: "", anthropic: "", acctKey: "" };
   let own = {};
   try { own = JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) {}
   Object.keys(cfg).forEach((k) => { cfg[k] = own[k] || shared[k] || ""; });
@@ -41,6 +41,43 @@
     });
     if (!r.ok) throw new Error("HTTP " + r.status);
     return true;
+  }
+
+  // ---- client-side payload encryption (AES-256-GCM) ----
+  // The account registry is encrypted before it ever reaches JSONBin, with a
+  // dedicated 32-byte key baked into the (encrypted) VIP page as
+  // window.VIP_SHARED.acctKey. So even though the bin is a public JSONBin store,
+  // the roster is only ever ciphertext at rest — confidentiality reduces to the
+  // VIP code, not JSONBin's privacy toggle or the master key's scope.
+  let _ckPromise = null;
+  function acctKeyMaterial() {
+    if (_ckPromise) return _ckPromise;
+    _ckPromise = (async () => {
+      const b64 = cfg.acctKey || "";
+      if (!b64) return null;
+      let raw;
+      try { raw = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0)); } catch (e) { return null; }
+      if (raw.length !== 32) raw = new Uint8Array(await crypto.subtle.digest("SHA-256", raw));
+      return crypto.subtle.importKey("raw", raw, { name: "AES-GCM" }, false, ["encrypt", "decrypt"]);
+    })();
+    return _ckPromise;
+  }
+  function hasAcctKey() { return !!cfg.acctKey; }
+  const _b64 = (u) => { let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+  async function encryptJSON(obj) {
+    const key = await acctKeyMaterial();
+    if (!key) throw new Error("no registry key");
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(JSON.stringify(obj))));
+    const out = new Uint8Array(iv.length + ct.length); out.set(iv); out.set(ct, iv.length);
+    return _b64(out);
+  }
+  async function decryptJSON(b64) {
+    const key = await acctKeyMaterial();
+    if (!key) throw new Error("no registry key");
+    const data = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: data.slice(0, 12) }, key, data.slice(12));
+    return JSON.parse(new TextDecoder().decode(pt));
   }
 
   // ---- helpers ----
@@ -155,5 +192,5 @@
     document.head.appendChild(s);
   }
 
-  window.VIPTrack = { cfg, saveCfg, binGet, binPut, mountConfig, toast, setSync, esc, escAttr, avatar, initials, parseTime, fmtTime };
+  window.VIPTrack = { cfg, saveCfg, binGet, binPut, encryptJSON, decryptJSON, hasAcctKey, mountConfig, toast, setSync, esc, escAttr, avatar, initials, parseTime, fmtTime };
 })();
