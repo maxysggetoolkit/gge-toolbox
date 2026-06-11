@@ -1,1 +1,3 @@
 tools/vip/_src/
+tools/vip/_*test*.html
+tools/vip/_test-*.html
