@@ -62,6 +62,14 @@
   letter-spacing: .005em;
 }
 
+/* Author byline under the lead */
+.guide-byline {
+  font-size: .85rem; color: var(--text-faint); font-style: italic;
+  margin: -14px 0 24px; padding-left: 12px;
+  border-left: 2px solid var(--gold-dim); line-height: 1.5;
+}
+.guide-byline b { color: var(--gold-dim); font-style: normal; }
+
 /* Callout / tip box */
 .tip {
   margin: 20px 0; padding: 14px 18px; border-radius: var(--radius-sm);

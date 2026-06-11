@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cast Building Guide — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Daniel4678's guide to building a castellan in Goodgame Empire: reading total vs subsection effects, working within caps, equipment build order, base stats, defence gem priority and hero choice." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <link rel="stylesheet" href="./guide.css?v=2" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head guide">
+      <a class="back" href="../../">← All tools</a>
+      <h1>👑 Cast Building Guide</h1>
+      <div class="guide-meta">
+        <span class="guide-tag">PvP</span>
+        <span class="guide-tag">Castellan</span>
+        <span class="guide-tag">Defence</span>
+        <span class="guide-tag">By Daniel4678</span>
+        <span class="guide-read">~5 min read</span>
+      </div>
+    </div>
+
+    <div class="guide">
+      <article>
+        <p class="guide-lead">The foundation of every attack and defence lays with your equipment.
+          It's critical to understand how to build them properly and understand the construction
+          principles so that you are building the most efficient cast with your current equipment.
+          It's important to know that your cast should be constantly evolving from when you get new
+          pieces that could potentially fit together.</p>
+        <p class="guide-byline">A community guide by <b>Daniel4678</b>, in his own words —
+          years of experience from standard PvP to several server wars.</p>
+
+        <h2>Understanding a cast</h2>
+        <p>If you've ever looked at someone's cast and thought to yourself "how are they this strong?",
+          8/10 it's because they understand foundational comm/cast building. From seeing and
+          interpreting casts, you must grasp that there is a <b>"total effect"</b> value and a
+          <b>"subsection effect"</b> value. The cast effect values are clearly spelled out under various
+          category headings. There are currently <b>7</b> of these headings:</p>
+        <ul>
+          <li><b>Unit Effects</b> — how the cast impacts troops</li>
+          <li><b>Defense Structure Effects</b> — how the cast impacts the castle defensive stats (such as wall/gate)</li>
+          <li><b>Attack Effects</b> — how any additional attack effects (flanks/front/troop bonuses) impact the overall attack</li>
+          <li><b>Defense Unit Effects</b> — how any additional defensive effects (flanks/combat bonuses etc) impact the overall defence</li>
+          <li><b>Pre-Battle Effects</b> — how supplementary effects (speed, detection etc) impact the attack <b>before</b> it lands</li>
+          <li><b>Post-Battle Effects</b> — how supplementary effects (fire, glory, loot etc) impact the attack <b>after</b> it lands. This is generally not the most important category.</li>
+          <li><b>Courtyard Battle Effects</b> — currently how sizable the courtyard (CY) is and any additional CY effects</li>
+        </ul>
+        <figure class="guide-fig">
+          <img src="./img/pvp/effect-headings.webp" alt="A castellan's effect breakdown showing the seven category headings, each with a bold total value" loading="lazy" onerror="this.parentNode.style.display='none'">
+          <figcaption>A cast's effect breakdown — each of the seven headings shows a <b>total</b> in bold, made up of its subsections.</figcaption>
+        </figure>
+        <p>Under each of these categories, a total effect value is shown in <b>bold</b> and subsequent
+          subsection effects (and there is generally more than 1) that make up the total. In general,
+          these subsection effects are derived from:</p>
+        <ul>
+          <li>The main equipment effects (generally forming the bulk)</li>
+          <li>Gem effects (generally providing a substantial addition)</li>
+          <li>Hero effects</li>
+          <li>Build Item effects</li>
+          <li>Decoration effects</li>
+          <li>Alliance effects</li>
+          <li>Event effects</li>
+        </ul>
+        <figure class="guide-fig">
+          <img src="./img/pvp/effect-subsections.webp" alt="Close-up of a cast effect total broken into its subsection values" loading="lazy" onerror="this.parentNode.style.display='none'">
+          <figcaption>One total, broken into its subsections — main equipment, gems, hero, and supporting sources.</figcaption>
+        </figure>
+
+        <h2>Working within the caps</h2>
+        <p>Under most of the subsection effects, there is a capped limit (denoted as <b>"max: 100%"</b>).
+          This is to tell you that that particular equipment effect will not provide any more than the
+          noted limit even if you exceed it.</p>
+        <figure class="guide-fig">
+          <img src="./img/pvp/cap-exceeded.webp" alt="A subsection showing 158.7 percent offered but only 140 percent usable due to the cap" loading="lazy" onerror="this.parentNode.style.display='none'">
+          <figcaption>An exceeded limit: 158.7% offered by the main equipment, but only 140% is usable.</figcaption>
+        </figure>
+        <p>Despite the stat stating there is <b>158.7%</b> offered by the main equipment, the maximum
+          usable strength is <b>140%</b> and thus the game will only use 140% to calculate towards any
+          given effect. To maximise the total value, you must utilise a combination of equipment, gems,
+          hero, and other supporting equipment.</p>
+
+        <h2>Worked example</h2>
+        <p>To emphasise this point, below is the <b>Combat Strength for Defensive Range Units</b> that
+          currently has 2 subsection values — the main equipment pieces and gems. The main equipment
+          provides <b>164%</b> whilst the gems provide an additional <b>41.3%</b>. However, because the
+          main equipment subsection value exceeds the limit, the total value for Defensive Range Units
+          will be calculated from <b>140% + 41.3% = 181.3%</b> total range strength.</p>
+        <figure class="guide-fig">
+          <img src="./img/pvp/defensive-range-example.webp" alt="Defensive Range Units: 164 percent main equipment capped to 140, plus 41.3 percent gems, totalling 181.3 percent" loading="lazy" onerror="this.parentNode.style.display='none'">
+          <figcaption>164% main (capped to 140%) + 41.3% gems = 181.3% total range strength.</figcaption>
+        </figure>
+        <figure class="guide-fig">
+          <img src="./img/pvp/defensive-range-ingame.webp" alt="The 181.3 percent total shown by the cast in the game" loading="lazy" onerror="this.parentNode.style.display='none'">
+          <figcaption>…which matches the total value shown by the cast in the game.</figcaption>
+        </figure>
+        <div class="tip">
+          <b>Why it matters:</b> to build efficiently, you must build your cast within these limits or
+          you're simply wasting an effect that could be diverted elsewhere to making your cast stronger.
+        </div>
+
+        <h2>Equipment build order</h2>
+        <p>In my opinion, there is an orderly way to build your casts:</p>
+        <ol>
+          <li><b>Weapon</b></li>
+          <li><b>Artefact</b></li>
+          <li><b>Chest / Helmet</b></li>
+        </ol>
+        <p>The reason for this is that with 3-stat or 4-stat relic pieces, the bulk of the cast strength
+          lays in the <b>weapon</b> then the <b>artefact</b>, with the chest or helmet pieces filling out
+          the remaining strength cavities you may need to fill. Building out of order from this requires
+          unnecessary additional work that could have been done the first time by following the order.</p>
+        <p>Generally you want to aim to fulfil the base strength pieces — melee, range, courtyard, flank,
+          front — <b>without any gems or a hero piece or tech upgrades</b>. This will give you a solid
+          foundation to build and adjust the cast strength. I would not focus too hard on defensive
+          structure effects, as it doesn't matter what pieces you put on, you will get a decent enough
+          reduction from the main pieces.</p>
+
+        <h2>Your base cast stats</h2>
+        <p>Aim to hit these from your main pieces alone:</p>
+        <table class="guide-table">
+          <thead><tr><th>Stat</th><th>Target (cap)</th></tr></thead>
+          <tbody>
+            <tr><td>Melee</td><td>max 140%</td></tr>
+            <tr><td>Range</td><td>max 140%</td></tr>
+            <tr><td>Courtyard</td><td>max 100%</td></tr>
+            <tr><td>Wall Unit Limit</td><td>max 50%</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Adding gems</h2>
+        <p>When adding gems, consider the priority of the effects most will need for defence. These
+          priorities are a general guide and are my opinion to get optimal strength when you try to
+          balance available pieces.</p>
+        <p><b>Defence priority:</b></p>
+        <ol>
+          <li>Courtyard Strength</li>
+          <li>Range Strength</li>
+          <li>Wall Limit</li>
+          <li>Melee Strength</li>
+        </ol>
+
+        <h2>Selecting a hero</h2>
+        <p>Generally, you want to select a hero that has <b>CY strength, melee, range, and flank limits</b>.</p>
+
+        <div class="guide-nav">
+          <a class="guide-tool-link" href="../../">← All tools</a>
+          <a class="guide-tool-link" href="./commander-building.html">🎖️ Commander Building Guide</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Guide by <b>Daniel4678</b> (Alchemists). Mechanics belong to Goodgame Studios. Corrections welcome via the GitHub repo.</p></div>
+  </footer>
+</body>
+</html>
