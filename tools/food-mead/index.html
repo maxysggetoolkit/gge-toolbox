@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food &amp; Mead Production — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Add up the food, beef, honey and mead production your decorations and build items give — compare builds and see your total hourly output bonus." />
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=15" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <style>
+    .fm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 4px 0 18px; }
+    .fm-stat { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
+    .fm-stat.on { border-color: var(--gold-dim); }
+    .fm-stat .l { font-size: .72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .fm-stat .v { font-size: 1.55rem; font-weight: 700; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .fm-stat .sub { font-size: .73rem; color: var(--text-dim); margin-top: 3px; }
+    .fm-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 12px; }
+    .fm-controls input, .fm-controls select { padding: 9px 12px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+    .fm-controls input:focus, .fm-controls select:focus { outline: none; border-color: var(--gold); }
+    .fm-reset { padding: 6px 14px; font: inherit; font-size: .8rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--bg-elev); color: var(--text-dim); border: 1px solid var(--border); }
+    .fm-reset:hover { color: var(--text); border-color: var(--gold-dim); }
+    table.fm { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    table.fm th { text-align: right; padding: 7px 9px; font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.fm th.l { text-align: left; }
+    table.fm td { padding: 6px 9px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
+    table.fm td.nm { text-align: left; color: var(--text); }
+    table.fm td.k { text-align: left; font-size: .76rem; color: var(--text-faint); }
+    table.fm tr.on td { background: rgba(217,178,90,.06); }
+    .fm-qty { display: inline-flex; align-items: center; gap: 6px; }
+    .fm-qty button { width: 24px; height: 24px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text); cursor: pointer; font-size: 1rem; line-height: 1; }
+    .fm-qty button:hover { border-color: var(--gold); color: var(--gold); }
+    .fm-qty input { width: 42px; text-align: center; padding: 4px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); }
+    .fm-note { font-size: .8rem; color: var(--text-faint); margin-top: 16px; line-height: 1.5; border-left: 3px solid var(--gold-dim); padding: 8px 14px; background: rgba(217,178,90,.05); border-radius: var(--radius-sm); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🍖 Food &amp; Mead Production</h1>
+      <p>Tally the food, beef, honey and mead production your <b>decorations</b> and <b>build items</b>
+         add up to. Set how many of each you run and compare builds — handy when you're deciding which
+         Exalted Green decos or granary items earn their tiles.</p>
+    </div>
+
+    <section class="panel">
+      <div class="fm-grid" id="summary"></div>
+      <button class="fm-reset" id="reset">Reset</button>
+    </section>
+
+    <section class="panel">
+      <div class="fm-controls">
+        <input id="search" placeholder="Search…" style="min-width:200px" />
+        <select id="kind">
+          <option value="">All sources</option>
+          <option value="Decoration">Decorations</option>
+          <option value="Build item">Build items</option>
+        </select>
+        <select id="res">
+          <option value="">Any resource</option>
+          <option value="food">Food</option>
+          <option value="beef">Beef</option>
+          <option value="honey">Honey</option>
+          <option value="mead">Mead</option>
+        </select>
+        <label style="font-size:.82rem;color:var(--text-dim);display:flex;align-items:center;gap:6px">
+          <input type="checkbox" id="onlysel" style="min-width:auto" /> Only selected
+        </label>
+      </div>
+      <div style="overflow-x:auto"><table class="fm" id="tbl"></table></div>
+    </section>
+
+    <div class="fm-note">
+      <b>Reading the numbers:</b> these are <b>flat hourly bonuses</b> (food/beef/honey per hour; mead is
+      the total production bonus). There's no decoration cap on production the way there is on defence —
+      your real ceiling is <b>consumption</b>: troops eat food, sovereign troops drink mead. Pair this with
+      the <a href="../guides/food-production.html">Food</a> and <a href="../guides/mead-production.html">Mead</a>
+      optimisation guides. Values from the game data cache (research % boosts and base building output not included).
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Data: game data cache. Mechanics belong to Goodgame Studios.</p></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
