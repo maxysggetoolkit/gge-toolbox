@@ -145,11 +145,11 @@ window.TOOLS = [
     img: "assets/img/event-icons/nomadinvasion.webp",
     cat: "guides",
     name: "Nomad Invasion",
-    desc: "The weekly PvE invasion: clearing camps, holding the waves, Khan medals and the milestone track up to the event hero.",
+    desc: "The PvE invasion in full: the 8 camp difficulty tiers, the alliance Khan camp (rage & taunt), Nomad vs Khan tablets, why Khan tablets score 7x, and the Herald's trader.",
     icon: "🌊",
     status: "live",
     url: "tools/guides/nomad-invasion.html",
-    tags: ["guide", "nomad", "invasion", "event", "pve", "khan medals", "camps", "milestones", "hero"],
+    tags: ["guide", "nomad", "invasion", "event", "pve", "khan camp", "khan tablets", "nomad tablets", "rage", "taunt", "trader", "camps", "difficulty"],
   },
   {
     slug: "guide-recruitment",

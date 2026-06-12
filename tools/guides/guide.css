@@ -102,6 +102,9 @@
 .guide-table td:first-child { color: var(--text); font-weight: 500; }
 .guide-table tbody tr:hover td { background: rgba(217, 178, 90, .04); }
 
+/* Muted source/footnote line under a table or section */
+.guide-fineprint { font-size: .76rem; color: var(--text-faint); margin: -8px 0 22px; line-height: 1.5; }
+
 /* Footer nav between guides */
 .guide-nav {
   display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; padding-top: 22px;

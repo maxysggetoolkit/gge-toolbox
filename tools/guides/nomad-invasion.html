@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nomad Invasion — Maxy's Empire Toolkit</title>
-  <meta name="description" content="How the Nomad Invasion event works in Goodgame Empire: attacking nomad camps, defending the waves, Khan medals and the milestone reward track up to the event hero." />
+  <meta name="description" content="How the Nomad Invasion works in Goodgame Empire: the 8 camp difficulty levels, the alliance Khan camp (rage & taunt), Nomad vs Khan tablets, the 7x scoring, and the Herald of the Invasion trader." />
   <link rel="stylesheet" href="../../assets/css/theme.css" />
   <link rel="stylesheet" href="./guide.css?v=2" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
@@ -23,78 +23,140 @@
       <div class="guide-meta">
         <span class="guide-tag">Event</span>
         <span class="guide-tag">PvE</span>
-        <span class="guide-tag">Khan medals</span>
-        <span class="guide-tag">Weekly</span>
-        <span class="guide-read">~5 min read</span>
+        <span class="guide-tag">Alliance</span>
+        <span class="guide-tag">Khan camp</span>
+        <span class="guide-read">~6 min read</span>
       </div>
     </div>
 
     <div class="guide">
       <article>
-        <p class="guide-lead">The Nomad Invasion is one of the most reliable point-farms in the game —
-          a recurring PvE event where the Khan's nomads camp across the world map and march on your
-          castle. Clear camps, hold the waves, bank the points, and spend your Khan medals on
-          event-exclusive units, gear and decorations.</p>
+        <p class="guide-lead">The Nomad Invasion is the Khan's recurring raid on the realm — nomad camps
+          spawn across the world map, and your alliance enrages a shared <b>Khan camp</b> until someone
+          taunts the Khan into attacking. It pays out on <b>two fronts at once</b>: you loot
+          <b>Nomad tablets</b> by clearing camps, and the far more valuable <b>Khan tablets</b> by
+          surviving the Khan's counter-attack. Spend both at the Herald's trader.</p>
 
-        <div class="tip warn">
-          <b>Draft — verification wanted.</b> The mechanics below are the long-standing ones; reward
-          tables, shop contents and the current meta shift between runs. Treat exact numbers as a
-          starting point and confirm in-game. Corrections welcome.
+        <div class="tip">
+          <b>Two currencies, one trader.</b> <b>Nomad tablets</b> come from attacking camps;
+          <b>Khan tablets</b> come from defending the taunted Khan. For your event score they are
+          <b>not</b> worth the same — a Khan tablet is worth <b>7×</b> a Nomad tablet (see Scoring).
         </div>
 
-        <h2>How it runs</h2>
-        <p>Nomad Invasion rotates in roughly <b>every week</b> (often a short two-to-three day window).
-          There are two ways to score event points, and you'll want both:</p>
+        <h2>The loop</h2>
+        <ol>
+          <li><b>Attack nomad camps</b> on the map → loot <b>Nomad tablets</b> and build <b>rage</b>.</li>
+          <li>Rage levels up your alliance's shared <b>Khan camp</b> — higher level, bigger payouts.</li>
+          <li>When the Khan camp is <b>fully enraged</b>, <b>taunt the Khan</b> to trigger an attack on
+            your own main castle.</li>
+          <li><b>Defend successfully</b> → loot <b>Khan tablets</b> (the 7× currency) and yet more rage.</li>
+          <li>Spend both currencies at the <b>Herald of the Invasion</b> trader.</li>
+        </ol>
+
+        <h2>Nomad camps &amp; difficulty levels</h2>
+        <p>Camps come in <b>8 difficulty tiers</b>. They're pure PvE — every camp of a given tier fields
+          the same garrison of <b>Lancers</b> (melee) and <b>Spear throwers</b> (ranged) behind wall and
+          gate bonuses, so once you've built the attack that clears a tier cleanly, you just repeat it.
+          Defence strength climbs steeply through tier 5, then plateaus while the <b>tablet payout and
+          guard count keep rising</b> — the top tiers aren't much harder to break, they just give more.</p>
+        <table class="guide-table">
+          <thead><tr><th>Tier</th><th>Defence strength</th><th>Guards</th><th>Nomad tablets / clear</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>150 – 780</td><td>5 – 17</td><td>2 – 4</td></tr>
+            <tr><td>2</td><td>170 – 3,600</td><td>9 – 27</td><td>5 – 7</td></tr>
+            <tr><td>3</td><td>3,800 – 12,200</td><td>28 – 37</td><td>8 – 20</td></tr>
+            <tr><td>4</td><td>12,600 – 14,600</td><td>38 – 41</td><td>21 – 28</td></tr>
+            <tr><td>5</td><td>16,000 – 28,000</td><td>41 – 50</td><td>28 – 48</td></tr>
+            <tr><td>6</td><td>30,000 – 46,300</td><td>51 – 54</td><td>50 – 60</td></tr>
+            <tr><td>7</td><td>≈ 46,400 – 46,560</td><td>55 – 57</td><td>62 – 68</td></tr>
+            <tr><td>8</td><td>≈ 46,600 – 46,650</td><td>57 – 59</td><td>70 – 75</td></tr>
+          </tbody>
+        </table>
+        <p class="guide-fineprint">Values from the current game data (defence strength is the camp's total;
+          higher tiers also raise the wall/gate bonus, so bring the right siege tools rather than just more troops).</p>
+
+        <h2>The Khan camp (rage &amp; taunt)</h2>
+        <p>The <b>Khan camp</b> is a single, <b>alliance-shared</b> objective on the map — not a personal
+          one. Every nomad camp your alliance clears generates <b>rage</b>, and rage fills the Khan camp's
+          level bar (<em>"X / Y rage to level up"</em>). The higher the Khan camp's level, the tougher the
+          Khan's attack — and the better the loot for surviving it.</p>
         <ul>
-          <li><b>Attack nomad camps</b> — camps spawn on the world map at a range of levels. You send
-            attacks against their garrison and earn points per clear, scaling with camp level.</li>
-          <li><b>Defend your castle</b> — the nomads also send attack waves at <em>you</em>. Surviving
-            (or minimising losses on) those waves banks points too, so a solid castellan setup earns
-            while you sleep.</li>
+          <li><b>Enrage it together.</b> Rage is pooled across the alliance, so the whole roster hammering
+            camps is what pushes the Khan camp up its levels.</li>
+          <li><b>Taunt when full.</b> Once the camp is fully enraged, any member can <b>Taunt the Khan</b>
+            to trigger a Khan attack on <em>their own</em> main castle. You can let the rest of the
+            alliance see the incoming attack so they can rally support.</li>
+          <li><b>Defend to cash in.</b> Beating the Khan's wave is where the <b>Khan tablets</b> (and more
+            rage) come from. This is the high-value half of the event — it's worth holding troops back to
+            tank these cleanly rather than throwing everything at camps.</li>
+          <li><b>Cooldown.</b> There's a wait between Khan-camp attacks, and the camp can level up mid-fight,
+            so time your taunts around your defensive readiness.</li>
         </ul>
 
-        <h2>Points, brackets &amp; rewards</h2>
-        <p>Your points feed a single <b>milestone track</b>. Reward tiers are split by <b>level
-          bracket</b> (the brackets run roughly 70–369, 370–719, 720–1019 and 1020), so two players on
-          very different accounts chase different tables. The track pays out in <b>Silver and Gold
-          pieces</b> along the way, with the headline prize — currently the <b>Holy Nomad hero</b>
-          (a turtle-themed event commander) — sitting near the top.</p>
-        <p>Separately, clearing camps and hitting tiers awards <b>Khan medals</b>, the event currency.
-          Spend them at the <b>Khan's tent</b> on event-exclusive troops, tools, equipment and decos.</p>
-        <p>The full, data-backed milestone list per bracket is in the
-          <a href="../overview-event-rewards/">Event Rewards overview</a> — filter to <b>Nomad
-          Invasion</b>.</p>
+        <h2>Scoring — why Khan tablets are worth 7×</h2>
+        <p>Your event rank is driven by a single points total, and the two currencies feed it at very
+          different rates:</p>
+        <table class="guide-table">
+          <thead><tr><th>Source</th><th>Currency</th><th>Points each</th></tr></thead>
+          <tbody>
+            <tr><td>Clearing nomad camps</td><td>Nomad tablet</td><td>1</td></tr>
+            <tr><td>Defending the taunted Khan</td><td>Khan tablet</td><td><b>7</b></td></tr>
+          </tbody>
+        </table>
+        <p>So a single Khan tablet moves your score as much as <b>seven</b> Nomad tablets. Camps are the
+          steady grind that fuels rage; the <b>real climb comes from defending Khan attacks</b>. If you're
+          chasing a bracket, prioritise being ready to taunt-and-hold the moment the Khan camp fills.</p>
+
+        <h2>The trader — Herald of the Invasion</h2>
+        <p>The <b>Herald of the Invasion</b> stands outside your castle and runs the event shop. Both
+          currencies are spent here:</p>
+        <ul>
+          <li><b>Nomad tablets</b> buy the bulk stock — event tools, resources, lower-tier decorations and
+            consumables. It's your high-volume currency, so it clears out the everyday items.</li>
+          <li><b>Khan tablets</b> buy the headline rewards — event-exclusive equipment, the top troops and
+            decorations, the <b>Pathfinder's Seal</b> (the nomad advisor token) and the event commander.
+            Because they're rarer and score 7×, spend them deliberately.</li>
+          <li><b>It lingers after the event.</b> The trader stays open for a short while once the invasion
+            ends, and any tablets you don't spend <b>carry over to the next Nomad Invasion</b> — so it's
+            fine to bank toward a big-ticket item across two runs.</li>
+        </ul>
+        <p>Exact stock and prices rotate between runs; check the
+          <a href="../overview-event-rewards/">Event Rewards overview</a> (filter to <b>Nomad Invasion</b>)
+          for the current milestone track.</p>
 
         <h2>Farming camps efficiently</h2>
         <ol>
-          <li><b>It's PvE</b> — you're hitting fixed nomad garrisons, not players. Scout a camp once,
-            build the attack that clears it for the least loss, then repeat that template.</li>
-          <li><b>Match the defenders</b> — bring the unit type and tools that counter what the camp
-            fields. Cheap, fast units keep your cost-per-point low.</li>
-          <li><b>Use your commander's "every 2/3 waves" skills</b> — the same wave-timing logic from the
-            <a href="./pvp.html">PvP tooling guide</a> applies: your strongest waves should land where
-            the camp is toughest.</li>
-          <li><b>Don't over-tool</b> — points scale with camp level, not with how much you spend, so a
-            lean clear beats an over-killed one when you're grinding the track.</li>
+          <li><b>Scout once, template forever.</b> Every camp in a tier is identical — Lancers + Spear
+            throwers behind wall/gate bonuses. Build the cheapest clean clear for that tier and copy it.</li>
+          <li><b>Bring both lanes + the right siege.</b> A melee/ranged mix plus a ram for the gate and
+            ladders for the wall — the same logic as the <a href="./pvp.html">PvP tooling guide</a> — beats
+            spamming raw troops into a wall bonus.</li>
+          <li><b>Don't over-tool.</b> Tablets scale with the camp's tier, not with how hard you hit it, so a
+            lean clear is more efficient than an overkill.</li>
+          <li><b>Skip when it's worth it.</b> Camps have a ruby <b>skip cost</b> if you'd rather buy the
+            clear than march on it — handy on the low tiers when you only want the rage.</li>
         </ol>
 
-        <h2>Holding the defensive waves</h2>
-        <p>Incoming nomad waves are predictable PvE hits. A good <a href="./cast-building.html">castellan
-          setup</a> plus standard wall/courtyard tooling will tank most of them and bank defence points.
-          If you're chasing a high bracket, top up your <a href="../wall-limit/">courtyard and wall
-          capacity</a> before the event so more defenders actually fight.</p>
+        <h2>Holding the Khan's attack</h2>
+        <p>The Khan's wave is a predictable PvE hit that scales with your alliance's Khan-camp level. A solid
+          <a href="./cast-building.html">castellan setup</a> plus standard wall/courtyard tooling tanks it
+          and banks the Khan tablets. Top up your <a href="../wall-limit/">courtyard and wall capacity</a>
+          before you taunt so more defenders actually fight, and use the
+          <a href="../defence-survival/">Defence Survival calculator</a> to check you'll hold before you
+          enrage the Khan.</p>
 
         <h2>Is it worth it?</h2>
         <ul>
-          <li><b>F2P:</b> yes — it's one of the steadiest sources of Khan-shop gear and the event hero,
-            for not much more than troop time.</li>
-          <li><b>Spenders:</b> the higher brackets and the hero reward reward a focused push, but the
-            event runs often enough that there's no need to whale a single instance.</li>
+          <li><b>F2P:</b> one of the steadiest sources of event gear, decos and the commander — camps cost
+            mostly troop time, and the defence half is pure value.</li>
+          <li><b>Spenders:</b> the 7× Khan tablets reward focused taunt-and-defend pushes, but the event
+            recurs often, so there's no need to whale a single run — bank tablets across two.</li>
         </ul>
 
         <div class="guide-nav">
           <a class="guide-tool-link" href="../../">← All tools</a>
           <a class="guide-tool-link" href="../overview-event-rewards/">🏅 Event Rewards</a>
+          <a class="guide-tool-link" href="../defence-survival/">🛡️ Defence Survival</a>
           <a class="guide-tool-link" href="./pvp.html">⚔️ PvP Tooling</a>
         </div>
       </article>
@@ -102,7 +164,7 @@
   </main>
 
   <footer class="footer">
-    <div class="wrap"><p>Community guide — core mechanics + game-data reward tracks (June 2026), pending in-game verification. Mechanics belong to Goodgame Studios. Corrections welcome via the GitHub repo.</p></div>
+    <div class="wrap"><p>Community guide — mechanics &amp; difficulty/scoring values pulled from current Goodgame Empire game data (June 2026). The game and its mechanics belong to Goodgame Studios. Corrections welcome via the GitHub repo.</p></div>
   </footer>
 </body>
 </html>
