@@ -284,6 +284,17 @@ window.TOOLS = [
     tags: ["decorations", "deco", "might", "po", "decoration points", "layout", "effects", "courtyard", "exalted"],
   },
   {
+    slug: "overview-buildings",
+    img: "assets/img/tool-art/reinforced-vault.webp",
+    cat: "overviews",
+    name: "Buildings",
+    desc: "Every building with max level, might, total build cost, storage, production and courtyard/wall effects.",
+    icon: "🏛️",
+    status: "live",
+    url: "tools/overview-buildings/",
+    tags: ["buildings", "keep", "storehouse", "barracks", "tower", "relic", "cost", "storage", "production", "courtyard", "might"],
+  },
+  {
     slug: "overview-construction-items",
     img: "assets/img/tool-art/guides.webp",
     cat: "overviews",

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buildings Overview — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Every Goodgame Empire building: max level, might, build cost, storage, production and courtyard/wall effects." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🏛️ Buildings Overview</h1>
+      <p>Every building in the game with its max level, might, total resource cost
+         to build from scratch, storage, production and courtyard / wall effects.
+         Click a column to sort — try <b>Build cost</b> or <b>Storage</b>.</p>
+    </div>
+
+    <section class="panel">
+      <div id="ov"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Data extracted direct from Goodgame Studios' game files. One card per building; stats shown at max level, cost summed across all levels.</p></div>
+  </footer>
+
+  <script src="../../assets/js/corrections.js"></script>
+  <script src="../../assets/js/overview.js"></script>
+  <script>
+    fetch("./data/buildings.json")
+      .then((r) => r.json())
+      .then((d) => {
+        const num = (v) => (v || 0).toLocaleString();
+        const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        const data = d.items.map((it) => ({
+          ...it,
+          cost: (it.costWood || 0) + (it.costStone || 0),
+          fxText: (it.effects || []).map((e) => e.label).join(" ") + " " + (it.group || "") + " " + (it.ground || ""),
+        }));
+        const fmtTime = (s) => {
+          if (!s) return "";
+          const h = Math.floor(s / 3600), m = Math.round((s % 3600) / 60);
+          return h ? (h + "h" + (m ? " " + m + "m" : "")) : m + "m";
+        };
+        const effLine = (e) =>
+          "+" + e.v.toLocaleString() + (e.pct ? "%" : "") + " " + esc(e.label);
+
+        EmpireOverview({
+          mount: document.getElementById("ov"),
+          data,
+          layout: "cards",
+          searchKeys: ["name", "fxText"],
+          defaultSort: { key: "might", dir: -1 },
+          placeholder: "Search " + data.length + " buildings…",
+          sortOptions: [
+            { key: "might", label: "Might", num: true },
+            { key: "maxLevel", label: "Max level", num: true },
+            { key: "cost", label: "Build cost", num: true },
+            { key: "storage", label: "Storage", num: true },
+            { key: "tiles", label: "Size (tiles)", num: true },
+            { key: "name", label: "Name" },
+          ],
+          card: {
+            title: (r) => r.name,
+            img: () => null,
+            corner: (r) => "L" + r.maxLevel,
+            placeholder: "🏛️",
+            stats: [
+              { label: "Might", key: "might", num: true, fmt: num },
+              { label: "Wood", key: "costWood", num: true, fmt: (v) => (v ? num(v) : "—") },
+              { label: "Stone", key: "costStone", num: true, fmt: (v) => (v ? num(v) : "—") },
+            ],
+            extra: (r) => {
+              const meta = [];
+              meta.push(r.size + (r.maxCount ? " · max " + r.maxCount : ""));
+              if (r.storage) meta.push("Storage " + num(r.storage));
+              if (r.buildSec) meta.push("Build " + fmtTime(r.buildSec));
+              if (r.reqLevel) meta.push("Unlocks L" + r.reqLevel);
+              let html = '<div class="bld-meta">' + meta.map((m) => '<span>' + esc(m) + '</span>').join(" · ") + "</div>";
+              if (r.prod && r.prod.length)
+                html += '<div class="effects">' + r.prod.map((p) =>
+                  '<span class="eff">+' + p.v.toLocaleString() + " " + esc(p.res) + "/h</span>").join("") + "</div>";
+              if (r.effects && r.effects.length)
+                html += '<div class="effects">' + r.effects.map((e) =>
+                  '<span class="eff">' + effLine(e) + "</span>").join("") + "</div>";
+              return html;
+            },
+          },
+        });
+      })
+      .catch((e) => {
+        document.getElementById("ov").innerHTML = '<p class="muted">Could not load building data.</p>';
+        console.error(e);
+      });
+  </script>
+  <style>
+    .bld-meta { margin-top: 6px; font-size: .82rem; color: var(--muted, #9a9385); }
+    .bld-meta span { white-space: nowrap; }
+  </style>
+</body>
+</html>

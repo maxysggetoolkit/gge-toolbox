@@ -17,6 +17,7 @@ builds=(
   "overview-loot-box/data/build.sh"
   "overview-event-rewards/data/build.sh"
   "overview-construction-items/data/build.sh"
+  "overview-buildings/data/build.sh"
   "rift-optimizer/data/build.sh"
   "gacha-sim/data/build.sh"
 )
