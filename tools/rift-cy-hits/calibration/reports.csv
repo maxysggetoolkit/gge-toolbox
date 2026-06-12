@@ -1,0 +1,13 @@
+# Rift CY calibration — Mycelial Sovereign (Fungal) LEVEL 12, pure courtyard hits (walls already clear)
+# Defender constants (from boss castellan tooltip, all reports identical):
+#   CY garrison 1,000,000 (2x 500,000 stacks) · +400% CY defence strength · +12,100% front/flank · +12,000% wall · +11,000% gate
+# All six attacks killed the full 1,000,000. Every flow diagram shows a fixed "+60%" modifier entering the Courtyard step.
+# GiantSlayer tooltip: +9% of defender total CY combat strength, cap 3x attacker strength. Values ~25M => defender total CY strength ~ 280M.
+# Tools seen: Assault flame thrower (+30% or +22% CY attack, tiered) · Warwagon (+5% attack strength, +3 waves) · Chrono-Vials (timer only, no combat)
+report,result,sent_total,lost_total,loss_pct,stacks,general,giant_slayer,cy_equip_pct,cy_tool_pct,warwagon_pct,notes
+r1,close_defeat,34965,34965,100.0,"17801+17164",Ashira,24620000,218,0,5,"equip lines +218% and +138% CY (possibly nested); killed all 1M but army wiped; likely ranged-heavy (boss ranged malus suspected)"
+r2,victory,45058,16810,37.3,"45058",Lord Horatio,25200000,276,30,5,"single stack"
+r3,glorious_victory,71284,8341,11.7,"6038+65246",Toril,0,675,30,5,"no GS (Vengeance +0%); biggest wave, fewest losses"
+r4,victory,42185,17743,42.1,"4889+37296",Lord Horatio,25110000,220,30,5,""
+r5,close_victory,38519,24775,64.3,"8207+30312",Toril,0,200,22,5,"no GS (Exalted +0%, Vengeance +0%); flame thrower lower tier +22%"
+r6,glorious_victory,58431,10968,18.8,"58431",Ashira,25200000,462,0,5,"no flame thrower — warwagon only"
