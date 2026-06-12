@@ -198,6 +198,17 @@ window.TOOLS = [
 
   // ---- Calculators -------------------------------------------------------
   {
+    slug: "set-bonus",
+    img: "assets/img/tool-art/equipment.webp",
+    cat: "calculators",
+    name: "Equipment Set-Bonus Finder",
+    desc: "Pick a set and how many pieces you own — see which set bonuses are active and what the next piece unlocks, for every general & castellan set.",
+    icon: "🛡️",
+    status: "live",
+    url: "tools/set-bonus/",
+    tags: ["equipment", "set", "set bonus", "gear", "general", "castellan", "pieces", "effects", "loadout"],
+  },
+  {
     slug: "wall-limit",
     img: "assets/img/tool-art/spike-board.webp",
     cat: "calculators",

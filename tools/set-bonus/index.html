@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipment Set-Bonus Finder — Maxy's Empire Toolkit</title>
+  <meta name="description" content="See exactly which set bonuses you unlock at each piece count for every Goodgame Empire equipment set — and what the next piece adds." />
+  <link rel="stylesheet" href="../../assets/css/theme.css" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <style>
+    .sb-top { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+    .sb-field { display: flex; flex-direction: column; gap: 4px; }
+    .sb-field label { font-size: .78rem; color: var(--text-dim); }
+    .sb-top input, .sb-top select { padding: 9px 11px; font: inherit; background: var(--bg-elev);
+      border: 1px solid var(--border); border-radius: var(--radius-sm, 8px); color: var(--text); }
+    .sb-top input:focus, .sb-top select:focus { outline: none; border-color: var(--gold); }
+    #sb-set { min-width: 260px; }
+    #sb-search { min-width: 180px; }
+    .sb-wearer { font-size: .8rem; color: var(--text-dim); }
+
+    .sb-counter { display: flex; align-items: center; gap: 10px; margin: 4px 0 2px; }
+    .sb-counter button { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg-elev); color: var(--text); cursor: pointer; font-size: 1.2rem; line-height: 1; }
+    .sb-counter button:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .sb-counter button:disabled { opacity: .4; cursor: default; }
+    .sb-count-n { font-size: 1.5rem; font-weight: 700; color: var(--gold-bright); min-width: 2.2ch; text-align: center; font-variant-numeric: tabular-nums; }
+    .sb-count-of { color: var(--text-dim); }
+    .sb-range { width: 100%; accent-color: var(--gold); }
+
+    .sb-active { margin: 16px 0; padding: 14px 16px; border: 1px solid var(--gold-dim);
+      border-radius: var(--radius); background: rgba(217,178,90,.07); }
+    .sb-active h3 { margin: 0 0 8px; font-size: .95rem; color: var(--gold-bright); }
+    .sb-active ul { margin: 0; padding-left: 18px; }
+    .sb-active li { margin: 3px 0; }
+    .sb-active .none { color: var(--text-dim); padding-left: 0; list-style: none; }
+
+    .sb-ladder { display: grid; gap: 8px; margin-top: 6px; }
+    .sb-tier { display: grid; grid-template-columns: 52px 1fr; gap: 12px; align-items: start;
+      padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elev); opacity: .55; }
+    .sb-tier.on { opacity: 1; border-color: var(--good); background: rgba(63,185,80,.07); }
+    .sb-tier.next { opacity: 1; border-color: var(--gold); background: rgba(217,178,90,.06); }
+    .sb-pc { font-weight: 700; color: var(--gold-bright); text-align: center; padding-top: 2px; }
+    .sb-tier.on .sb-pc { color: var(--good); }
+    .sb-eff { display: flex; flex-direction: column; gap: 2px; font-size: .9rem; }
+    .sb-nexttag { font-size: .72rem; color: var(--gold); text-transform: uppercase; letter-spacing: .05em; }
+
+    .sb-pieces { margin-top: 16px; }
+    .sb-pieces h3 { font-size: .9rem; margin: 0 0 8px; color: var(--text-dim); }
+    .sb-piece { display: inline-flex; gap: 6px; align-items: center; margin: 0 6px 6px 0;
+      padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; font-size: .82rem; color: var(--text-dim); }
+    .sb-piece b { color: var(--text); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>🛡️ Equipment Set-Bonus Finder</h1>
+      <p>Pick a set and slide to how many pieces you own — see exactly which set
+         bonuses are active right now, and what the <b>next</b> piece unlocks.
+         Effects resolved straight from the game's set data.</p>
+    </div>
+
+    <section class="panel">
+      <div class="sb-top">
+        <div class="sb-field">
+          <label for="sb-search">Filter sets</label>
+          <input type="search" id="sb-search" placeholder="Type to filter…" autocomplete="off" />
+        </div>
+        <div class="sb-field">
+          <label for="sb-set">Set</label>
+          <select id="sb-set"></select>
+        </div>
+        <div class="sb-wearer" id="sb-wearer"></div>
+      </div>
+
+      <div id="sb-detail" style="margin-top:16px"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Set tiers and effects extracted direct from Goodgame Studios' game data. Bonuses are cumulative — every tier you reach stays active.</p></div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var $ = function (id) { return document.getElementById(id); };
+    var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); };
+    var SETS = [], owned = {};
+
+    function options(filter) {
+      var f = (filter || "").toLowerCase();
+      var list = SETS.filter(function (s) { return !f || s.name.toLowerCase().indexOf(f) >= 0; });
+      $("sb-set").innerHTML = list.map(function (s) {
+        return '<option value="' + s.setID + '">' + esc(s.name) + " (" + s.maxPieces + "pc)</option>";
+      }).join("") || '<option value="">No sets match</option>';
+      if (list[0]) selectSet(list[0].setID);
+      else $("sb-detail").innerHTML = "";
+    }
+
+    function selectSet(id) {
+      $("sb-set").value = id;
+      if (!(id in owned)) owned[id] = SETS.filter(function (s) { return s.setID === id; })[0].maxPieces;
+      render();
+    }
+
+    function render() {
+      var id = $("sb-set").value;
+      var s = SETS.filter(function (x) { return x.setID === id; })[0];
+      if (!s) { $("sb-detail").innerHTML = ""; $("sb-wearer").textContent = ""; return; }
+      var n = owned[id], max = s.maxPieces;
+      $("sb-wearer").textContent = (s.wearer ? s.wearer + " · " : "") + max + " pieces";
+
+      var active = s.tiers.filter(function (t) { return t.need <= n; });
+      var next = s.tiers.filter(function (t) { return t.need > n; }).sort(function (a, b) { return a.need - b.need; })[0];
+      var activeEff = [];
+      active.forEach(function (t) { t.effects.forEach(function (e) { activeEff.push(e); }); });
+
+      var html = "";
+      // counter + slider
+      html += '<div class="sb-counter">' +
+        '<button id="sb-minus" ' + (n <= 0 ? "disabled" : "") + '>−</button>' +
+        '<span class="sb-count-n">' + n + '</span><span class="sb-count-of">/ ' + max + ' pieces</span>' +
+        '<button id="sb-plus" ' + (n >= max ? "disabled" : "") + '>＋</button>' +
+        "</div>" +
+        '<input class="sb-range" type="range" id="sb-range" min="0" max="' + max + '" value="' + n + '" />';
+
+      // active summary
+      html += '<div class="sb-active"><h3>✅ Active set bonuses (' + active.length + ' tier' + (active.length === 1 ? "" : "s") + ')</h3>';
+      if (activeEff.length) html += "<ul>" + activeEff.map(function (e) { return "<li>" + esc(e) + "</li>"; }).join("") + "</ul>";
+      else html += '<div class="none">No set bonus yet — most sets start at 2 pieces.</div>';
+      if (next) html += '<div style="margin-top:8px;font-size:.85rem;color:var(--text-dim)">⬆ Next at <b style="color:var(--gold-bright)">' + next.need + ' pieces</b> (own ' + (next.need - n) + ' more): ' + next.effects.map(esc).join(" · ") + "</div>";
+      html += "</div>";
+
+      // ladder
+      html += '<div class="sb-ladder">';
+      s.tiers.forEach(function (t) {
+        var on = t.need <= n, isNext = next && t.need === next.need;
+        html += '<div class="sb-tier' + (on ? " on" : isNext ? " next" : "") + '">' +
+          '<div class="sb-pc">' + t.need + "pc</div>" +
+          '<div class="sb-eff">' +
+            (isNext ? '<span class="sb-nexttag">next piece</span>' : "") +
+            t.effects.map(function (e) { return "<span>" + esc(e) + "</span>"; }).join("") +
+          "</div></div>";
+      });
+      html += "</div>";
+
+      // pieces
+      if (s.pieces && s.pieces.length) {
+        html += '<div class="sb-pieces"><h3>Pieces in this set</h3>' +
+          s.pieces.map(function (p) { return '<span class="sb-piece"><b>' + esc(p.name) + "</b> · " + esc(p.slot) + "</span>"; }).join("") +
+          "</div>";
+      }
+      $("sb-detail").innerHTML = html;
+
+      $("sb-minus").onclick = function () { if (owned[id] > 0) { owned[id]--; render(); } };
+      $("sb-plus").onclick = function () { if (owned[id] < max) { owned[id]++; render(); } };
+      $("sb-range").oninput = function () { owned[id] = +this.value; render(); };
+    }
+
+    $("sb-set").addEventListener("change", function () { selectSet(this.value); });
+    $("sb-search").addEventListener("input", function () { options(this.value); });
+
+    fetch("./data/sets.json")
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        SETS = (d.sets || []).filter(function (s) { return s.tiers && s.tiers.length; });
+        options("");
+      })
+      .catch(function (e) { $("sb-detail").innerHTML = '<p class="muted">Could not load set data.</p>'; console.error(e); });
+  })();
+  </script>
+</body>
+</html>
