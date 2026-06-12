@@ -1,0 +1,577 @@
+{
+ "credit": "Unit & tool combat values and the battle formula are reimplemented from the GeneralsCamp battle simulator (generalscamp.github.io), itself derived from Goodgame Empire game data. All rights to the underlying game data remain Goodgame Studios.",
+ "note": "Defender stats are current top-tier sovereign (mead-fed) defenders at max level. Attack/defence strengths are per-unit.",
+ "slots": {
+  "front": {
+   "wall": 4,
+   "gate": 2,
+   "moat": 1
+  },
+  "left": {
+   "wall": 5,
+   "moat": 1
+  },
+  "right": {
+   "wall": 5,
+   "moat": 1
+  },
+  "cy": {
+   "courtyard": 3
+  }
+ },
+ "caps": {
+  "maxWaves": 8,
+  "maxUnitsCY": 2089,
+  "maxUnits": {
+   "front": 192,
+   "left": 64,
+   "right": 64
+  }
+ },
+ "defenders": [
+  {
+   "id": "unit1",
+   "name": "Valkyrie sniper",
+   "role": "ranged",
+   "mDef": 120,
+   "rDef": 310
+  },
+  {
+   "id": "unit2",
+   "name": "Protector of the north",
+   "role": "melee",
+   "mDef": 320,
+   "rDef": 128
+  },
+  {
+   "id": "unit3",
+   "name": "Veteran composite bowman",
+   "role": "ranged",
+   "mDef": 84,
+   "rDef": 183
+  },
+  {
+   "id": "unit4",
+   "name": "Veteran flame bearer",
+   "role": "melee",
+   "mDef": 196,
+   "rDef": 79
+  }
+ ],
+ "attackers": [
+  {
+   "id": "unit1",
+   "name": "Valkyrie ranger",
+   "role": "ranged",
+   "mAtk": 0,
+   "rAtk": 210
+  },
+  {
+   "id": "unit2",
+   "name": "Shield-maiden",
+   "role": "melee",
+   "mAtk": 225,
+   "rAtk": 0
+  },
+  {
+   "id": "unit3",
+   "name": "Veteran deathly horror",
+   "role": "ranged",
+   "mAtk": 0,
+   "rAtk": 175
+  },
+  {
+   "id": "unit4",
+   "name": "Veteran demon horror",
+   "role": "melee",
+   "mAtk": 200,
+   "rAtk": 0
+  },
+  {
+   "id": "unit5",
+   "name": "Deathly horror",
+   "role": "ranged",
+   "mAtk": 0,
+   "rAtk": 162
+  },
+  {
+   "id": "unit6",
+   "name": "Demon horror",
+   "role": "melee",
+   "mAtk": 185,
+   "rAtk": 0
+  },
+  {
+   "id": "unit7",
+   "name": "Glasswing Archer",
+   "role": "ranged",
+   "mAtk": 0,
+   "rAtk": 370
+  },
+  {
+   "id": "unit8",
+   "name": "Flamebreath Berserker",
+   "role": "melee",
+   "mAtk": 390,
+   "rAtk": 0
+  },
+  {
+   "id": "unit9",
+   "name": "Scaleshard Marksman",
+   "role": "ranged",
+   "mAtk": 0,
+   "rAtk": 430
+  },
+  {
+   "id": "unit10",
+   "name": "Scalebound Guardian",
+   "role": "melee",
+   "mAtk": 450,
+   "rAtk": 0
+  }
+ ],
+ "defenseTools": [
+  {
+   "id": "tool10",
+   "name": "Spike board",
+   "slot": "wall",
+   "wall": 80,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 35,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool8",
+   "name": "Field cannon",
+   "slot": "wall",
+   "wall": 60,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 50,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool6",
+   "name": "Thunder crash bomb",
+   "slot": "gate",
+   "wall": 0,
+   "gate": 80,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 90,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool9",
+   "name": "Water mine",
+   "slot": "moat",
+   "wall": 0,
+   "gate": 0,
+   "moat": 120,
+   "courtyard": 0,
+   "meleeStr": 80,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool7",
+   "name": "Trebuchet",
+   "slot": "moat",
+   "wall": 80,
+   "gate": 0,
+   "moat": 120,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool1",
+   "name": "Quicklime bomb",
+   "slot": "wall",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 43,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool2",
+   "name": "Arrow slit",
+   "slot": "wall",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 70,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool3",
+   "name": "Murder hole",
+   "slot": "wall",
+   "wall": 50,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool4",
+   "name": "Portcullis",
+   "slot": "gate",
+   "wall": 0,
+   "gate": 75,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool5",
+   "name": "Fire moat",
+   "slot": "moat",
+   "wall": 0,
+   "gate": 0,
+   "moat": 110,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool11",
+   "name": "Wooden hoarding",
+   "slot": "cy",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 0,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 10,
+   "wallLimit": 40,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool12",
+   "name": "Fire trap",
+   "slot": "cy",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 30,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool13",
+   "name": "Mobile cauldron",
+   "slot": "cy",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 10,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 150,
+   "killRanged": 0,
+   "killAny": 0
+  },
+  {
+   "id": "tool14",
+   "name": "Explosive arrows",
+   "slot": "cy",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 10,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 150,
+   "killAny": 0
+  },
+  {
+   "id": "tool15",
+   "name": "Spear trap",
+   "slot": "cy",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "courtyard": 10,
+   "meleeStr": 0,
+   "rangedStr": 0,
+   "combatStr": 0,
+   "wallLimit": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "killAny": 200
+  }
+ ],
+ "attackTools": [
+  {
+   "id": "tool6",
+   "name": "Siege mortar",
+   "wall": -30,
+   "gate": 0,
+   "moat": 0,
+   "shield": 0,
+   "rangedStr": 10,
+   "meleeStr": 0,
+   "limit": 25
+  },
+  {
+   "id": "tool7",
+   "name": "Hwacha",
+   "wall": 0,
+   "gate": 0,
+   "moat": -30,
+   "shield": 0,
+   "rangedStr": 20,
+   "meleeStr": 0,
+   "limit": 10
+  },
+  {
+   "id": "tool5",
+   "name": "Glory tower",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "shield": -30,
+   "rangedStr": 0,
+   "meleeStr": 0,
+   "limit": 30
+  },
+  {
+   "id": "tool8",
+   "name": "Hookshot cannon",
+   "wall": -30,
+   "gate": 0,
+   "moat": 0,
+   "shield": 0,
+   "rangedStr": 0,
+   "meleeStr": 10,
+   "limit": 25
+  },
+  {
+   "id": "tool1",
+   "name": "Breaching tower",
+   "wall": -20,
+   "gate": 0,
+   "moat": 0,
+   "shield": 0,
+   "rangedStr": 0,
+   "meleeStr": 0,
+   "limit": 0
+  },
+  {
+   "id": "tool2",
+   "name": "Boulders",
+   "wall": 0,
+   "gate": 0,
+   "moat": -15,
+   "shield": 0,
+   "rangedStr": 0,
+   "meleeStr": 0,
+   "limit": 0
+  },
+  {
+   "id": "tool3",
+   "name": "Heavy ram",
+   "wall": 0,
+   "gate": -20,
+   "moat": 0,
+   "shield": 0,
+   "rangedStr": 0,
+   "meleeStr": 0,
+   "limit": 0
+  },
+  {
+   "id": "tool4",
+   "name": "Shield wall",
+   "wall": 0,
+   "gate": 0,
+   "moat": 0,
+   "shield": -15,
+   "rangedStr": 0,
+   "meleeStr": 0,
+   "limit": 0
+  }
+ ],
+ "supportTools": [
+  {
+   "id": "tool1",
+   "name": "Hand cannon",
+   "killAny": 750,
+   "killMelee": 0,
+   "killRanged": 0,
+   "yardStr": 10,
+   "combatStr": 0,
+   "addWave": 0,
+   "limit": 1
+  },
+  {
+   "id": "tool2",
+   "name": "Assault flame thrower",
+   "killAny": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "yardStr": 30,
+   "combatStr": 0,
+   "addWave": 0,
+   "limit": 1
+  },
+  {
+   "id": "tool3",
+   "name": "War wagon",
+   "killAny": 0,
+   "killMelee": 0,
+   "killRanged": 0,
+   "yardStr": 0,
+   "combatStr": 5,
+   "addWave": 3,
+   "limit": 1
+  },
+  {
+   "id": "tool4",
+   "name": "Sharpnel bomb",
+   "killAny": 0,
+   "killMelee": 500,
+   "killRanged": 0,
+   "yardStr": 10,
+   "combatStr": 0,
+   "addWave": 0,
+   "limit": 1
+  },
+  {
+   "id": "tool5",
+   "name": "Organ cannon",
+   "killAny": 0,
+   "killMelee": 0,
+   "killRanged": 500,
+   "yardStr": 10,
+   "combatStr": 0,
+   "addWave": 0,
+   "limit": 1
+  }
+ ],
+ "castellanPresets": {
+  "sasaki": {
+   "label": "Sasaki (example castellan)",
+   "melee": 11,
+   "ranged": 11,
+   "courtyard": 24,
+   "wallUnitLimit": 54,
+   "frontUnitLimit": 13,
+   "cyCapacity": 90000,
+   "abilities": {
+    "conditionalMeleeBoost": true,
+    "waveStrengthBonus": true,
+    "periodicDebuff": true,
+    "everySecondWaveStrength": true
+   }
+  },
+  "none": {
+   "label": "None / manual",
+   "melee": 0,
+   "ranged": 0,
+   "courtyard": 0,
+   "wallUnitLimit": 0,
+   "frontUnitLimit": 0,
+   "cyCapacity": 0,
+   "abilities": {}
+  }
+ },
+ "commanderPresets": {
+  "silver": {
+   "label": "Silver attack set (example)",
+   "melee": 60,
+   "ranged": 60,
+   "universal": 0,
+   "front": 40,
+   "flank": 30,
+   "courtyard": 40,
+   "wallReduction": 0,
+   "gateReduction": 0,
+   "moatReduction": 0,
+   "abilities": {}
+  },
+  "none": {
+   "label": "None / manual",
+   "melee": 0,
+   "ranged": 0,
+   "universal": 0,
+   "front": 0,
+   "flank": 0,
+   "courtyard": 0,
+   "wallReduction": 0,
+   "gateReduction": 0,
+   "moatReduction": 0,
+   "abilities": {}
+  }
+ }
+}
