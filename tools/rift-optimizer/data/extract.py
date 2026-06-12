@@ -7,9 +7,12 @@ Run: python3 extract.py [ggs.dll.latest.js path]
 """
 import json, sys, re, urllib.request, os, tempfile
 
-ITEMS_URL = "https://raw.githubusercontent.com/GeneralsCamp/ggempire-data-cache/main/public/data/empire/items_latest.json"
-LANG_URL  = "https://raw.githubusercontent.com/GeneralsCamp/ggempire-data-cache/main/public/data/lang/en.json"
-DLL_URL   = "https://raw.githubusercontent.com/GeneralsCamp/ggempire-data-cache/main/public/data/empire/dll/ggs.dll.latest.js"
+# Game data pulled direct from Goodgame Studios by tools/_srcdata/pull.sh
+# (invoked from this tool's build.sh) into _srcdata/cache/ — local reads below.
+_SRC      = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "_srcdata", "cache"))
+ITEMS_URL = "file://" + os.path.join(_SRC, "items_latest.json")
+LANG_URL  = "file://" + os.path.join(_SRC, "en.json")
+DLL_URL   = "file://" + os.path.join(_SRC, "ggs.dll.latest.js")
 # Asset matches in the DLL already start with "itemassets/", so the base must NOT
 # repeat it — otherwise the URL gets a double "itemassets/itemassets/" and 404s.
 CDN       = "https://empire-html5.goodgamestudios.com/default/assets/"

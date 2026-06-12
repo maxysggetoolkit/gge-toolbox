@@ -1,8 +1,8 @@
 name: Refresh game data
 
-# Regenerates every tool's data from the GeneralsCamp community cache and commits
-# any changes. The cache updates the instant GGS pushes a maintenance, so this
-# keeps equipment, gacha pools, rift bosses, decorations, etc. current.
+# Regenerates every tool's data directly from Goodgame Studios' own game files
+# (tools/_srcdata/pull.sh) and commits any changes. Keeps equipment, gacha pools,
+# rift bosses, decorations, etc. current after a game maintenance.
 on:
   # Daily safety net (07:00 UTC ~= 17:00 Sydney).
   schedule:

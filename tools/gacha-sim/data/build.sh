@@ -1,33 +1,28 @@
 #!/usr/bin/env bash
-# Rebuild gacha data for every cached game version.
-# Produces gacha-<version>.json (one per version) + versions.json manifest.
-# Needs: curl, jq.
+# Rebuild gacha data for the CURRENT game version, direct from Goodgame Studios.
+# Goodgame only serves the live item DB, so historical gacha-<version>.json
+# snapshots already committed here are kept as-is; this adds/refreshes the
+# current one and rebuilds the versions.json manifest from whatever is present.
+# Needs: curl, jq, python3.
 set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
-base="https://raw.githubusercontent.com/GeneralsCamp/ggempire-data-cache/main/public/data"
+bash "$here/../../_srcdata/pull.sh"
+cache="$here/../../_srcdata/cache"
+tmp="$(mktemp -d)"; trap 'rm -rf "$tmp"' EXIT
 
-# game-version item files in the cache, newest last
-FILES=(items_766_02 items_770_07 items_772_01 items_774_01 items_775_01)
+ver="$(grep -E '^empire_items_version=' "$cache/SOURCES.txt" | cut -d= -f2)"
+[[ -n "$ver" ]] || { echo "could not read item version from SOURCES.txt" >&2; exit 1; }
+echo "→ version $ver"
 
-tmp="$(mktemp -d)"
-trap 'rm -rf "$tmp"' EXIT
+jq -c 'with_entries(.key|=ascii_downcase)' "$cache/en.json" > "$tmp/en_lower.json"
+jq --slurpfile lang "$tmp/en_lower.json" -f "$here/extract_gacha.jq" "$cache/items_latest.json" \
+   > "$here/gacha-$ver.json"
 
-echo "Downloading + lowercasing language file…"
-curl -sL "$base/lang/en.json" | jq -c 'with_entries(.key|=ascii_downcase)' > "$tmp/en_lower.json"
-
-manifest="[]"
-for f in "${FILES[@]}"; do
-  ver="$(echo "$f" | sed -E 's/items_([0-9]+)_([0-9]+)/\1.\2/')"
-  echo "→ version $ver"
-  curl -sL "$base/empire/items/$f.json" -o "$tmp/items.json"
-  jq --slurpfile lang "$tmp/en_lower.json" -f "$here/extract_gacha.jq" "$tmp/items.json" \
-     > "$here/gacha-$ver.json"
-  manifest="$(jq -c --arg v "$ver" '. + [$v]' <<<"$manifest")"
-done
-
-# versions.json: newest first; last entry is "latest"
-latest="$(jq -r '.[-1]' <<<"$manifest")"
-jq -n --argjson list "$manifest" --arg latest "$latest" \
+# Manifest from every gacha-*.json on disk (version-sorted; last = latest).
+versions="$(ls "$here"/gacha-*.json 2>/dev/null \
+  | sed -E 's#.*/gacha-(.*)\.json#\1#' | sort -V | jq -R . | jq -cs .)"
+latest="$(jq -r '.[-1]' <<<"$versions")"
+jq -n --argjson list "$versions" --arg latest "$latest" \
   '{latest:$latest, versions:($list|reverse)}' > "$here/versions.json"
 
 echo "Done. Versions: $(jq -r '.versions|join(", ")' "$here/versions.json")  (latest $latest)"

@@ -198,16 +198,6 @@ window.TOOLS = [
 
   // ---- Calculators -------------------------------------------------------
   {
-    slug: "travel-speed",
-    img: "assets/img/tool-art/speed.webp",
-    cat: "calculators",
-    name: "Attack Speed & Detection",
-    desc: "Land time, horse boosts and the exact moment your attack is detected.",
-    icon: "🐎",
-    status: "live",
-    tags: ["travel", "speed", "detection", "horse", "sight", "attack"],
-  },
-  {
     slug: "wall-limit",
     img: "assets/img/tool-art/spike-board.webp",
     cat: "calculators",
@@ -229,27 +219,6 @@ window.TOOLS = [
     url: "tools/food-mead/",
     tags: ["food", "mead", "beef", "honey", "production", "decorations", "build items", "granary", "brewery"],
   },
-  {
-    slug: "kingdom-league",
-    img: "assets/img/event-icons/kingdomleague.webp",
-    cat: "calculators",
-    name: "Kingdom League Calculator",
-    desc: "Turn your medals into points, your current title, and the cheapest medals to reach the next rank.",
-    icon: "🏅",
-    status: "live",
-    tags: ["kingdom league", "league", "medals", "title", "rank", "points", "brawler", "warlord"],
-  },
-  {
-    slug: "rift-raid-points",
-    img: "assets/img/event-icons/riftraid.webp",
-    cat: "calculators",
-    name: "Rift Raid Points",
-    desc: "Real per-area score multipliers — how many courtyard clears it takes to qualify for the Boss Defeat reward.",
-    icon: "🌀",
-    status: "live",
-    tags: ["rift", "raid", "points", "event", "eligibility", "boss defeat", "activity"],
-  },
-
   {
     slug: "rift-optimizer",
     img: "assets/img/event-icons/riftraid.webp",
@@ -283,17 +252,6 @@ window.TOOLS = [
     tags: ["gacha", "spin", "loot box", "tombola", "odds", "drop rate", "rng"],
   },
   {
-    slug: "imperial-patronage",
-    img: "assets/img/event-icons/patronage.webp",
-    cat: "simulators",
-    name: "Imperial Patronage Simulator",
-    desc: "Plan donations across every currency — see the points each gives, your reward tier and what reaches the next level.",
-    icon: "👑",
-    status: "live",
-    url: "tools/imperial-patronage/",
-    tags: ["imperial patronage", "patronage", "donation", "event", "builder", "architect", "mason", "rewards", "tiers"],
-  },
-  {
     slug: "battle-simulator",
     img: "assets/img/event-icons/waroftherealms.webp",
     cat: "simulators",
@@ -302,16 +260,6 @@ window.TOOLS = [
     icon: "⚔️",
     status: "soon",
     tags: ["battle", "combat", "waves", "tools", "commander"],
-  },
-  {
-    slug: "hol-simulator",
-    img: "assets/img/tool-art/layout.webp",
-    cat: "simulators",
-    name: "Hall of Legends Planner",
-    desc: "Allocate legendary skill points across the Offense & Defense trees and see your total bonuses.",
-    icon: "🏛️",
-    status: "live",
-    tags: ["hall", "legends", "hol", "skills", "legendary", "planner", "build"],
   },
   {
     slug: "layout-editor",

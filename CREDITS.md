@@ -4,12 +4,16 @@ Empire Toolbox stands on the work of the Goodgame Empire tool-making community.
 The game itself, its data and mechanics are the property of **Goodgame Studios**.
 This is an unofficial, non-commercial fan project.
 
-## Tools & data this project learns from
+## Game data & art
 
-- **GeneralsCamp** — calculators, simulators and overviews; the homepage event-plan
-  icons are their curated set from `forum/img_base/event_icons`.
-  <https://generalscamp.github.io/forum/>
-  Game data cache: <https://github.com/GeneralsCamp/ggempire-data-cache>
+All in-game data (items, troops, decorations, equipment, drop rates, event
+tracks) and all game artwork are **Goodgame Studios'** property, sourced
+**directly from Goodgame's own public game servers** — the same item database,
+language bundle, client DLL and asset CDN the game itself loads. See
+`tools/_srcdata/pull.sh`. No third-party data source or cache is used.
+
+## Tools & references this project learns from
+
 - **GGE community wikis** — mechanics reference
   <https://goodgameempire.fandom.com/wiki/GoodGame_Empire_Wiki> · <https://goodgameempirewiki.wordpress.com/>
 - **danadum** — player/alliance rankings, data-mining and APIs

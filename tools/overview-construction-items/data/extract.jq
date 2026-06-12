@@ -2,7 +2,7 @@
 # main = items_*.json ; --slurpfile lang = lowercased lang map.
 ($lang[0]) as $L
 | (.effects | map({key:.effectID, value:.name}) | from_entries) as $E
-# legacy stat fields (GeneralsCamp building_items convention) — value sits directly on the item,
+# legacy building_items stat fields — value sits directly on the item,
 # display template is ci_effect_<field-lowercase> and carries its own +/− and % formatting
 | ["unitWallCount","recruitSpeedBoost","woodStorage","stoneStorage","ReduceResearchResourceCosts",
    "Stoneproduction","Woodproduction","Foodproduction","foodStorage","unboostedFoodProduction",

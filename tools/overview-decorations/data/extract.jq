@@ -32,7 +32,7 @@
                          end) as $tmpl
                       | { v: ($p[1]|tonumber? // 0),
                           tmpl: $tmpl,
-                          # fallback %-rule (GeneralsCamp): boost-named or lang text shows %, never for unboosted
+                          # fallback %-rule: boost-named or lang text shows %, never for unboosted
                           pct: ((($en|test("boost";"i")) or ([$tmpl // "", $L["effect_name_\($b)"] // ""] | any(contains("%"))))
                                 and ($flat|not)),
                           label: ($L["effect_name_\($b)"] // (if $en == "" then "Effect \($p[0])" else $en end)) }

@@ -1,8 +1,10 @@
 # Automatic data refresh
 
 All tool data (equipment, gacha pools, rift bosses, decorations, …) is generated
-from the [GeneralsCamp community cache](https://github.com/GeneralsCamp/ggempire-data-cache),
-which updates the moment Goodgame ships a game maintenance.
+directly from Goodgame Studios' own public game files — the same item DB, language
+bundle and client DLL the game itself loads. `tools/_srcdata/pull.sh` resolves the
+current versions and downloads them verbatim; each tool's `build.sh` extracts from
+that local copy. No third-party data source is involved.
 
 The [`refresh-data`](workflows/refresh-data.yml) workflow regenerates everything
 and commits any changes. It runs:
@@ -69,5 +71,5 @@ The workflow refreshes **game data** automatically. Two things it can't infer:
 - **What's New / changelog** (`assets/data/site-feed.json` → `changelog`) — write
   a line when you ship a feature. (The data refresh doesn't touch this.)
 - **Events plan** (`assets/data/site-feed.json` → `events`) — update monthly from
-  the [GGS event plan](https://communityhub.goodgamestudios.com/newshube4k/) /
-  GeneralsCamp event plan. New event art can be dropped in as `icon` paths.
+  the [GGS event plan](https://communityhub.goodgamestudios.com/newshube4k/).
+  New event art can be dropped in as `icon` paths.

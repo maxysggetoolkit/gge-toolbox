@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Regenerate every tool's data from the community game-data cache.
-# Run after a game maintenance to pull new equipment, gacha pools, rift data, etc.
+# Regenerate every tool's data, pulled direct from Goodgame Studios' own servers
+# (tools/_srcdata/pull.sh). Run after a game maintenance to pull new equipment,
+# gacha pools, rift data, etc.
 # Needs: bash, curl, jq, python3.
 #
 # Usage: bash tools/refresh-all.sh
@@ -15,8 +16,8 @@ builds=(
   "overview-generals/data/build.sh"
   "overview-loot-box/data/build.sh"
   "overview-event-rewards/data/build.sh"
+  "overview-construction-items/data/build.sh"
   "rift-optimizer/data/build.sh"
-  "hol-simulator/data/build.sh"
   "gacha-sim/data/build.sh"
 )
 
