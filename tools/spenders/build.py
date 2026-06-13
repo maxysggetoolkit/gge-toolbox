@@ -10,15 +10,58 @@ ROOT=os.path.join(HERE,'..','..')
 items=json.load(open(os.path.join(ROOT,'tools/_srcdata/cache/items_latest.json')))
 lang=json.load(open(os.path.join(ROOT,'tools/_srcdata/cache/en.json')))
 
-units={}
-for tbl in ['units','tools']:
-    for u in items.get(tbl,[]):
-        wid=str(u.get('wodID',''))
-        nm=lang.get((u.get('type') or '')+'_name') or u.get('comment1') or u.get('type')
-        if wid: units[wid]=nm
-cis={str(c.get('constructionItemID', c.get('wodID',''))): (lang.get((c.get('type') or '')+'_name') or c.get('comment1') or c.get('type')) for c in items.get('constructionItems',[])}
-blds={str(b.get('wodID','')): (lang.get((b.get('type') or '')+'_name') or b.get('comment1') or b.get('type')) for b in items.get('buildings',[])}
+import re as _re
+def pretty(s):
+    """Turn a dev label into something readable: split camelCase, strip 'shop'/digits, tidy caps."""
+    if not s: return s
+    s=str(s).strip()
+    s=_re.sub(r'^(shop|Shop)\s+', '', s)
+    s=_re.sub(r'\s*\d+\s*$', '', s).strip()
+    if _re.fullmatch(r'[A-Za-z]+', s) and _re.search(r'[a-z][A-Z]', s):  # camelCase
+        s=_re.sub(r'(?<=[a-z])(?=[A-Z])', ' ', s)
+    if s.isupper() and len(s)>3: s=s.title()
+    return s
+
+def langname(t): return lang.get((t or '').lower()+'_name')
+
+# Clean names + combat stats from the overview datasets (already game-correct), keyed by wodID.
+def _load(p):
+    import os as _os
+    fp=_os.path.join(ROOT,p)
+    return json.load(open(fp)) if _os.path.exists(fp) else {}
+_tt=_load('tools/overview-troops-tools/data/troops-tools.json')
+OV_TROOP={str(x['id']):x for x in _tt.get('troops',[])}
+OV_TOOL ={str(x['id']):x for x in _tt.get('tools',[])}
+OV_EQUIP={str(x['id']):x for x in _load('tools/overview-equipment/data/equipment.json').get('items',[])}
+_rawunit={str(u.get('wodID','')):u for u in items.get('units',[])}
+
+def unit_info(wid):
+    """Return (name, kind 'Troops'|'Tools', role, statText). Prefer the overview data."""
+    wid=str(wid)
+    o=OV_TOOL.get(wid)
+    if o: return (o['name'], 'Tools', o.get('role',''), '')
+    o=OV_TROOP.get(wid)
+    if o:
+        atk=int(o.get('atk',0) or 0); dfn=int(o.get('def',0) or 0); role=(o.get('role') or '')
+        stat = (str(atk)+' '+role.lower()+' atk') if atk>=dfn and atk>0 else ((str(dfn)+' def') if dfn>0 else '')
+        return (o['name'], 'Troops', role, stat)
+    u=_rawunit.get(wid)
+    if u:
+        nm=langname(u.get('type')) or pretty(u.get('comment1')) or ('unit '+wid)
+        ma=int(u.get('meleeAttack',0) or 0); md=int(u.get('meleeDefence',0) or 0); rd=int(u.get('rangeDefence',0) or 0)
+        role=(u.get('role') or '')
+        stat=(str(ma)+' melee atk') if ma>max(md,rd) and ma>0 else ((str(max(md,rd))+' def') if max(md,rd)>0 else '')
+        return (nm, 'Troops', role, stat)
+    return ('unit '+wid, 'Troops', '', '')
+
+# units dict keeps the old shape (wodID->name) for the ruby-offer decoder
+units={wid:unit_info(wid)[0] for wid in _rawunit}
+for wid,o in OV_TROOP.items(): units[wid]=o['name']
+for wid,o in OV_TOOL.items(): units[wid]=o['name']
+cis={str(c.get('constructionItemID','')): (langname(c.get('type')) or pretty(c.get('comment1')) or pretty(c.get('name')) or ('CI '+str(c.get('constructionItemID','')))) for c in items.get('constructionItems',[])}
+blds={str(b.get('wodID','')): (langname(b.get('type')) or pretty(b.get('comment1')) or pretty(b.get('type')) or ('building '+str(b.get('wodID','')))) for b in items.get('buildings',[])}
 curname={c['JSONKey']:c['Name'] for c in items['currencies'] if c.get('JSONKey')}
+EQ_NAME={k:v.get('name') for k,v in OV_EQUIP.items()}
 
 LEGEND={'U':'unit','W':'Wood','S':'Stone','F':'Food','C':'Coal','O':'Oil','G':'Glass','I':'Iron','A':'Aquamarine',
 'MEAD':'Mead','HONEY':'Honey','BEEF':'Beef','HF':'Hidden food','HM':'Hidden mead','HB':'Hidden beef','C1':'Coins','C2':'Rubies',
@@ -107,25 +150,32 @@ import re as _re
 def iv(x, d=1):
     m=_re.match(r'-?\d+', str(x)); return int(m.group()) if m else d
 
-unit_is_tool = {str(u.get('wodID','')) for u in items.get('tools',[])}
 def pkg_rewards(r):
     out=[]
     pt=r.get('packageType')
     if r.get('unitID') and r.get('unitAmount'):
-        wid=str(r['unitID'])
-        bucket = 'Tools' if (pt=='tool' or wid in unit_is_tool) else 'Troops'
-        out.append({'b':bucket,'name':units.get(wid,'unit '+wid),'qty':iv(r['unitAmount'])})
+        nm,bucket,role,stat=unit_info(r['unitID'])
+        e={'b':bucket,'name':nm,'qty':iv(r['unitAmount'])}
+        if stat: e['stat']=stat
+        if role: e['role']=role
+        out.append(e)
     if r.get('equipmentIDs'):
-        n=len(str(r['equipmentIDs']).split(',')); out.append({'b':'Equipment','name':(r.get('comment1') or 'Equipment'),'qty':iv(r.get('equipmentAmount',n),n)})
+        ids=[i for i in str(r['equipmentIDs']).split(',') if i]
+        nm=EQ_NAME.get(ids[0]) if ids else None
+        if not nm or len(ids)>1:
+            c1=pretty(r.get('comment1'))
+            nm=(c1 if c1 and not JUNK.search(c1) else None) or (str(len(ids))+'-piece equipment set' if len(ids)>1 else 'Equipment')
+        out.append({'b':'Equipment','name':nm,'qty':iv(r.get('equipmentAmount',len(ids)),len(ids))})
     if r.get('relicEquipments'):
-        out.append({'b':'Equipment','name':(r.get('comment1') or 'Relic equipment'),'qty':len(str(r['relicEquipments']).split(','))})
+        out.append({'b':'Equipment','name':pretty(r.get('comment1')) or 'Relic equipment','qty':len(str(r['relicEquipments']).split(','))})
     if r.get('constructionItemID') and r.get('constructionItemAmount'):
-        cid=str(r['constructionItemID']); out.append({'b':'Construction items','name':cis.get(cid,r.get('comment1') or ('CI '+cid)),'qty':iv(r['constructionItemAmount'])})
+        cid=str(r['constructionItemID']); out.append({'b':'Construction items','name':cis.get(cid) or pretty(r.get('comment1')) or ('CI '+cid),'qty':iv(r['constructionItemAmount'])})
     if r.get('buildingID') and r.get('buildingAmount'):
         bid=str(r['buildingID']); bucket='Decorations' if pt=='deco' else 'Buildings'
-        out.append({'b':bucket,'name':blds.get(bid,r.get('comment1') or ('building '+bid)),'qty':iv(r['buildingAmount'])})
+        out.append({'b':bucket,'name':pretty(r.get('comment1')) or blds.get(bid) or ('building '+bid),'qty':iv(r['buildingAmount'])})
     if r.get('gemIDs') or r.get('specialGemOfLevelID'):
-        out.append({'b':'Gems','name':(r.get('comment1') or 'Gem'),'qty':iv(r.get('gemAmount',1))})
+        lvl=r.get('specialGemOfLevelID'); gnm=('Level '+str(lvl)+' gem') if lvl else (pretty(r.get('comment1')) or 'Gem')
+        out.append({'b':'Gems','name':gnm,'qty':iv(r.get('gemAmount',1))})
     if r.get('lootBox'): out.append({'b':'Loot boxes','name':(r.get('comment1') or 'Loot box'),'qty':iv(r.get('lootBox',1))})
     if r.get('rewardBags'): out.append({'b':'Reward bags','name':(r.get('comment1') or 'Reward bag'),'qty':iv(r.get('rewardBags',1))})
     addmap=[('addSceatToken','Sceats','Sceats'),('addLegendaryMaterial','Upgrade tokens','Upgrade tokens'),
@@ -141,20 +191,25 @@ def pkg_rewards(r):
         if f.endswith('Token') and f.startswith('add') and f not in ('addLegendaryToken',):
             v=r.get(f)
             if str(v) not in ('','0') and 'LTPE' not in f and f not in ('addSceatToken',):
-                out.append({'b':'Event / gacha currency','name':f[3:].replace('Token',' token'),'qty':iv(v)})
+                out.append({'b':'Event / gacha currency','name':pretty(f[3:-5])+' token','qty':iv(v)})
         if f.startswith('addShard'):
-            if str(r.get(f)) not in ('','0'): out.append({'b':'Hero shards','name':f[8:]+' shard','qty':iv(r[f])})
-        if f.startswith('add') and 'HourSkip' in f or f.endswith('MinSkip') and f.startswith('add'):
-            if str(r.get(f)) not in ('','0'): out.append({'b':'Time skips','name':f[3:],'qty':iv(r[f])})
+            if str(r.get(f)) not in ('','0'): out.append({'b':'Hero shards','name':pretty(f[8:])+' shard','qty':iv(r[f])})
+        if f.startswith('add') and ('HourSkip' in f or 'MinSkip' in f):
+            if str(r.get(f)) not in ('','0'):
+                sm=_re.match(r'add(\d+)(Hour|Min)Skip', f)
+                snm=(sm.group(1)+('h' if sm.group(2)=='Hour' else 'm')+' skip') if sm else pretty(f[3:])
+                out.append({'b':'Time skips','name':snm,'qty':iv(r[f])})
     res=0
     for f in ('amountWood','amountStone','amountFood','amountCoal','amountOil','amountGlass','amountIron','amountHoney','amountMead','amountBeef','hiddenFood','hiddenMead','hiddenBeef','amountC1'):
         if str(r.get(f,'')) not in ('','0'): res+=iv(r[f])
     if res: out.append({'b':'Resources','name':'Resources','qty':res})
     return out
 
+JUNK=_re.compile(r'CUT|delete|rankreward|compensation|collector event|prime ?day|login|daily ?reward|beginner|workaround|x-play|\bbss\b|suboffer|testserver|\bdummy\b|placeholder|do not use', _re.I)
 def clean(r):
-    c2=(r.get('comment2') or '');
-    return not ('CUT' in c2 or 'delete' in c2.lower() or str(r.get('hideInShop',''))=='1')
+    c2=(r.get('comment2') or '')+' '+(r.get('comment1') or '')
+    if str(r.get('hideInShop',''))=='1': return False
+    return not JUNK.search(c2)
 
 PKG=[]
 for r in items['packages']:
@@ -163,7 +218,7 @@ for r in items['packages']:
     if not cur or not cost: continue
     rw=pkg_rewards(r)
     if not rw: continue
-    rec={'id':r['packageID'],'shop':(r.get('comment2') or '').strip()[:48],'cur':cur,'cost':cost,'rw':rw}
+    rec={'id':r['packageID'],'shop':pretty((r.get('comment2') or '').strip())[:42],'cur':cur,'cost':cost,'rw':rw}
     for k_src,k_dst in [('minLevel','lvlMin'),('maxLevel','lvlMax'),('minLegendLevel','llMin'),('maxLegendLevel','llMax')]:
         v=r.get(k_src)
         if v not in (None,''): rec[k_dst]=int(float(v))
