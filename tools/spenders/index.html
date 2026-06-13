@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spenders Corner (AU1) — Maxy's Empire Toolkit</title>
+  <meta name="description" content="Best-value ruby buying on Australia 1: every pack and bundle ranked in rubies per AUD, the 7-day daily bundle chain, and the game's own offer-targeting rules — including the win-back ladder." />
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=15" />
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
+  <style>
+    h2.sp-h { font-size: 1.05rem; color: var(--gold); margin: 0 0 4px; font-family: var(--font-display); }
+    .sp-sub { font-size: .82rem; color: var(--text-dim); margin: 0 0 14px; line-height: 1.5; }
+    table.sp { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    table.sp th { text-align: right; padding: 7px 9px; font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; color: var(--gold-dim); border-bottom: 1px solid var(--border); white-space: nowrap; }
+    table.sp th.l, table.sp td.nm { text-align: left; }
+    table.sp td { padding: 6px 9px; border-bottom: 1px solid var(--border-soft); color: var(--text-dim); text-align: right; font-variant-numeric: tabular-nums; }
+    table.sp td.nm { color: var(--text); }
+    table.sp tr.best td { background: rgba(63,185,80,.08); }
+    table.sp tr.best td.nm::after { content: " 🏆"; }
+    .sp-rate { font-weight: 700; color: var(--text); }
+    .sp-good { color: var(--good); } .sp-bad { color: var(--bad); }
+    .sp-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: .84rem; color: var(--text-dim); cursor: pointer; user-select: none; margin-bottom: 10px; }
+    .sp-toggle input { accent-color: var(--gold); width: 16px; height: 16px; }
+    .sp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 4px 0 6px; }
+    .sp-stat { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
+    .sp-stat .l { font-size: .72rem; color: var(--text-faint, #8a8372); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+    .sp-stat .v { font-size: 1.35rem; font-weight: 700; color: var(--text); line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .sp-stat .sub { font-size: .74rem; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+    .sp-ladder { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 8px; }
+    .sp-rung { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px 13px; }
+    .sp-rung b { color: var(--gold); display: block; margin-bottom: 4px; font-size: .9rem; }
+    .sp-rung .x { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+    .sp-rung .d { font-size: .74rem; color: var(--text-dim); margin-top: 3px; line-height: 1.45; }
+    .sp-field { display: inline-flex; flex-direction: column; gap: 4px; margin: 0 16px 12px 0; vertical-align: top; }
+    .sp-field label { font-size: .76rem; color: var(--text-dim); }
+    .sp-field input, .sp-field select { padding: 8px 11px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); width: 170px; max-width: 100%; }
+    .sp-field input:focus, .sp-field select:focus { outline: none; border-color: var(--gold); }
+    .sp-search { width: 100%; max-width: 340px; padding: 9px 12px; font: inherit; background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); margin: 0 10px 12px 0; }
+    .sp-search:focus { outline: none; border-color: var(--gold); }
+    .sp-offer { border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 10px 13px; margin-bottom: 9px; background: var(--bg-elev); }
+    .sp-offer .head { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+    .sp-offer .pack { font-weight: 700; color: var(--text); }
+    .sp-offer .chip { font-size: .68rem; padding: 2px 9px; border-radius: 99px; border: 1px solid var(--border); color: var(--text-dim); letter-spacing: .03em; }
+    .sp-offer .chip.lapse { border-color: rgba(63,185,80,.5); color: var(--good); }
+    .sp-offer .chip.spend { border-color: rgba(217,178,90,.5); color: var(--gold); }
+    .sp-offer .rew { font-size: .8rem; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+    .sp-note { font-size: .8rem; color: var(--text-faint, #8a8372); margin-top: 16px; line-height: 1.5; border-left: 3px solid var(--gold-dim); padding: 8px 14px; background: rgba(217,178,90,.05); border-radius: var(--radius-sm); }
+    .sp-more { padding: 7px 16px; font: inherit; font-size: .8rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--bg-elev); color: var(--text-dim); border: 1px solid var(--border); }
+    .sp-more:hover { color: var(--text); border-color: var(--gold-dim); }
+    .sp-count { font-size: .78rem; color: var(--text-faint, #8a8372); margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../"><span class="crest">🛡️</span> Maxy's Empire <b>Toolkit</b></a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tool-head">
+      <a class="back" href="../../">← All tools</a>
+      <h1>💸 Spenders Corner <span style="font-size:.6em;color:var(--text-dim)">(Australia 1)</span></h1>
+      <p>If you're going to spend, spend well. Every ruby source on AU1 ranked in <b>rubies per dollar</b>,
+         the 7-day daily-bundle chain, and — straight from the game's own data — the targeting rules that
+         decide which offers <em>you</em> get shown, including the win-back ladder.</p>
+    </div>
+
+    <section class="panel">
+      <h2 class="sp-h">🏆 Best rubies for your dollar</h2>
+      <p class="sp-sub">Every way to buy rubies on AU1, ranked. AUD prices captured from the AU1 shop, June 2026.</p>
+      <label class="sp-toggle"><input type="checkbox" id="doubler" checked> 2× Payment Doubler active (doubles straight ruby packs — it was running when these prices were captured)</label>
+      <div style="overflow-x:auto"><table class="sp" id="valueTbl"></table></div>
+      <div class="sp-note" id="valueNote"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="sp-h">📅 The daily-bundle chain (your daily rotation)</h2>
+      <p class="sp-sub">The Daily Bundles tab runs a 7-step chain — each consecutive day the bonus climbs.
+        Days 1–6 cost A$17.99, day 7 jumps to A$89.99 for the big payout. The chain is where the best
+        ruby rates in the whole shop live.</p>
+      <div style="overflow-x:auto"><table class="sp" id="dailyTbl"></table></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="sp-h">⏳ The win-back ladder — when the game pays you to wait</h2>
+      <p class="sp-sub">From the game's own offer-targeting data: special one-time bundles unlock purely by
+        <b>how long it's been since your last purchase</b>. Same pack, fatter bundle the longer you lapse.</p>
+      <div class="sp-ladder" id="ladder"></div>
+      <div class="sp-note"><b>How to use this:</b> if you buy regularly, you'll never see the big tiers.
+        Planning a purchase anyway? Check your days-lapsed below first — being patient past day 61 or 121
+        multiplies the freebies several times over. Offers are also gated by level, lifetime spend, your
+        last-90-days spend, and even your <em>current ruby stock</em> (running low changes what you're shown).</div>
+    </section>
+
+    <section class="panel">
+      <h2 class="sp-h">🎯 Your offer profile</h2>
+      <p class="sp-sub">Filter the game's 3,218 offer definitions down to the ones that can target <em>you</em>.</p>
+      <div class="sp-field"><label for="pLevel">Your level (legend level + 70 if applicable)</label><input type="number" id="pLevel" value="70" min="1"></div>
+      <div class="sp-field"><label for="pLapsed">Days since your last purchase</label><input type="number" id="pLapsed" value="0" min="0"></div>
+      <div class="sp-field"><label for="pPay">Have you ever bought?</label><select id="pPay"><option value="1">Yes</option><option value="0">No</option></select></div>
+      <div class="sp-count" id="profileCount"></div>
+      <div id="profileList"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="sp-h">🔎 Offer explorer</h2>
+      <p class="sp-sub">Search everything the offer engine can serve — by what's inside it.</p>
+      <input class="sp-search" id="search" placeholder="Search rewards… (e.g. Demons, Gem, VIP, Glory booster)" />
+      <label class="sp-toggle"><input type="checkbox" id="onlyBonus"> Only offers with a bonus badge</label>
+      <div class="sp-count" id="exCount"></div>
+      <div id="exList"></div>
+      <button class="sp-more" id="exMore" style="display:none">Show more</button>
+    </section>
+
+    <div class="sp-note">
+      <b>Where this comes from:</b> offer definitions, targeting rules and reward contents are decoded from
+      Goodgame's public client data (the same files the game downloads); AUD prices and bundle contents were
+      captured from the AU1 shop. Which offers actually appear, and when, is decided server-side per player —
+      treat this as the menu and the rules, not a live feed. Subscriptions on AU1: Player #1 A$17.99/mo,
+      Player #2 A$34.99/mo, Alliance A$8.99/mo.
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>Offer data from Goodgame Studios' game data (June 2026) · AUD prices from the AU1 shop. Unofficial fan tool — spend responsibly.</p></div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+    var $ = function (id) { return document.getElementById(id); };
+    var fmt = function (n) { return Number(n).toLocaleString("en-AU"); };
+    var AU, OFFERS;
+
+    Promise.all([
+      fetch("./data/au-prices.json").then(function (r) { return r.json(); }),
+      fetch("./data/offers.json").then(function (r) { return r.json(); })
+    ]).then(function (res) { AU = res[0]; OFFERS = res[1]; init(); });
+
+    /* ---- value board -------------------------------------------------- */
+    function valueRows(doubler) {
+      var rows = [];
+      AU.rubyPacks.forEach(function (p) {
+        var r = p.rubies * (doubler ? 2 : 1);
+        rows.push({ name: fmt(p.rubies) + " ruby pack" + (doubler ? " (×2)" : ""), kind: "Ruby pack",
+                    rubies: r, aud: p.aud, extra: p.extras ? "+ resources" : "" });
+      });
+      AU.dailyBundles.days.forEach(function (d) {
+        rows.push({ name: "Daily bundle — day " + d.day + " (+" + d.bonusPct + "%)", kind: "Daily chain",
+                    rubies: d.rubies, aud: d.aud, extra: "" });
+      });
+      AU.rubyRush.forEach(function (b) {
+        rows.push({ name: b.name, kind: "Ruby Rush", rubies: b.rubies, aud: b.aud, extra: "+ boosters & skips" });
+      });
+      rows.forEach(function (r) { r.rate = r.rubies / r.aud; });
+      rows.sort(function (a, b) { return b.rate - a.rate; });
+      return rows;
+    }
+
+    function renderValue() {
+      var rows = valueRows($("doubler").checked);
+      var best = rows[0].rate;
+      var html = "<thead><tr><th class='l'>Source</th><th>Type</th><th>Rubies</th><th>AUD</th><th>Rubies / A$</th><th>vs best</th></tr></thead><tbody>";
+      rows.forEach(function (r, i) {
+        var pct = Math.round(r.rate / best * 100);
+        html += "<tr" + (i === 0 ? " class='best'" : "") + "><td class='nm'>" + r.name +
+          (r.extra ? " <span style='color:var(--text-faint)'>" + r.extra + "</span>" : "") + "</td><td>" + r.kind +
+          "</td><td>" + fmt(r.rubies) + "</td><td>A$" + r.aud.toFixed(2) + "</td><td class='sp-rate'>" + fmt(Math.round(r.rate)) +
+          "</td><td class='" + (pct >= 60 ? "sp-good" : pct < 30 ? "sp-bad" : "") + "'>" + pct + "%</td></tr>";
+      });
+      $("valueTbl").innerHTML = html + "</tbody>";
+      var d7 = AU.dailyBundles.days[6], packBest = valueRows(false)[0];
+      $("valueNote").innerHTML = "<b>Read it like this:</b> the daily chain crushes everything — day 7 pays <b>" +
+        fmt(Math.round(d7.rubies / d7.aud)) + " rubies/A$</b>, several times any straight pack. Ruby Rush bundles look big " +
+        "but you're paying for the boosters and skips, not the rubies. If you only buy occasionally: wait for a " +
+        "<b>2× Payment Doubler</b>, then buy the largest pack you're comfortable with — bigger packs pay more per dollar.";
+    }
+
+    /* ---- daily chain --------------------------------------------------- */
+    function renderDaily() {
+      var html = "<thead><tr><th class='l'>Day</th><th>Bonus</th><th>Rubies</th><th>AUD</th><th>Rubies / A$</th></tr></thead><tbody>";
+      AU.dailyBundles.days.forEach(function (d) {
+        html += "<tr" + (d.day === 7 ? " class='best'" : "") + "><td class='nm'>Day " + d.day + "</td><td>+" + d.bonusPct +
+          "%</td><td>" + fmt(d.rubies) + "</td><td>A$" + d.aud.toFixed(2) + "</td><td class='sp-rate'>" +
+          fmt(Math.round(d.rubies / d.aud)) + "</td></tr>";
+      });
+      $("dailyTbl").innerHTML = html + "</tbody>";
+    }
+
+    /* ---- win-back ladder ----------------------------------------------- */
+    function renderLadder() {
+      var tiers = [
+        { label: "22–30 days", mult: "baseline", desc: "First win-back window opens. Small one-time bundle on the big pack." },
+        { label: "31–60 days", mult: "≈1×", desc: "Bundle moves to the 10k pack: e.g. 200× units + 90k food on top." },
+        { label: "61–120 days", mult: "≈3×", desc: "Same pack, triple the freebies: e.g. 600× units + 270k food." },
+        { label: "121+ days", mult: "≈4×", desc: "Maximum tier: e.g. 800× units + 360k food — the game's best 'please come back'." }
+      ];
+      $("ladder").innerHTML = tiers.map(function (t) {
+        return "<div class='sp-rung'><b>" + t.label + "</b><span class='x'>" + t.mult + "</span><div class='d'>" + t.desc + "</div></div>";
+      }).join("");
+    }
+
+    /* ---- offers shared ------------------------------------------------- */
+    function rewardText(o, max) {
+      if (!o.rewards) return "";
+      var parts = o.rewards.slice(0, max).map(function (e) {
+        return (e.qty !== undefined ? fmt(e.qty) + "× " : "") + e.name;
+      });
+      if (o.rewards.length > max) parts.push("+" + (o.rewards.length - max) + " more");
+      return parts.join(" · ");
+    }
+    function chips(o) {
+      var c = [];
+      if (o.lapsedMin) c.push("<span class='chip lapse'>lapsed " + o.lapsedMin + (o.lapsedMax ? "–" + o.lapsedMax : "+") + "d</span>");
+      if (o.spentMin) c.push("<span class='chip spend'>lifetime spend " + fmt(o.spentMin) + (o.spentMax ? "–" + fmt(o.spentMax) : "+") + "</span>");
+      if (o.spent90Min) c.push("<span class='chip spend'>90-day spend " + fmt(o.spent90Min) + (o.spent90Max ? "–" + fmt(o.spent90Max) : "+") + "</span>");
+      if (o.lvlMin) c.push("<span class='chip'>lvl " + o.lvlMin + "–" + (o.lvlMax || "∞") + "</span>");
+      if (o.payuser === "1") c.push("<span class='chip'>buyers only</span>");
+      if (o.payuser === "0") c.push("<span class='chip'>non-buyers only</span>");
+      if (o.cap) c.push("<span class='chip'>max " + o.cap + "×</span>");
+      return c.join(" ");
+    }
+    function offerCard(o) {
+      return "<div class='sp-offer'><div class='head'><span class='pack'>" + fmt(o.c2) + "-ruby pack offer</span>" +
+        (o.bonus ? "<span class='chip spend'>+" + o.bonus + "%</span>" : "") + chips(o) +
+        "</div><div class='rew'>" + rewardText(o, 8) + "</div></div>";
+    }
+
+    /* ---- profile -------------------------------------------------------- */
+    function renderProfile() {
+      var lvl = +$("pLevel").value || 1, lapsed = +$("pLapsed").value || 0, pay = $("pPay").value;
+      var hits = OFFERS.offers.filter(function (o) {
+        if (o.lvlMin && lvl < +o.lvlMin) return false;
+        if (o.lvlMax && lvl > +o.lvlMax) return false;
+        if (o.payuser !== undefined && o.payuser !== pay) return false;
+        if (o.lapsedMin && lapsed < +o.lapsedMin) return false;
+        if (o.lapsedMax && lapsed > +o.lapsedMax) return false;
+        return true;
+      });
+      // surface the interesting ones: targeted (lapsed/level/payuser) first, then biggest bonus
+      hits.sort(function (a, b) {
+        var ta = (a.lapsedMin ? 2 : 0) + (a.lvlMin ? 1 : 0), tb = (b.lapsedMin ? 2 : 0) + (b.lvlMin ? 1 : 0);
+        return tb - ta || b.bonus - a.bonus;
+      });
+      var targeted = hits.filter(function (o) { return o.lapsedMin || o.lvlMin || o.payuser !== undefined; });
+      $("profileCount").textContent = hits.length + " of " + OFFERS.offers.length +
+        " offer definitions can target this profile" +
+        (targeted.length ? " — showing the " + Math.min(targeted.length, 12) + " specifically-targeted ones first." : ".");
+      $("profileList").innerHTML = (targeted.length ? targeted : hits).slice(0, 12).map(offerCard).join("");
+    }
+
+    /* ---- explorer -------------------------------------------------------- */
+    var exShown = 25;
+    function renderExplorer() {
+      var q = $("search").value.trim().toLowerCase(), onlyB = $("onlyBonus").checked;
+      var hits = OFFERS.offers.filter(function (o) {
+        if (onlyB && !o.bonus) return false;
+        if (!q) return true;
+        return (o.rewards || []).some(function (e) { return e.name && e.name.toLowerCase().indexOf(q) >= 0; });
+      });
+      hits.sort(function (a, b) { return b.bonus - a.bonus; });
+      $("exCount").textContent = hits.length + " matching offers" + (q ? " containing “" + q + "”" : "");
+      $("exList").innerHTML = hits.slice(0, exShown).map(offerCard).join("");
+      $("exMore").style.display = hits.length > exShown ? "" : "none";
+    }
+
+    function init() {
+      renderValue(); renderDaily(); renderLadder(); renderProfile(); renderExplorer();
+      $("doubler").addEventListener("change", renderValue);
+      ["pLevel", "pLapsed"].forEach(function (id) { $(id).addEventListener("input", renderProfile); });
+      $("pPay").addEventListener("change", renderProfile);
+      $("search").addEventListener("input", function () { exShown = 25; renderExplorer(); });
+      $("onlyBonus").addEventListener("change", function () { exShown = 25; renderExplorer(); });
+      $("exMore").addEventListener("click", function () { exShown += 50; renderExplorer(); });
+    }
+  })();
+  </script>
+</body>
+</html>

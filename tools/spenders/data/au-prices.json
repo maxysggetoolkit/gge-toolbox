@@ -1,0 +1,42 @@
+{
+  "captured": "2026-06-13",
+  "server": "Australia 1",
+  "currency": "AUD",
+  "note": "Captured from the AU1 in-game shop with a 2x Payment Doubler active; 'rubies' below are the BASE pack amounts (the crossed-out figures), the doubler doubles them on the next purchase.",
+  "rubyPacks": [
+    { "rubies": 6500,    "aud": 8.99,    "extras": null },
+    { "rubies": 15000,   "aud": 17.99,   "extras": null },
+    { "rubies": 32000,   "aud": 34.99,   "extras": { "wood": 1000, "stone": 1000, "food": 1500, "coins": 3000 } },
+    { "rubies": 50000,   "aud": 52.99,   "extras": { "wood": 1500, "stone": 1500, "food": 2250, "coins": 4500 } },
+    { "rubies": 85000,   "aud": 89.99,   "extras": { "wood": 2500, "stone": 2500, "food": 3750, "coins": 7500 } },
+    { "rubies": 180000,  "aud": 179.99,  "extras": { "wood": 5000, "stone": 5000, "food": 7500, "coins": 15000 } },
+    { "rubies": 380000,  "aud": 359.99,  "extras": { "wood": 20000, "stone": 20000, "food": 30000, "coins": 60000 } },
+    { "rubies": 780000,  "aud": 719.99,  "extras": { "wood": 20000, "stone": 20000, "food": 60000, "coins": 60000 } },
+    { "rubies": 1600000, "aud": 1439.99, "extras": { "wood": 40000, "stone": 40000, "food": 60000, "coins": 120000 } }
+  ],
+  "rubyRush": [
+    { "name": "Medium Ruby Rush",      "rubies": 3250,  "aud": 8.99,   "extras": "Samurai tokens bonus 250% 4h, 40x 60min + 40x 30min skips" },
+    { "name": "Large Ruby Rush",       "rubies": 7500,  "aud": 17.99,  "extras": "Samurai tokens bonus 300% 4h, 1,000x Case of samurai tokens, 100x 60min skips" },
+    { "name": "Extra Large Ruby Rush", "rubies": 16000, "aud": 34.99,  "extras": "Samurai tokens bonus 400% 4h, 1,500x Chest of samurai tokens, 200x 60min skips" },
+    { "name": "Huge Ruby Rush",        "rubies": 25000, "aud": 52.99,  "extras": "Samurai tokens bonus 500% 4h, 3,000x Chest of samurai tokens, 400x 60min skips" },
+    { "name": "Giant Ruby Rush",       "rubies": 47000, "aud": 89.99,  "extras": "Samurai tokens bonus 600% 4h, 5,000x Case of the Shogun, 750x 60min skips" },
+    { "name": "VIP Ruby Rush",         "rubies": 90000, "aud": 179.99, "extras": "Samurai tokens bonus 1000% 4h, 17,500x Chest of the Shogun, 1,000x 60min skips" }
+  ],
+  "dailyBundles": {
+    "note": "7-day escalating chain on the Daily Bundles tab; one purchase per day, bonus climbs each consecutive day.",
+    "days": [
+      { "day": 1, "bonusPct": 295, "rubies": 59250,  "aud": 17.99 },
+      { "day": 2, "bonusPct": 200, "rubies": 45000,  "aud": 17.99 },
+      { "day": 3, "bonusPct": 225, "rubies": 48750,  "aud": 17.99 },
+      { "day": 4, "bonusPct": 250, "rubies": 52500,  "aud": 17.99 },
+      { "day": 5, "bonusPct": 275, "rubies": 56250,  "aud": 17.99 },
+      { "day": 6, "bonusPct": 350, "rubies": 67500,  "aud": 17.99 },
+      { "day": 7, "bonusPct": 550, "rubies": 552500, "aud": 89.99 }
+    ]
+  },
+  "subscriptions": [
+    { "name": "Player Subscription #1", "audPerMonth": 17.99, "effects": "Recruitment time -15%, +40 recruitment slot capacity, resource construction costs -10%, glory decrease -2%, food production +10%, more" },
+    { "name": "Player Subscription #2", "audPerMonth": 34.99, "effects": "Auto cooldown skip, auto equipment sale, auto spy report, loyalty gift up to +20%, more" },
+    { "name": "Alliance Subscription",  "audPerMonth": 8.99,  "effects": "Construction time skip +600s, research costs -5%, research speed +10%, public order +125 (main castle)" }
+  ]
+}

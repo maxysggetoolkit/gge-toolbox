@@ -198,6 +198,17 @@ window.TOOLS = [
 
   // ---- Calculators -------------------------------------------------------
   {
+    slug: "spenders",
+    img: "assets/img/tool-art/lootbox.webp",
+    cat: "misc",
+    name: "Spenders Corner (AU1)",
+    desc: "Every ruby source on AU1 ranked in rubies per AUD, the 7-day daily-bundle chain, and the game's own offer-targeting rules — including the win-back ladder.",
+    icon: "💸",
+    status: "live",
+    url: "tools/spenders/",
+    tags: ["spending", "rubies", "value", "deals", "offers", "bundles", "daily", "prime", "aud", "au1", "shop", "win-back"],
+  },
+  {
     slug: "upgrade-cost",
     img: "assets/img/tool-art/reinforced-vault.webp",
     cat: "calculators",
