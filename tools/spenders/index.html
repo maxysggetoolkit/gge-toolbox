@@ -57,6 +57,14 @@
     .ss-sort { display: inline-flex; gap: 4px; }
     .ss-sort button { padding: 8px 12px; font: inherit; font-size: .82rem; cursor: pointer; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text-dim); border-radius: var(--radius-sm); }
     .ss-sort button.on { border-color: var(--gold); color: var(--gold-bright, var(--gold)); background: rgba(217,178,90,.1); }
+    .ss-weights { margin: 0 0 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); }
+    .ss-weights > summary { cursor: pointer; padding: 10px 14px; font-weight: 600; color: var(--text); font-size: .9rem; }
+    .ss-weights > summary .hint { font-weight: 400; font-size: .78rem; color: var(--text-faint, #8a8372); }
+    .ss-weights-body { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 18px; padding: 4px 14px 12px; }
+    .ss-wrow { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--text-dim); }
+    .ss-wrow label { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ss-wrow input[type=range] { flex: 1.2; accent-color: var(--gold); }
+    .ss-wrow .wv { width: 26px; text-align: right; color: var(--gold-bright, var(--gold)); font-variant-numeric: tabular-nums; }
     .ss-more { padding: 7px 16px; font: inherit; font-size: .8rem; cursor: pointer; border-radius: var(--radius-sm); background: var(--bg-elev); color: var(--text-dim); border: 1px solid var(--border); margin-top: 12px; }
     .ss-more:hover { color: var(--text); border-color: var(--gold-dim); }
   </style>
@@ -100,10 +108,18 @@
         <div class="ss-field"><label for="ss-search">Search contents</label><input type="text" id="ss-search" placeholder="e.g. Demon slayer, Affluence, sceat" /></div>
         <div class="ss-field"><label>Sort</label><div class="ss-sort" id="ss-sort"><button data-s="value" class="on">Best value</button><button data-s="new">Newest era</button></div></div>
       </div>
+      <details class="ss-weights" id="ss-weights">
+        <summary>⚖️ Value weights — tune what matters <span class="hint">(drives the 🏆 Overall ranking; troops &amp; tools are already weighted by combat power)</span></summary>
+        <div class="ss-weights-body" id="ss-weights-body"></div>
+        <button class="ss-more" id="ss-wreset" style="margin-top:4px">Reset weights</button>
+      </details>
       <div class="sp-count" id="ss-count"></div>
       <div class="ss-list" id="ss-list"></div>
       <button class="ss-more" id="ss-more" style="display:none">Show more</button>
-      <div class="sp-note"><b>Prices:</b> exact where the offer's tier matches a known AU pack ($8.99 / $17.99 / $34.99 …),
+      <div class="sp-note"><b>Value model:</b> troops &amp; tools are scored by <b>combat power</b> (qty × atk/def), so a pile of weak
+        units no longer beats a smaller strong pack. Other categories score by quantity. The <b>⚖️ weights</b> above let you say what
+        <em>you</em> care about (e.g. crank Resources for mead, drop mid-troops) — that drives the <b>🏆 Overall</b> ranking. There's no
+        in-game data for cross-category worth, so this is your call, not a guess. <b>Prices:</b> exact where the offer's tier matches a known AU pack ($8.99 / $17.99 / $34.99 …),
         <em>estimated</em> (marked ≈) for the cheaper bundle tiers. <b>Value</b> is how much of your chosen reward you get per A$;
         the <em>+%</em> badge is the game's own value rating. <b>“Newest era”</b> sorts by the game's internal offer ID — a rough
         recency proxy that pushes current-meta bundles (Affluence, Offerings, Sasaki) up and retired seasonal ones down. The static
@@ -244,7 +260,7 @@
     var BUCKET_ICON = { "Rubies": "🔴", "Troops": "⚔️", "Tools": "🪜", "Equipment": "🛡️", "Gems": "💎",
       "Currencies": "🪙", "Boosters": "⚡", "Resources": "🌾", "VIP": "👑", "XP": "✨", "Time skips": "⏱️", "Misc": "📦" };
     var ssTarget = "Overall value", ssShown = 30, ssSort = "value";
-    var auLadder; // sorted [[rubies, aud], ...]
+    var auLadder, weights = {}; // weights: per-category multiplier for the Overall ranking (default 1)
 
     function audFor(c2) { // -> [aud, exact]
       for (var i = 0; i < auLadder.length; i++) if (auLadder[i][0] === c2) return [auLadder[i][1], true];
@@ -266,7 +282,17 @@
         return "<span class='ss-chip" + (b === ssTarget ? " on" : "") + "' data-b=\"" + b + "\"><span>" + ic + "</span>" + b + "</span>";
       }).join("");
     }
-    function targetQty(s, b) { var q = 0; for (var i = 0; i < s.items.length; i++) if (s.items[i].b === b) q += s.items[i].qty; return q; }
+    // Troops/Tools are weighted by combat power (qty × atk/def); everything else by quantity.
+    function isPow(b) { return b === "Troops" || b === "Tools"; }
+    function bucketRaw(s, b) {
+      var v = 0; for (var i = 0; i < s.items.length; i++) { var it = s.items[i]; if (it.b === b) v += (isPow(b) && it.pw ? it.qty * it.pw : it.qty); } return v;
+    }
+    function bucketCount(s, b) { var q = 0; for (var i = 0; i < s.items.length; i++) if (s.items[i].b === b) q += s.items[i].qty; return q; }
+    function overallScore(s) { // your weights × each category's value, normalised so weights are comparable
+      var raw = {}; s.items.forEach(function (it) { raw[it.b] = (raw[it.b] || 0) + (isPow(it.b) && it.pw ? it.qty * it.pw : it.qty); });
+      var sum = 0; for (var b in raw) { var w = weights[b] == null ? 1 : weights[b]; sum += w * (raw[b] / (SALES.catNorm[b] || 1)); }
+      return sum;
+    }
     function contentsList(s, max) {
       var rows = s.items.slice(0, max).map(function (i) {
         return "<div class='ss-row'><span class='q'>" + fmt(i.qty) + "×</span><span>" + i.name +
@@ -280,37 +306,53 @@
       var budget = parseFloat($("ss-budget").value) || 0;
       var q = $("ss-search").value.trim().toLowerCase();
       var rows = [];
+      var pow = !overall && isPow(b);
       SALES.sales.forEach(function (s) {
         var pa = audFor(s.c2), aud = pa[0];
         if (budget && aud > budget + 0.005) return;
         if (q && !s.items.some(function (i) { return i.name.toLowerCase().indexOf(q) >= 0; })) return;
-        var tq = overall ? 0 : targetQty(s, b);
-        if (!overall && !tq) return;
-        rows.push({ s: s, aud: aud, est: !pa[1], tq: tq, score: overall ? s.bonus : tq / aud });
+        var raw = overall ? 0 : bucketRaw(s, b);
+        if (!overall && !raw) return;
+        var score = overall ? overallScore(s) / aud : raw / aud;
+        rows.push({ s: s, aud: aud, est: !pa[1], raw: raw, count: overall ? 0 : bucketCount(s, b), score: score });
       });
       if (ssSort === "new") rows.sort(function (a, b2) { return b2.s.id - a.s.id || b2.score - a.score; });
       else rows.sort(function (a, b2) { return b2.score - a.score; });
-      var best = rows.reduce(function (m, r) { return Math.max(m, r.score); }, 1);
-      var how = ssSort === "new" ? "newest era first" : (overall ? "the game's value badge" : "most per A$");
+      var best = rows.reduce(function (m, r) { return Math.max(m, r.score); }, 1e-9);
+      var how = ssSort === "new" ? "newest era first" : (overall ? "your value weights" : (pow ? "most combat power per A$" : "most per A$"));
       $("ss-count").textContent = rows.length + " sale" + (rows.length === 1 ? "" : "s") +
         (overall ? "" : " containing " + (BUCKET_ICON[b] || "") + " " + b.toLowerCase()) +
         " — sorted by " + how + (budget ? " · under A$" + budget : "") + (q ? " · matching “" + q + "”" : "");
       $("ss-list").innerHTML = rows.slice(0, ssShown).map(function (r, i) {
         var bar = Math.max(4, Math.round(r.score / best * 100));
-        var valTxt = overall ? "<b>+" + r.s.bonus + "%</b> value" : "<b>" + fmt(Math.round(r.score)) + "</b> per A$";
+        var valTxt = overall ? "<b>+" + r.s.bonus + "%</b> game value"
+          : pow ? "<b>" + fmt(Math.round(r.score)) + "</b> power / A$"
+          : "<b>" + fmt(Math.round(r.score)) + "</b> per A$";
+        var targetLine = overall ? "" : "<div class='ss-target'>" + (BUCKET_ICON[b] || "") + " " + fmt(r.count) + " " + b.toLowerCase() +
+          (pow ? " <span style='color:var(--text-faint);font-weight:400'>· " + fmt(r.raw) + " power</span>" : "") + "</div>";
         return "<div class='ss-card" + (i === 0 ? " top" : "") + "'><div class='ss-head'>" +
           "<span class='ss-aud'>A$" + r.aud.toFixed(2) + (r.est ? " <span class='est'>≈</span>" : "") + "</span>" +
           (r.s.bonus ? "<span class='ss-bonus'>+" + r.s.bonus + "%</span>" : "") +
-          "<span class='ss-val'>" + valTxt + "</span></div>" +
-          (overall ? "" : "<div class='ss-target'>" + (BUCKET_ICON[b] || "") + " " + fmt(r.tq) + " " + b.toLowerCase() + "</div>") +
+          "<span class='ss-val'>" + valTxt + "</span></div>" + targetLine +
           "<div class='ss-bar'><i style='width:" + bar + "%'></i></div>" +
           "<div class='ss-contents'>" + contentsList(r.s, 7) + "</div></div>";
       }).join("");
       $("ss-more").style.display = rows.length > ssShown ? "" : "none";
     }
 
+    function renderWeights() {
+      var order = ["Resources", "Troops", "Tools", "Rubies", "Equipment", "Gems", "Currencies", "Boosters", "VIP", "XP"];
+      var bs = order.filter(function (b) { return SALES.buckets.indexOf(b) >= 0; });
+      $("ss-weights-body").innerHTML = bs.map(function (b) {
+        var w = weights[b] == null ? 1 : weights[b];
+        return "<div class='ss-wrow'><label>" + (BUCKET_ICON[b] || "📦") + " " + b + "</label>" +
+          "<input type='range' min='0' max='3' step='0.5' value='" + w + "' data-b=\"" + b + "\">" +
+          "<span class='wv' data-wv=\"" + b + "\">" + w.toFixed(1) + "</span></div>";
+      }).join("");
+    }
     function init() {
       auLadder = SALES.auLadder.slice().sort(function (a, b) { return a[0] - b[0]; });
+      renderWeights();
       renderAll(); renderDaily(); fillSalePicker(); renderSales();
       $("doubler").addEventListener("change", renderAll);
       $("prime").addEventListener("change", renderAll);
@@ -329,6 +371,16 @@
         renderSales();
       });
       $("ss-more").addEventListener("click", function () { ssShown += 40; renderSales(); });
+      $("ss-weights-body").addEventListener("input", function (e) {
+        var inp = e.target.closest("input[type=range]"); if (!inp) return;
+        var b = inp.dataset.b, v = parseFloat(inp.value);
+        weights[b] = v;
+        var wv = $("ss-weights-body").querySelector('[data-wv="' + b + '"]'); if (wv) wv.textContent = v.toFixed(1);
+        if (ssTarget === "Overall value") renderSales();
+      });
+      $("ss-wreset").addEventListener("click", function (e) {
+        e.preventDefault(); weights = {}; renderWeights(); if (ssTarget === "Overall value") renderSales();
+      });
     }
   })();
   </script>
