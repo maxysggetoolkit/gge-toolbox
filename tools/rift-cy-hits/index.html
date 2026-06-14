@@ -45,6 +45,11 @@
     table.rc td.win { color: var(--good); } table.rc td.lose { color: var(--bad); }
     .rc-note { font-size: .8rem; color: var(--text-faint, #8a8372); margin-top: 16px; line-height: 1.55; border-left: 3px solid var(--gold-dim); padding: 8px 14px; background: rgba(217,178,90,.05); border-radius: var(--radius-sm); }
     .rc-badge { display: inline-block; font-size: .72rem; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--gold-dim); color: var(--gold-bright); margin-left: 8px; vertical-align: middle; }
+    .rc-mini { font-size: .74rem; color: var(--text-faint, #8a8372); line-height: 1.5; margin: -4px 0 12px; }
+    .rc-adv { margin-top: 6px; border: 1px solid var(--border-soft, var(--border)); border-radius: var(--radius-sm); padding: 2px 12px; }
+    .rc-adv > summary { cursor: pointer; font-size: .8rem; color: var(--text-dim); padding: 8px 0; }
+    .rc-adv > summary .rc-mini { margin: 0; display: inline; }
+    .rc-adv p.rc-mini { margin: 8px 0 6px; }
   </style>
 </head>
 <body>
@@ -87,23 +92,18 @@
         <h2 class="rc-h">⚔️ Your hit</h2>
         <div class="rc-row">
           <div class="rc-field">
-            <label for="rc-n">Troops in the courtyard hit</label>
-            <input type="number" id="rc-n" min="1" value="45000" />
+            <label for="rc-rn">Ranged troops in the hit</label>
+            <input type="number" id="rc-rn" min="0" value="15000" />
           </div>
           <div class="rc-field">
-            <label for="rc-type">Wave type</label>
-            <select id="rc-type"><option value="melee">Melee</option><option value="ranged">Ranged</option></select>
+            <label for="rc-mn">Melee troops in the hit</label>
+            <input type="number" id="rc-mn" min="0" value="7500" />
           </div>
         </div>
-        <div class="rc-row">
-          <div class="rc-field">
-            <label for="rc-equip">Commander courtyard attack % (the "+X% when attacking enemy courtyards" total)</label>
-            <input type="number" id="rc-equip" min="0" value="250" />
-          </div>
-          <div class="rc-field">
-            <label for="rc-unit">Unit strength (calibrated avg)</label>
-            <input type="number" id="rc-unit" min="1" value="2440" />
-          </div>
+        <p class="rc-mini">Enter the actual troop <b>totals</b> you send — e.g. 15,000 ranged + 7,500 melee level-10 mead-fed elites. Splitting the lanes matters because some bosses cut <b>ranged</b> or <b>melee</b> attack by 60% (see the boss's tags).</p>
+        <div class="rc-field">
+          <label for="rc-equip">Commander courtyard attack % (the "+X% when attacking enemy courtyards" total)</label>
+          <input type="number" id="rc-equip" min="0" value="250" />
         </div>
         <label class="rc-toggle"><input type="checkbox" id="rc-gs" checked /> Giant Slayer (9% of boss CY strength, cap 3× yours)</label>
         <label class="rc-toggle"><input type="checkbox" id="rc-wagon" checked /> War Wagon (+5% attack strength)</label>
@@ -115,6 +115,14 @@
             <option value="30" selected>Gold — +30%</option>
           </select>
         </div>
+        <details class="rc-adv">
+          <summary>⚙️ Advanced — per-troop strength <span class="rc-mini">(default is calibrated for L10 mead-fed elites)</span></summary>
+          <div class="rc-row" style="margin-top:8px">
+            <div class="rc-field"><label for="rc-rstr">Ranged unit strength</label><input type="number" id="rc-rstr" min="1" value="2440" /></div>
+            <div class="rc-field"><label for="rc-mstr">Melee unit strength</label><input type="number" id="rc-mstr" min="1" value="2440" /></div>
+          </div>
+          <p class="rc-mini">Effective attack <b>per troop</b>, already including your research / tome / commander troop boosts. The 2,440 default is calibrated for a maxed <b>Level-10 mead-fed elite</b>. Raise it if your boosts are stronger, or tweak it to match a real battle report.</p>
+        </details>
       </section>
     </div>
 
@@ -126,8 +134,10 @@
     </section>
 
     <div class="rc-note">
-      <b>How it works:</b> your strength = troops × unit strength × (1 + commander CY% + tools + the fixed
-      +60% courtyard-assault bonus) + Giant Slayer. The boss's strength = its <i>real</i> CY units ×
+      <b>How it works:</b> your strength = (ranged troops × ranged strength × ranged malus + melee troops ×
+      melee strength × melee malus) × (1 + commander CY% + tools + the fixed +60% courtyard-assault bonus)
+      + Giant Slayer. Per-troop strength already bakes in your troop boosts (calibrated default 2,440 for an
+      L10 mead-fed elite — tweak it under Advanced). The boss's strength = its <i>real</i> CY units ×
       their defence × (1 + its CY defence bonus) — <b>dormant spores and rift-eggs add zero defence</b>
       (proven via Giant Slayer maths) but still count toward the kill total. If you out-muscle the boss you
       clear the whole courtyard and losses follow the (boss ÷ you)<sup>1.5</sup> curve; if not, your wave wipes
@@ -157,7 +167,7 @@
     var DEF_BASE = { FungalSwarm: 56, LegendaryDragon: 298, Necromancer: 56 };
     var CALIB = { FungalSwarm: "calibrated · 10 reports", LegendaryDragon: "1 report", Necromancer: "uncalibrated" };
 
-    var BOSSES = [], KEY = "riftCy.v1";
+    var BOSSES = [], KEY = "riftCy.v2";
     var saved = {}; try { saved = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
 
     var boss  = function () { return BOSSES[+$("rc-boss").value]; };
@@ -177,16 +187,22 @@
     function defStrength(lv) {
       return lv.courtyardSize * DEF_BASE[boss().internalName] * (1 + yardStr(lv) / 100);
     }
-    function atkStrength(lv, N) {
-      var M = 1 + (+$("rc-equip").value || 0) / 100 + (+$("rc-flame").value) / 100 +
-              ($("rc-wagon").checked ? WAGON : 0) + CY_STEP;
-      var base = N * (+$("rc-unit").value || U_DEFAULT) * M * malusFor(lv, $("rc-type").value);
+    function multM() { // shared attack multiplier (commander CY% + tools + fixed +60% assault bonus)
+      return 1 + (+$("rc-equip").value || 0) / 100 + (+$("rc-flame").value) / 100 +
+             ($("rc-wagon").checked ? WAGON : 0) + CY_STEP;
+    }
+    // Two lanes: ranged + melee combine, each hit by its own boss malus (ranged@L11, melee@L12+).
+    function atkStrength(lv, rN, mN) {
+      var M = multM();
+      var rStr = +$("rc-rstr").value || U_DEFAULT, mStr = +$("rc-mstr").value || U_DEFAULT;
+      var base = rN * rStr * M * malusFor(lv, "ranged") + mN * mStr * M * malusFor(lv, "melee");
       var gs = $("rc-gs").checked ? Math.min(GS_PCT * defStrength(lv), 3 * base) : 0;
       return base + gs;
     }
 
-    function outcome(lv, N, cyNow) {
-      var def = defStrength(lv), atk = atkStrength(lv, N);
+    function outcome(lv, rN, mN, cyNow) {
+      var N = rN + mN;
+      var def = defStrength(lv), atk = atkStrength(lv, rN, mN);
       var realCY = Math.min(lv.courtyardSize, cyNow);
       var dormant = Math.max(0, cyNow - lv.courtyardSize);
       if (atk > def) {
@@ -201,61 +217,69 @@
         remaining -= Math.max(1, Math.round(remaining * Math.pow(atk / d, EXP)));
         totalLost += N; hits++;
       }
-      return { win: false, atk: atk, def: def, losses: Math.round(N * 1.0), kills: Math.round(realCY * Math.pow(atk / def, EXP)), hits: hits, totalLost: totalLost, dormant: dormant };
+      return { win: false, atk: atk, def: def, losses: N, kills: Math.round(realCY * Math.pow(atk / def, EXP)), hits: hits, totalLost: totalLost, dormant: dormant };
     }
 
-    function minToWin(lv) {
-      // smallest N with atk(N) > def — binary search
-      var lo = 1, hi = 5e6;
-      if (atkStrength(lv, hi) <= defStrength(lv)) return null;
-      while (lo < hi) { var mid = Math.floor((lo + hi) / 2); if (atkStrength(lv, mid) > defStrength(lv)) hi = mid; else lo = mid + 1; }
+    function minToWin(lv, rN, mN) {
+      // smallest TOTAL troops (keeping the current ranged:melee mix) with atk > def
+      var tot = rN + mN; if (!tot) return null;
+      var fr = rN / tot, fm = mN / tot, hi = 5e7, lo = 1;
+      if (atkStrength(lv, hi * fr, hi * fm) <= defStrength(lv)) return null;
+      while (lo < hi) { var mid = Math.floor((lo + hi) / 2); if (atkStrength(lv, mid * fr, mid * fm) > defStrength(lv)) hi = mid; else lo = mid + 1; }
       return lo;
     }
 
     function render() {
-      var lv = level(), N = Math.max(1, +$("rc-n").value || 0);
+      var lv = level();
+      var rN = Math.max(0, +$("rc-rn").value || 0), mN = Math.max(0, +$("rc-mn").value || 0), N = rN + mN;
       var cyNow = Math.max(0, +$("rc-cycount").value || lv.courtyardSize);
-      var o = outcome(lv, N, cyNow);
-      var pct = Math.min(100, 100 * o.atk / (o.atk + o.def));
-      var minN = minToWin(lv);
+      var o = outcome(lv, rN, mN, cyNow);
+      var pct = Math.min(100, 100 * o.atk / (o.atk + o.def || 1));
+      var minN = minToWin(lv, rN, mN);
+      var mix = num(rN) + " ranged + " + num(mN) + " melee";
 
       var html = '<div class="rc-verdict ' + (o.win ? "win" : "lose") + '">';
-      if (o.win) {
-        html += '<h3>✅ Clears the courtyard</h3>' +
-          '<div class="big">~' + num(o.losses) + ' losses</div>' +
-          '<div class="rc-sub">One hit kills all ' + num(cyNow) + ' defenders (incl. dormants). Expect ±13% on the losses. ' +
-          'A full level = up to 6 stage clears like this one (each stage refills the courtyard).</div>';
+      if (N === 0) {
+        html = '<div class="rc-verdict"><h3>Add your troops</h3><div class="rc-sub">Enter how many ranged and melee troops you\'re sending above.</div></div>';
+        $("rc-verdict").innerHTML = html;
       } else {
-        html += '<h3>❌ Your wave wipes</h3>' +
-          '<div class="big">' + num(o.kills) + ' / ' + num(Math.min(lv.courtyardSize, cyNow)) + ' real spores killed</div>' +
-          '<div class="rc-sub">All ' + num(N) + ' troops lost this hit. Re-sending the same wave: ~<b>' + o.hits +
-          ' hits</b> to grind the courtyard down, costing ~' + num(o.totalLost) + ' troops total.' +
-          (minN ? ' Or send <b>' + num(minN) + '+</b> troops to clear it in one hit.' : '') + '</div>';
+        if (o.win) {
+          html += '<h3>✅ Clears the courtyard</h3>' +
+            '<div class="big">~' + num(o.losses) + ' losses</div>' +
+            '<div class="rc-sub">' + mix + ' (' + num(N) + ' troops) clears all ' + num(cyNow) + ' defenders in one hit (incl. dormants). Expect ±13% on the losses. ' +
+            'A full level = up to 6 stage clears like this one (each stage refills the courtyard).</div>';
+        } else {
+          html += '<h3>❌ Your wave wipes</h3>' +
+            '<div class="big">' + num(o.kills) + ' / ' + num(Math.min(lv.courtyardSize, cyNow)) + ' real spores killed</div>' +
+            '<div class="rc-sub">All ' + num(N) + ' troops (' + mix + ') lost this hit. Re-sending the same wave: ~<b>' + o.hits +
+            ' hits</b> to grind the courtyard down, costing ~' + num(o.totalLost) + ' troops total.' +
+            (minN ? ' Or send <b>~' + num(minN) + '</b> troops total in the same mix to clear it in one hit.' : '') + '</div>';
+        }
+        html += '<div class="rc-strbar"><i style="width:' + pct.toFixed(1) + '%"></i><span class="mark" style="left:50%"></span></div>' +
+          '<div class="rc-strlbl"><span>You: ' + num(o.atk / 1e6) + 'M</span><span>need &gt; 50% of bar</span><span>Boss: ' + num(o.def / 1e6) + 'M</span></div></div>';
+        $("rc-verdict").innerHTML = html;
       }
-      html += '<div class="rc-strbar"><i style="width:' + pct.toFixed(1) + '%"></i><span class="mark" style="left:50%"></span></div>' +
-        '<div class="rc-strlbl"><span>You: ' + num(o.atk / 1e6) + 'M</span><span>need &gt; 50% of bar</span><span>Boss: ' + num(o.def / 1e6) + 'M</span></div></div>';
-      $("rc-verdict").innerHTML = html;
 
-      // per-level table
+      // per-level table (keeps your current ranged:melee mix)
       var rows = boss().levels.map(function (l, i) {
-        var d = defStrength(l), a = atkStrength(l, N);
-        var win = a > d;
+        var d = defStrength(l), a = atkStrength(l, rN, mN);
+        var win = N > 0 && a > d;
         var loss = win ? Math.round(N * Math.pow(d / a, EXP)) : N;
-        var mn = (function () { var keep = $("rc-level").value; $("rc-level").value = i; var r = minToWin(l); $("rc-level").value = keep; return r; })();
+        var mn = minToWin(l, rN, mN);
         return '<tr class="' + (i === +$("rc-level").value ? "cur" : "") + '">' +
           '<td class="nm">Level ' + l.level + '</td>' +
           '<td>' + num(l.courtyardSize) + '</td>' +
           '<td>+' + num(yardStr(l)) + '%</td>' +
-          '<td class="' + (win ? "win" : "lose") + '">' + (win ? "✅ clears" : "❌ wipes") + '</td>' +
+          '<td class="' + (N === 0 ? "" : win ? "win" : "lose") + '">' + (N === 0 ? "—" : win ? "✅ clears" : "❌ wipes") + '</td>' +
           '<td>' + (win ? "~" + num(loss) : "—") + '</td>' +
           '<td>' + (mn ? num(mn) : "—") + '</td></tr>';
       }).join("");
       $("rc-table").innerHTML = '<thead><tr><th class="l">Boss level</th><th>Base CY</th><th>CY defence</th><th>Your hit</th><th>Losses</th><th>Min troops to clear</th></tr></thead><tbody>' + rows + '</tbody>';
 
       localStorage.setItem(KEY, JSON.stringify({
-        boss: $("rc-boss").value, n: $("rc-n").value, equip: $("rc-equip").value,
-        unit: $("rc-unit").value, gs: $("rc-gs").checked, wagon: $("rc-wagon").checked,
-        flame: $("rc-flame").value, type: $("rc-type").value
+        boss: $("rc-boss").value, rn: $("rc-rn").value, mn: $("rc-mn").value, equip: $("rc-equip").value,
+        rstr: $("rc-rstr").value, mstr: $("rc-mstr").value, gs: $("rc-gs").checked, wagon: $("rc-wagon").checked,
+        flame: $("rc-flame").value
       }));
     }
 
@@ -282,9 +306,9 @@
 
     $("rc-boss").addEventListener("change", function () { fillLevels(null); });
     $("rc-level").addEventListener("change", function () { $("rc-cycount").value = level().courtyardSize; renderBossFx(); render(); });
-    ["rc-n", "rc-equip", "rc-unit", "rc-cycount"].forEach(function (id) { $(id).addEventListener("input", render); });
+    ["rc-rn", "rc-mn", "rc-equip", "rc-rstr", "rc-mstr", "rc-cycount"].forEach(function (id) { $(id).addEventListener("input", render); });
     ["rc-gs", "rc-wagon"].forEach(function (id) { $(id).addEventListener("change", render); });
-    ["rc-flame", "rc-type"].forEach(function (id) { $(id).addEventListener("change", render); });
+    $("rc-flame").addEventListener("change", render);
 
     fetch("../overview-rift/data/rift-bosses.json")
       .then(function (r) { return r.json(); })
@@ -295,7 +319,7 @@
         }).join("");
         // restore
         if (saved.boss != null) $("rc-boss").value = saved.boss;
-        ["n", "equip", "unit", "flame", "type"].forEach(function (k) { if (saved[k] != null) $("rc-" + k).value = saved[k]; });
+        ["rn", "mn", "equip", "rstr", "mstr", "flame"].forEach(function (k) { if (saved[k] != null) $("rc-" + k).value = saved[k]; });
         if (saved.gs != null) $("rc-gs").checked = saved.gs;
         if (saved.wagon != null) $("rc-wagon").checked = saved.wagon;
         // default to fungal L12 (index of level 12) if nothing saved
