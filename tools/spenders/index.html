@@ -49,11 +49,16 @@
     .ss-target { font-weight: 600; color: var(--text); margin: 7px 0 5px; }
     .ss-bar { height: 4px; border-radius: 3px; background: rgba(255,255,255,.06); overflow: hidden; margin-bottom: 8px; }
     .ss-bar > i { display: block; height: 100%; background: linear-gradient(90deg, var(--gold-dim), var(--gold)); }
-    .ss-contents { font-size: .8rem; color: var(--text-dim); display: grid; gap: 3px; }
-    .ss-contents .ss-row { display: flex; gap: 7px; align-items: baseline; }
-    .ss-contents .q { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; min-width: 52px; text-align: right; white-space: nowrap; }
-    .ss-contents .st { font-size: .68rem; color: var(--gold-dim); }
-    .ss-contents .more { color: var(--text-faint, #8a8372); font-style: italic; }
+    .ss-contents { font-size: .82rem; color: var(--text-dim); display: grid; gap: 5px; margin-top: 2px; }
+    .ss-contents .ss-row { display: flex; gap: 8px; align-items: center; }
+    .ss-ico { width: 30px; height: 30px; flex: 0 0 30px; border-radius: 6px; background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-soft, rgba(217,178,90,.12)); display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; overflow: hidden; }
+    .ss-ico img { width: 100%; height: 100%; object-fit: contain; }
+    .ss-contents .q { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .ss-contents .nm { color: var(--text-dim); }
+    .ss-contents .st { font-size: .68rem; padding: 0 6px; border-radius: 99px; background: rgba(217,178,90,.1); color: var(--gold-dim); white-space: nowrap; }
+    .ss-contents .more { color: var(--text-faint, #8a8372); font-style: italic; padding-left: 38px; }
     .ss-sort { display: inline-flex; gap: 4px; }
     .ss-sort button { padding: 8px 12px; font: inherit; font-size: .82rem; cursor: pointer; background: var(--bg-elev); border: 1px solid var(--border); color: var(--text-dim); border-radius: var(--radius-sm); }
     .ss-sort button.on { border-color: var(--gold); color: var(--gold-bright, var(--gold)); background: rgba(217,178,90,.1); }
@@ -293,10 +298,22 @@
       var sum = 0; for (var b in raw) { var w = weights[b] == null ? 1 : weights[b]; sum += w * (raw[b] / (SALES.catNorm[b] || 1)); }
       return sum;
     }
+    function itemEmoji(i) {
+      var n = (i.name || "").toLowerCase();
+      if (i.b === "Rubies") return "🔴";
+      if (/coin/.test(n)) return "🪙"; if (/mead/.test(n)) return "🍺"; if (/honey/.test(n)) return "🍯";
+      if (/beef/.test(n)) return "🥩"; if (/food/.test(n)) return "🌾"; if (/wood/.test(n)) return "🪵";
+      if (/stone/.test(n)) return "🪨"; if (/affluence|ticket/.test(n)) return "🎟️"; if (/offering|sceat/.test(n)) return "📜";
+      if (/vip/.test(n)) return "👑"; if (/skip/.test(n)) return "⏱️"; if (/gem/.test(n)) return "💎";
+      return BUCKET_ICON[i.b] || "📦";
+    }
     function contentsList(s, max) {
       var rows = s.items.slice(0, max).map(function (i) {
-        return "<div class='ss-row'><span class='q'>" + fmt(i.qty) + "×</span><span>" + i.name +
-          (i.stat ? " <span class='st'>" + i.stat + "</span>" : "") + "</span></div>";
+        var ico = i.img
+          ? "<span class='ss-ico'><img src='" + i.img + "' alt='' loading='lazy' onerror=\"this.parentNode.textContent='" + itemEmoji(i) + "'\"></span>"
+          : "<span class='ss-ico'>" + itemEmoji(i) + "</span>";
+        return "<div class='ss-row'>" + ico + "<span class='q'>" + fmt(i.qty) + "×</span><span class='nm'>" + i.name + "</span>" +
+          (i.stat ? "<span class='st'>" + i.stat + "</span>" : "") + "</div>";
       });
       if (s.items.length > max) rows.push("<div class='ss-row more'>+ " + (s.items.length - max) + " more item" + (s.items.length - max === 1 ? "" : "s") + "</div>");
       return rows.join("");
