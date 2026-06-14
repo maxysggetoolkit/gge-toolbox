@@ -468,11 +468,11 @@ window.TOOLS = [
     slug: "timer-board",
     cat: "misc",
     name: "Timer Board",
-    desc: "Track every build, research, recruitment and travel timer in one place — live countdowns, the exact finish time and a browser alert when each is ready. Saved on your device.",
+    desc: "Track every build, research, recruitment and travel timer in one place — tagged per account or teammate, with live countdowns, finish times, browser alerts and optional Discord webhook pings. Saved on your device.",
     icon: "⏱️",
     status: "live",
     url: "tools/timer-board/",
-    tags: ["timer", "timers", "countdown", "build", "research", "recruit", "travel", "reminder", "alert", "planner"],
+    tags: ["timer", "timers", "countdown", "build", "research", "recruit", "travel", "reminder", "alert", "planner", "discord", "webhook", "accounts", "multi-account"],
   },
   {
     slug: "fortress-tracker",

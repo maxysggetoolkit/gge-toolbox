@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timer Board — Maxy's Empire Toolkit</title>
-  <meta name="description" content="Track your Goodgame Empire build, research, recruitment and travel timers in one place — with live countdowns, ready-at times and browser alerts." />
+  <meta name="description" content="Track your Goodgame Empire build, research, recruitment and travel timers in one place — per account or teammate, with live countdowns, ready-at times, browser alerts and optional Discord webhook pings." />
   <link rel="stylesheet" href="../../assets/css/theme.css" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <style>
@@ -12,13 +12,14 @@
     .tb-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
     .tb-field { display: flex; flex-direction: column; gap: 4px; }
     .tb-field label { font-size: .78rem; color: var(--text-dim); }
-    .tb-add input[type=text], .tb-add input[type=number] {
+    .tb-add input[type=text], .tb-add input[type=number], .tb-add input[type=url] {
       padding: 9px 11px; font: inherit; background: var(--bg-elev);
       border: 1px solid var(--border); border-radius: var(--radius-sm, 8px); color: var(--text);
     }
     .tb-add input:focus { outline: none; border-color: var(--gold); }
     .tb-add input[type=number] { width: 74px; }
     #tb-label { min-width: 220px; flex: 1; }
+    #tb-person { min-width: 170px; }
     .tb-cats { display: flex; flex-wrap: wrap; gap: 6px; }
     .tb-cat { padding: 6px 11px; border: 1px solid var(--border); border-radius: 999px;
       background: var(--bg-elev); color: var(--text-dim); cursor: pointer; font-size: .88rem; }
@@ -29,14 +30,20 @@
     .tb-btn:hover { background: rgba(217,178,90,.2); border-color: var(--gold); }
     .tb-btn.ghost { border-color: var(--border); background: var(--bg-elev); color: var(--text-dim); font-weight: 400; }
     .tb-btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .tb-btn.sm { padding: 7px 13px; font-size: .85rem; }
     .tb-quick { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-    .tb-quick span { font-size: .78rem; color: var(--text-faint, #8a8372); }
+    .tb-quick span, .tb-people span { font-size: .78rem; color: var(--text-faint, #8a8372); }
     .tb-chip { padding: 4px 9px; border: 1px solid var(--border); border-radius: 999px;
       background: var(--bg-elev); color: var(--text-dim); cursor: pointer; font-size: .8rem; }
     .tb-chip:hover { border-color: var(--gold); color: var(--gold); }
+    .tb-people { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 
     .tb-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 18px 0 10px; flex-wrap: wrap; }
     .tb-bar h2 { margin: 0; font-size: 1.05rem; }
+    .tb-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+    .tb-fchip { padding: 5px 12px; border: 1px solid var(--border); border-radius: 999px;
+      background: var(--bg-elev); color: var(--text-dim); cursor: pointer; font-size: .82rem; }
+    .tb-fchip.on { border-color: var(--gold); color: var(--gold-bright); background: rgba(217,178,90,.1); font-weight: 600; }
     .tb-list { display: grid; gap: 10px; }
     .tb-item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
       padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--radius);
@@ -45,6 +52,8 @@
     .tb-ico { font-size: 1.5rem; width: 34px; text-align: center; }
     .tb-main { min-width: 0; }
     .tb-title { font-weight: 600; }
+    .tb-who { font-size: .72rem; color: var(--gold-dim); margin-left: 7px; padding: 1px 8px;
+      border: 1px solid var(--border); border-radius: 999px; white-space: nowrap; }
     .tb-sub { font-size: .82rem; color: var(--text-dim); margin-top: 2px; }
     .tb-count { font-variant-numeric: tabular-nums; font-size: 1.35rem; font-weight: 700; color: var(--gold-bright); }
     .tb-item.done .tb-count { color: var(--good); font-size: 1.1rem; }
@@ -56,8 +65,28 @@
       background: transparent; color: var(--text-dim); cursor: pointer; font-size: 1rem; line-height: 1; }
     .tb-x:hover { border-color: var(--gold); color: var(--gold); }
     .tb-empty { color: var(--text-dim); padding: 18px; text-align: center; }
-    .tb-note { font-size: .82rem; color: var(--text-faint, #8a8372); }
+    .tb-note { font-size: .82rem; color: var(--text-faint, #8a8372); line-height: 1.5; }
     .tb-warn { color: var(--gold); }
+
+    /* Discord settings */
+    .tb-disc { margin-top: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-elev); }
+    .tb-disc > summary { cursor: pointer; padding: 12px 15px; font-weight: 600; color: var(--text); list-style: none; display: flex; align-items: center; gap: 8px; }
+    .tb-disc > summary::-webkit-details-marker { display: none; }
+    .tb-disc > summary .chev { margin-left: auto; color: var(--text-faint); transition: .15s; }
+    .tb-disc[open] > summary .chev { transform: rotate(90deg); }
+    .tb-disc .body { padding: 0 15px 15px; display: grid; gap: 12px; }
+    .tb-disc input[type=url], .tb-disc input[type=text] { width: 100%; padding: 9px 11px; font: inherit;
+      background: var(--bg, #1a1814); border: 1px solid var(--border); border-radius: var(--radius-sm, 8px); color: var(--text); }
+    .tb-disc input:focus { outline: none; border-color: var(--gold); }
+    .tb-toggle { display: flex; align-items: center; gap: 9px; font-size: .88rem; color: var(--text-dim); cursor: pointer; }
+    .tb-toggle input { accent-color: var(--gold); width: 16px; height: 16px; }
+    .tb-disc-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .tb-status { font-size: .82rem; }
+    .tb-status.ok { color: var(--good); } .tb-status.err { color: var(--bad); }
+    .tb-pp { display: grid; gap: 6px; }
+    .tb-pp-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .82rem; color: var(--text-dim); }
+    .tb-pp-row input { flex: 1; min-width: 200px; }
+    .tb-mini { font-size: .78rem; color: var(--text-faint, #8a8372); }
   </style>
 </head>
 <body>
@@ -71,9 +100,9 @@
     <div class="tool-head">
       <a class="back" href="../../">← All tools</a>
       <h1>⏱️ Timer Board</h1>
-      <p>Track every build, research, recruitment and travel timer in one place.
-         Live countdowns, the exact wall-clock time each finishes, and a browser
-         alert when it's ready. Everything is stored on this device only.</p>
+      <p>Track every build, research, recruitment and travel timer in one place —
+         tagged by account or teammate. Live countdowns, the exact finish time, a
+         browser alert when it's ready, and optional <b>Discord</b> pings. Stored on this device.</p>
     </div>
 
     <section class="panel">
@@ -83,7 +112,13 @@
             <label for="tb-label">What's cooking?</label>
             <input type="text" id="tb-label" placeholder="e.g. Keep → L8, Three-Field Crops research…" />
           </div>
+          <div class="tb-field">
+            <label for="tb-person">Who's it for?</label>
+            <input type="text" id="tb-person" placeholder="account or teammate" list="tb-people-dl" />
+            <datalist id="tb-people-dl"></datalist>
+          </div>
         </div>
+        <div class="tb-people" id="tb-recent"></div>
         <div class="tb-cats" id="tb-cats"></div>
         <div class="tb-row">
           <div class="tb-field"><label>Days</label><input type="number" id="tb-d" min="0" value="0" /></div>
@@ -102,23 +137,50 @@
         </div>
         <div class="tb-note" id="tb-perm"></div>
       </div>
+
+      <details class="tb-disc" id="tb-disc">
+        <summary>🪝 Discord pings <span class="chev">▸</span></summary>
+        <div class="body">
+          <div class="tb-field">
+            <label for="tb-webhook">Default webhook URL</label>
+            <input type="url" id="tb-webhook" placeholder="https://discord.com/api/webhooks/…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div class="tb-disc-row">
+            <button class="tb-btn sm" id="tb-test">Send test ping</button>
+            <span class="tb-status" id="tb-test-status"></span>
+          </div>
+          <label class="tb-toggle"><input type="checkbox" id="tb-ann"> Announce each timer to Discord when I add it (posts the finish time — works even if you close the tab)</label>
+          <label class="tb-toggle"><input type="checkbox" id="tb-ping" checked> Ping Discord when a timer finishes (only fires while this page is open)</label>
+          <details class="tb-pp" style="margin-top:2px">
+            <summary class="tb-mini" style="cursor:pointer">Route specific people to their own channels (optional)</summary>
+            <div id="tb-pp-list" style="margin-top:8px;display:grid;gap:6px"></div>
+            <div class="tb-mini" style="margin-top:6px">Add a person on a timer first, then their row appears here to paste a per-person webhook.</div>
+          </details>
+          <div class="tb-note">
+            <span class="tb-warn">Your webhook URL is a secret</span> — anyone who has it can post to that channel. It's saved only
+            on this device and pings go straight from your browser to Discord; nothing passes through this site. For a guaranteed
+            ping when you're <em>away</em> (tab closed), you'd need an always-on sender — that's what the local bot is for.
+          </div>
+        </div>
+      </details>
     </section>
 
     <div class="tb-bar">
       <h2 id="tb-head">Your timers</h2>
       <button class="tb-btn ghost" id="tb-clear" hidden>Clear finished</button>
     </div>
+    <div class="tb-filter" id="tb-filter"></div>
     <div class="tb-list" id="tb-list"></div>
   </main>
 
   <footer class="footer">
-    <div class="wrap"><p>Timers are saved in your browser's local storage on this device — they survive a refresh but aren't synced anywhere. Close-tab countdowns keep running off the saved finish time.</p></div>
+    <div class="wrap"><p>Timers and your Discord settings are saved in this browser's local storage on this device — they survive a refresh but aren't synced anywhere. Countdowns keep running off the saved finish time even with the tab closed.</p></div>
   </footer>
 
   <script>
   (function () {
     "use strict";
-    var KEY = "timerBoard.v1";
+    var KEY = "timerBoard.v1", SKEY = "timerBoard.settings.v1";
     var CATS = [
       { id: "build", label: "Build", ico: "🏗️" },
       { id: "research", label: "Research", ico: "📜" },
@@ -129,12 +191,24 @@
     ];
     var cat = "build";
     var timers = load();
+    var settings = loadSettings();
+    var filterPerson = null; // null = all
 
     var $ = function (id) { return document.getElementById(id); };
     function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
     function save() { localStorage.setItem(KEY, JSON.stringify(timers)); }
+    function loadSettings() {
+      var d = { webhook: "", perPerson: {}, announceAdd: false, pingDone: true };
+      try { return Object.assign(d, JSON.parse(localStorage.getItem(SKEY)) || {}); } catch (e) { return d; }
+    }
+    function saveSettings() { localStorage.setItem(SKEY, JSON.stringify(settings)); }
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
     function catOf(id) { for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i]; return CATS[5]; }
+    function people() {
+      var seen = {}, out = [];
+      timers.forEach(function (t) { var p = (t.person || "").trim(); if (p && !seen[p.toLowerCase()]) { seen[p.toLowerCase()] = 1; out.push(p); } });
+      return out.sort(function (a, b) { return a.localeCompare(b); });
+    }
 
     // ---- category chips ----
     $("tb-cats").innerHTML = CATS.map(function (c) {
@@ -144,6 +218,20 @@
       var b = e.target.closest(".tb-cat"); if (!b) return;
       cat = b.dataset.cat;
       [].forEach.call($("tb-cats").children, function (x) { x.classList.toggle("on", x.dataset.cat === cat); });
+    });
+
+    // ---- recent people chips + datalist ----
+    function renderPeople() {
+      var ppl = people();
+      $("tb-people-dl").innerHTML = ppl.map(function (p) { return '<option value="' + esc(p) + '">'; }).join("");
+      $("tb-recent").innerHTML = ppl.length
+        ? "<span>For:</span>" + ppl.slice(0, 12).map(function (p) { return '<button class="tb-chip" data-person="' + esc(p) + '">' + esc(p) + "</button>"; }).join("")
+        : "";
+      renderPPList();
+    }
+    $("tb-recent").addEventListener("click", function (e) {
+      var c = e.target.closest(".tb-chip"); if (!c) return;
+      $("tb-person").value = c.dataset.person;
     });
 
     // ---- notifications ----
@@ -173,9 +261,79 @@
     function notify(t) {
       beep();
       if ("Notification" in window && Notification.permission === "granted") {
-        try { new Notification("⏱️ " + catOf(t.cat).label + " ready", { body: t.label || "Your timer is done.", tag: t.id }); } catch (e) {}
+        try { new Notification("⏱️ " + catOf(t.cat).label + " ready", { body: (t.person ? "[" + t.person + "] " : "") + (t.label || "Your timer is done."), tag: t.id }); } catch (e) {}
       }
+      if (settings.pingDone) discordPost(t, "done");
     }
+
+    // ---- Discord webhook ----
+    function clockStr(ts) {
+      var dt = new Date(ts), now = new Date();
+      var t = dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      var sameDay = dt.toDateString() === now.toDateString();
+      if (sameDay) return "today " + t;
+      var tmr = new Date(now.getTime() + 86400000);
+      if (dt.toDateString() === tmr.toDateString()) return "tomorrow " + t;
+      return dt.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" }) + " " + t;
+    }
+    function webhookFor(t) {
+      var p = (t && t.person || "").trim();
+      return (p && settings.perPerson[p]) || settings.webhook || "";
+    }
+    function discordPost(t, kind) {
+      var url = webhookFor(t);
+      if (!url) return Promise.resolve(false);
+      var c = catOf(t.cat);
+      var title = kind === "done" ? ("✅ " + c.label + " ready") : ("⏱️ " + c.label + " started");
+      var fields = [];
+      if (t.person) fields.push({ name: "For", value: String(t.person), inline: true });
+      fields.push({ name: kind === "done" ? "Finished" : "Ready", value: clockStr(t.endTs), inline: true });
+      var body = {
+        username: "Maxy's Timer Board",
+        embeds: [{
+          title: title,
+          description: t.label ? ("**" + String(t.label).slice(0, 240) + "**") : "_(untitled timer)_",
+          color: kind === "done" ? 4055621 : 14260570,
+          fields: fields,
+          footer: { text: "Maxy's Empire Toolkit" },
+          timestamp: new Date(t.endTs).toISOString(),
+        }],
+      };
+      return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(function (r) { return r.ok || r.status === 204; })
+        .catch(function () { return false; });
+    }
+
+    // settings wiring
+    $("tb-webhook").value = settings.webhook;
+    $("tb-ann").checked = !!settings.announceAdd;
+    $("tb-ping").checked = !!settings.pingDone;
+    if (settings.webhook) $("tb-disc").open = true;
+    $("tb-webhook").addEventListener("input", function () { settings.webhook = $("tb-webhook").value.trim(); saveSettings(); });
+    $("tb-ann").addEventListener("change", function () { settings.announceAdd = $("tb-ann").checked; saveSettings(); });
+    $("tb-ping").addEventListener("change", function () { settings.pingDone = $("tb-ping").checked; saveSettings(); });
+    $("tb-test").addEventListener("click", function () {
+      var s = $("tb-test-status");
+      if (!settings.webhook) { s.className = "tb-status err"; s.textContent = "Paste a webhook URL first."; return; }
+      s.className = "tb-status"; s.textContent = "Sending…";
+      discordPost({ cat: "other", label: "Test ping from your Timer Board", person: "", endTs: Date.now() }, "done")
+        .then(function (ok) { s.className = "tb-status " + (ok ? "ok" : "err"); s.textContent = ok ? "✅ Sent — check your channel." : "❌ Failed — double-check the URL."; });
+    });
+
+    function renderPPList() {
+      var ppl = people(), host = $("tb-pp-list");
+      if (!host) return;
+      host.innerHTML = ppl.length ? ppl.map(function (p) {
+        return '<div class="tb-pp-row"><span style="min-width:90px">' + esc(p) + '</span>' +
+          '<input type="url" data-pp="' + esc(p) + '" placeholder="(uses default webhook)" value="' + esc(settings.perPerson[p] || "") + '"></div>';
+      }).join("") : '<div class="tb-mini">No people added yet.</div>';
+    }
+    $("tb-pp-list").addEventListener("input", function (e) {
+      var inp = e.target.closest("[data-pp]"); if (!inp) return;
+      var p = inp.dataset.pp, v = inp.value.trim();
+      if (v) settings.perPerson[p] = v; else delete settings.perPerson[p];
+      saveSettings();
+    });
 
     // ---- add ----
     function addFromInputs() {
@@ -188,15 +346,19 @@
     }
     function addTimer(secs) {
       var now = Date.now();
-      timers.push({
+      var t = {
         id: "t" + now + Math.random().toString(36).slice(2, 6),
         label: $("tb-label").value.trim(),
+        person: $("tb-person").value.trim(),
         cat: cat, durSec: secs, endTs: now + secs * 1000, notified: false,
-      });
-      save(); render();
+      };
+      timers.push(t);
+      save(); renderPeople(); render();
+      if (settings.announceAdd) discordPost(t, "start");
     }
     $("tb-go").addEventListener("click", addFromInputs);
     $("tb-label").addEventListener("keydown", function (e) { if (e.key === "Enter") addFromInputs(); });
+    $("tb-person").addEventListener("keydown", function (e) { if (e.key === "Enter") addFromInputs(); });
     document.querySelector(".tb-quick").addEventListener("click", function (e) {
       var c = e.target.closest(".tb-chip"); if (!c) return;
       addTimer((+c.dataset.min) * 60);
@@ -204,13 +366,18 @@
 
     $("tb-clear").addEventListener("click", function () {
       timers = timers.filter(function (t) { return t.endTs > Date.now(); });
-      save(); render();
+      save(); renderPeople(); render();
     });
     $("tb-list").addEventListener("click", function (e) {
       var item = e.target.closest("[data-id]"); if (!item) return;
       var id = item.dataset.id, t = timers.filter(function (x) { return x.id === id; })[0];
-      if (e.target.closest(".tb-del")) { timers = timers.filter(function (x) { return x.id !== id; }); save(); render(); }
-      else if (e.target.closest(".tb-restart") && t) { t.endTs = Date.now() + t.durSec * 1000; t.notified = false; save(); render(); }
+      if (e.target.closest(".tb-del")) { timers = timers.filter(function (x) { return x.id !== id; }); save(); renderPeople(); render(); }
+      else if (e.target.closest(".tb-restart") && t) { t.endTs = Date.now() + t.durSec * 1000; t.notified = false; save(); render(); if (settings.announceAdd) discordPost(t, "start"); }
+    });
+    $("tb-filter").addEventListener("click", function (e) {
+      var c = e.target.closest(".tb-fchip"); if (!c) return;
+      filterPerson = c.dataset.person === "*" ? null : c.dataset.person;
+      render();
     });
 
     // ---- render ----
@@ -223,36 +390,43 @@
       if (d) return d + "d " + p(h) + ":" + p(m) + ":" + p(s);
       return p(h) + ":" + p(m) + ":" + p(s);
     }
-    function fmtClock(ts) {
-      var dt = new Date(ts), now = new Date();
-      var t = dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-      var sameDay = dt.toDateString() === now.toDateString();
-      if (sameDay) return "today " + t;
-      var tmr = new Date(now.getTime() + 86400000);
-      if (dt.toDateString() === tmr.toDateString()) return "tomorrow " + t;
-      return dt.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" }) + " " + t;
+
+    function renderFilter() {
+      var ppl = people(), host = $("tb-filter");
+      if (ppl.length < 1) { host.innerHTML = ""; return; }
+      if (filterPerson && ppl.indexOf(filterPerson) < 0) filterPerson = null;
+      var chips = ['<button class="tb-fchip' + (filterPerson === null ? " on" : "") + '" data-person="*">All (' + timers.length + ")</button>"];
+      ppl.forEach(function (p) {
+        var n = timers.filter(function (t) { return (t.person || "") === p; }).length;
+        chips.push('<button class="tb-fchip' + (filterPerson === p ? " on" : "") + '" data-person="' + esc(p) + '">' + esc(p) + " (" + n + ")</button>");
+      });
+      var un = timers.filter(function (t) { return !(t.person || "").trim(); }).length;
+      if (un) chips.push('<button class="tb-fchip' + (filterPerson === "" ? " on" : "") + '" data-person="">Unassigned (' + un + ")</button>");
+      host.innerHTML = chips.join("");
     }
 
     function render() {
+      renderFilter();
       var list = $("tb-list");
       timers.sort(function (a, b) { return a.endTs - b.endTs; });
-      if (!timers.length) {
-        list.innerHTML = '<div class="tb-empty">No timers yet. Add one above — or tap a quick-add chip.</div>';
-        $("tb-head").textContent = "Your timers";
-        $("tb-clear").hidden = true;
+      var shown = timers.filter(function (t) { return filterPerson === null || (t.person || "") === filterPerson; });
+      if (!shown.length) {
+        list.innerHTML = '<div class="tb-empty">' + (timers.length ? "No timers for this filter." : "No timers yet. Add one above — or tap a quick-add chip.") + "</div>";
+        $("tb-head").textContent = timers.length ? "Your timers" : "Your timers";
+        $("tb-clear").hidden = !timers.some(function (t) { return t.endTs <= Date.now(); });
         return;
       }
       var now = Date.now(), anyDone = false, running = 0;
-      list.innerHTML = timers.map(function (t) {
+      list.innerHTML = shown.map(function (t) {
         var remMs = t.endTs - now, done = remMs <= 0;
         if (done) anyDone = true; else running++;
         var c = catOf(t.cat);
         var pct = Math.max(0, Math.min(100, 100 * (1 - remMs / (t.durSec * 1000))));
-        var sub = done ? ("Finished " + fmtClock(t.endTs)) : ("Ready " + fmtClock(t.endTs));
+        var sub = done ? ("Finished " + clockStr(t.endTs)) : ("Ready " + clockStr(t.endTs));
         return '<div class="tb-item' + (done ? " done" : "") + '" data-id="' + t.id + '">' +
           '<div class="tb-ico">' + c.ico + "</div>" +
           '<div class="tb-main">' +
-            '<div class="tb-title">' + (esc(t.label) || c.label) + "</div>" +
+            '<div class="tb-title">' + (esc(t.label) || c.label) + (t.person ? '<span class="tb-who">' + esc(t.person) + "</span>" : "") + "</div>" +
             '<div class="tb-sub">' + esc(sub) + "</div>" +
             '<div class="tb-prog"><i style="width:' + pct.toFixed(1) + '%"></i></div>' +
           "</div>" +
@@ -265,7 +439,8 @@
           "</div>" +
         "</div>";
       }).join("");
-      $("tb-head").textContent = running ? (running + (running === 1 ? " timer running" : " timers running")) : "All done";
+      var label = filterPerson ? (" for " + filterPerson) : "";
+      $("tb-head").textContent = running ? (running + (running === 1 ? " timer running" : " timers running") + label) : ("All done" + label);
       $("tb-clear").hidden = !anyDone;
     }
 
@@ -276,10 +451,10 @@
         if (!t.notified && t.endTs <= now) { t.notified = true; changed = true; notify(t); }
       });
       if (changed) save();
-      // cheap per-second update of just the count cells when nothing structural changed
       render();
     }
     refreshPerm();
+    renderPeople();
     render();
     setInterval(tick, 1000);
   })();
