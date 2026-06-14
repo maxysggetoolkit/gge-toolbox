@@ -43,6 +43,17 @@ UNIT_IMG.update({wid:o.get('img') for wid,o in OV_TOOL.items() if o.get('img')})
 EQ_IMG={k:v.get('img') for k,v in OV_EQUIP.items() if v.get('img')}
 DECO_IMG={d['name']:d.get('img') for d in _load('tools/overview-decorations/data/decorations.json').get('items',[]) if d.get('img')}
 
+# DLL asset index → icons for construction items, currencies & tokens (no overview carries these).
+ASSET_ROOT='https://empire-html5.goodgamestudios.com/default/assets/'
+_dll=open(os.path.join(ROOT,'tools/_srcdata/cache/ggs.dll.latest.js'),encoding='utf-8',errors='ignore').read()
+_ASSET={}
+for _p in _re.findall(r'itemassets/[A-Za-z0-9_/]+--\d+', _dll):
+    _ASSET.setdefault(_re.sub(r'--\d+$','',_p.split('/')[-1]).lower(), _p)
+def asset_url(base):
+    p=_ASSET.get((base or '').lower()); return (ASSET_ROOT+p+'.webp') if p else None
+def cur_img(internal): return asset_url('Collectable_Currency_'+(internal or ''))
+CI_IMG={str(c.get('constructionItemID','')): asset_url('ConstructionItem_'+(c.get('name') or '')) for c in items.get('constructionItems',[])}
+
 def unit_info(wid):
     """Return (name, kind 'Troops'|'Tools', role, statText). Prefer the overview data."""
     wid=str(wid)
@@ -104,6 +115,7 @@ def curdisp(name):
         if v: return v
     return pretty(name)
 curname={c['JSONKey']:curdisp(c['Name']) for c in items['currencies'] if c.get('JSONKey')}
+CUR_INTERNAL={c['JSONKey']:c['Name'] for c in items['currencies'] if c.get('JSONKey')}
 EQ_NAME={k:v.get('name') for k,v in OV_EQUIP.items()}
 
 src=open(os.path.join(ROOT,'tools/_srcdata/cache/SOURCES.txt')).readline().strip('# \n')
@@ -160,7 +172,10 @@ def pkg_rewards(r):
     if r.get('relicEquipments'):
         out.append({'b':'Equipment','name':pretty(r.get('comment1')) or 'Relic equipment','qty':len(str(r['relicEquipments']).split(','))})
     if r.get('constructionItemID') and r.get('constructionItemAmount'):
-        cid=str(r['constructionItemID']); out.append({'b':'Construction items','name':cis.get(cid) or pretty(r.get('comment1')) or ('CI '+cid),'qty':iv(r['constructionItemAmount'])})
+        cid=str(r['constructionItemID'])
+        e={'b':'Construction items','name':cis.get(cid) or pretty(r.get('comment1')) or ('CI '+cid),'qty':iv(r['constructionItemAmount'])}
+        if CI_IMG.get(cid): e['img']=CI_IMG[cid]
+        out.append(e)
     if r.get('buildingID') and r.get('buildingAmount'):
         bid=str(r['buildingID'])
         if pt=='deco':
@@ -185,12 +200,17 @@ def pkg_rewards(r):
             ('vipTime','VIP','VIP time'),('amountXP','XP','XP'),('addImperialPatronageCharter','Misc','Imperial Patronage Charter'),
             ('addDecoDust','Misc','Deco Dust'),('addFusionCurrency','Misc','Fusion currency'),('addResourceVillageToken','Misc','Resource Village token')]
     for f,bucket,nm in addmap:
-        if str(r.get(f,'')) not in ('','0'): out.append({'b':bucket,'name':nm,'qty':iv(r[f])})
+        if str(r.get(f,'')) not in ('','0'):
+            e={'b':bucket,'name':nm,'qty':iv(r[f])}
+            if f.startswith('add') and cur_img(f[3:]): e['img']=cur_img(f[3:])
+            out.append(e)
     for f in r:
         if f.endswith('Token') and f.startswith('add') and f not in ('addLegendaryToken',):
             v=r.get(f)
             if str(v) not in ('','0') and 'LTPE' not in f and f not in ('addSceatToken',):
-                out.append({'b':'Event / gacha currency','name':curdisp(f[3:]),'qty':iv(v)})
+                e={'b':'Event / gacha currency','name':curdisp(f[3:]),'qty':iv(v)}
+                if cur_img(f[3:]): e['img']=cur_img(f[3:])
+                out.append(e)
         if f.startswith('addShard'):
             if str(r.get(f)) not in ('','0'): out.append({'b':'Hero shards','name':pretty(f[8:])+' shard','qty':iv(r[f])})
         if f.startswith('add') and ('HourSkip' in f or 'MinSkip' in f):
@@ -210,6 +230,31 @@ def clean(r):
     if str(r.get('hideInShop',''))=='1': return False
     return not JUNK.search(c2)
 
+# Clean vendor name derived from the currency (the package's comment2 is dev junk like "mead Unit").
+SHOP_BY_CUR={
+ 'Sceats':'Hall of Legends','Gold Tokens':'Hall of Legends','Silver Tokens':'Hall of Legends',
+ 'Khan Tablets':'Nomad event shop','Khan Medals':'Nomad event shop',
+ 'Samurai Tokens':'Samurai event shop','Samurai Medals':'Samurai event shop',
+ 'Skull Relics':'Thorn King rift shop','Green Skull Relics':'Thorn King rift shop','Pearl Relics':'Sea Queen rift shop',
+ 'Rift Coins':'Rift Raid shop','Legendary Rift Coins':'Rift Raid shop','Rift Shards':'Rift Raid shop','Offering Shards':'Rift Raid shop',
+ 'Wishing Well Coins':'Wishing Well','Silver Runes':'Rune exchange','Gold Runes':'Rune exchange',
+ 'Fusion Currency':'Fusion Forge','Deco Dust':'Decoration shop','Minute Skips':'Time-skip shop',
+ 'Rubies':'Ruby shop','Aquamarine':'Storm Islands shop',
+}
+def vendor(cur):
+    if cur in SHOP_BY_CUR: return SHOP_BY_CUR[cur]
+    if cur.endswith('Event Tokens'): return cur.replace('Tokens','shop').strip()
+    if 'Anniversary' in cur: return 'Anniversary shop'
+    return ''
+# currency icons for the per-currency card headers (display name -> CDN url)
+CUR_IMG_DISPLAY={}
+for _cf,_disp in CUR.items():
+    _u=cur_img(_cf[4:])
+    if _u: CUR_IMG_DISPLAY[_disp]=_u
+for _int,_disp in (('C2','Rubies'),('Aquamarine','Aquamarine'),('C1','Coins')):
+    _u=cur_img(_int)
+    if _u: CUR_IMG_DISPLAY.setdefault(_disp,_u)
+
 PKG=[]
 for r in items['packages']:
     if not clean(r): continue
@@ -217,14 +262,14 @@ for r in items['packages']:
     if not cur or not cost: continue
     rw=pkg_rewards(r)
     if not rw: continue
-    rec={'id':r['packageID'],'shop':pretty((r.get('comment2') or '').strip())[:42],'cur':cur,'cost':cost,'rw':rw}
+    rec={'id':r['packageID'],'shop':vendor(cur),'cur':cur,'cost':cost,'rw':rw}
     for k_src,k_dst in [('minLevel','lvlMin'),('maxLevel','lvlMax'),('minLegendLevel','llMin'),('maxLegendLevel','llMax')]:
         v=r.get(k_src)
         if v not in (None,''): rec[k_dst]=int(float(v))
     PKG.append(rec)
 
 buckets=sorted({w['b'] for p in PKG for w in p['rw']})
-pkgout={'generated':src,'buckets':buckets,'packages':PKG}
+pkgout={'generated':src,'buckets':buckets,'curImg':CUR_IMG_DISPLAY,'packages':PKG}
 OUTDIR=os.path.join(ROOT,'tools/item-value/data')
 os.makedirs(OUTDIR,exist_ok=True)
 json.dump(pkgout,open(os.path.join(OUTDIR,'packages.json'),'w'),separators=(',',':'))
@@ -277,14 +322,18 @@ def decode_offer(s):
             nm,bk,role,stat=unit_info(val[0]); e={'b':bk,'name':nm,'qty':iv(val[1] if len(val)>1 else 1)}
             if stat: e['stat']=stat
             if bk in ('Troops','Tools'): e['pw']=unit_power(val[0])
+            if UNIT_IMG.get(str(val[0])): e['img']=UNIT_IMG[str(val[0])]
         elif tok=='CI' and isinstance(val,list):
             e={'b':'Construction items','name':cis.get(str(val[0]),'CI '+str(val[0])),'qty':iv(val[1] if len(val)>1 else 1)}
         elif tok=='D':
             wid=str(val[0] if isinstance(val,list) else val); e={'b':'Decorations','name':blds.get(wid,'building '+wid),'qty':iv(val[1] if isinstance(val,list) and len(val)>1 else 1)}
+            if DECO_IMG.get(e['name']): e['img']=DECO_IMG[e['name']]
         elif tok in TOK:
             bk,nm=TOK[tok]; e={'b':bk,'name':nm,'qty':iv(val) if not isinstance(val,list) else 1}
         elif tok in curname:
             e={'b':'Currencies','name':curname[tok],'qty':iv(val) if not isinstance(val,list) else 1}
+            ci=cur_img(CUR_INTERNAL.get(tok))
+            if ci: e['img']=ci
         else:
             continue
         out.append(e)

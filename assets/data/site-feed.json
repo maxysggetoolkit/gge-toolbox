@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-11",
+  "updated": "2026-06-14",
   "maxyNotes": [
     {
       "date": "Jun 2026",
@@ -20,6 +20,21 @@
   "changelog": [
     {
       "date": "Jun 2026",
+      "title": "Item Value Finder — icons & cleaner names",
+      "body": "Every reward now shows a small in-game icon (troops, tools, equipment, decorations, construction items, tokens & currencies), construction-item and gem names are fixed, and each deal is labelled with a clean vendor (Hall of Legends, Nomad shop, Rift Raid shop…) instead of dev labels."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Rift Courtyard Calculator",
+      "body": "New calculator: will your courtyard hit clear the rift boss's CY, and what will it cost? Pick a boss & level, set your wave once and toggle your pre-battle tools — calibrated against real Fungal L10–L12 battle reports (±13% on losses)."
+    },
+    {
+      "date": "Jun 2026",
+      "title": "Six new tools + a tidier Calculators page",
+      "body": "Added the Buildings overview, Building Upgrade Cost & Time, Recruitment Speed Caps, Equipment Set-Bonus Finder, a native Hall of Legends Planner and a device-local Timer Board. The three Rift calculators now lead the Calculators page under Feature Calculators."
+    },
+    {
+      "date": "Jun 2026",
       "title": "Rift Wall-Break Simulator — calibrated",
       "body": "The wall-break sim is now tuned against two full Level 11 boss reports — breach waves land exactly and losses within a few percent. Kills now accelerate as a wall thins, the front takes both rams and ladders, gear reduction splits into gate and wall, and unit stats read straight off the Troops overview by level. No more guessing."
     },
@@ -32,16 +47,6 @@
       "date": "Jun 2026",
       "title": "References & community sheets",
       "body": "New: Maximise Recruitment guide, Courtyard Limits and Name Change Pricing references, plus hosted community sheets (CI costs, WoA 2024 odds)."
-    },
-    {
-      "date": "Jun 2026",
-      "title": "Hall of Legends Planner",
-      "body": "New simulator — allocate legendary skill points across the Offense & Defense trees and see your total bonuses, with a point budget tied to your HoL level."
-    },
-    {
-      "date": "Jun 2026",
-      "title": "Rift Raid Points calculator",
-      "body": "Real per-area score multipliers (courtyard is 10× the wall) — work out how many courtyard clears it takes to qualify for the Boss Defeat reward."
     },
     {
       "date": "Jun 2026",
